@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RigPrice - リアルタイムPCパーツ最安値チェッカー</title>
+  <style>
+    :root {
+      --bg-main: #0a0f1d;
+      --bg-card: #131c31;
+      --bg-sub: #1b2744;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border: #243456;
+      --shop-amazon: #f97316;
+      --shop-dospara: #2563eb;
+      --shop-koubou: #dc2626;
+      --shop-tsukumo: #059669;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.5;
+    }
+    header {
+      background: rgba(19, 28, 49, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 16px 24px;
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #fff;
+    }
+    .logo span { color: var(--accent); }
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      background: var(--bg-sub);
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--success);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 24px auto;
+      padding: 0 20px 60px 20px;
+    }
+
+    /* 検索＆フィルターコントロール */
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .category-nav {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .cat-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .cat-btn:hover {
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .cat-btn.active {
+      background: var(--accent);
+      color: #0a0f1d;
+      border-color: var(--accent);
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+    .search-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+    .search-box input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-box input:focus {
+      border-color: var(--accent);
+    }
+    .sort-select {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: #fff;
+      font-size: 0.9rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* 特売バナー */
+    .alert-banner {
+      background: linear-gradient(90deg, rgba(56, 189, 248, 0.15), rgba(16, 185, 129, 0.15));
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 14px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.88rem;
+    }
+    .alert-banner strong { color: var(--accent); }
+
+    /* パーツグリッド */
+    .parts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 20px;
+    }
+    .part-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .part-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--bg-sub);
+      color: var(--accent);
+      border: 1px solid var(--border);
+    }
+    .trend-down {
+      color: var(--success);
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+    .part-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin: 0 0 6px 0;
+      color: #fff;
+    }
+    .part-spec {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    /* 最安値ハイライト */
+    .best-price-box {
+      background: var(--bg-sub);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      border-left: 4px solid var(--success);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .best-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .best-store {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #fff;
+      display: block;
+    }
+    .best-price {
+      font-size: 1.55rem;
+      font-weight: 900;
+      color: var(--success);
+      letter-spacing: -0.5px;
+    }
+
+    /* 店舗比較リスト */
+    .store-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .store-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 10px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 8px;
+      font-size: 0.84rem;
+      border: 1px solid transparent;
+    }
+    .store-item.is-lowest {
+      border-color: rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.05);
+    }
+    .store-name-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .store-pill {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #fff;
+    }
+    .pill-amazon { background: var(--shop-amazon); }
+    .pill-dospara { background: var(--shop-dospara); }
+    .pill-koubou { background: var(--shop-koubou); }
+    .pill-tsukumo { background: var(--shop-tsukumo); }
+    .store-price {
+      font-weight: 700;
+      color: var(--text);
+    }
+    .store-subinfo {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* アクションボタン */
+    .btn-buy {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .btn-buy:hover {
+      opacity: 0.92;
+      transform: scale(0.99);
+    }
+
+    /* 広告枠 */
+    .monetize-slot {
+      margin-top: 40px;
+      background: var(--bg-card);
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+    .monetize-slot p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin: 0 0 10px 0;
+    }
+    .sample-affiliate {
+      display: inline-block;
+      background: var(--bg-sub);
+      padding: 8px 16px;
+      border-radius: 8px;
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span>⚡</span> RigPrice
+      <span style="font-size:0.8rem; font-weight:normal; color:var(--text-muted); margin-left:6px;">自作PCパーツ横断最安値チェッカー</span>
+    </div>
+    <div class="status-badge">
+      <span class="status-dot"></span>
+      各ショップ価格監視中 (Amazon / ドスパラ / パソコン工房 / ツクモ)
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- 特売ハイライト通知 -->
+  <div class="alert-banner">
+    <div>
+      🔥 <strong>【価格下落検知】</strong> RTX 4070 Super が直近1週間で約4,000円値下がり！最安店舗を確認してください。
+    </div>
+    <div style="font-size:0.75rem; color:var(--text-muted);">自動更新: 1時間毎</div>
+  </div>
+
+  <!-- カテゴリタブ & 検索 & ソート -->
+  <div class="controls">
+    <div class="category-nav">
+      <button class="cat-btn active" onclick="filterCategory('ALL')">すべて表示</button>
+      <button class="cat-btn" onclick="filterCategory('GPU')">GPU (グラフィックボード)</button>
+      <button class="cat-btn" onclick="filterCategory('CPU')">CPU (プロセッサ)</button>
+      <button class="cat-btn" onclick="filterCategory('RAM')">メモリ (DDR5)</button>
+      <button class="cat-btn" onclick="filterCategory('SSD')">M.2 SSD (Gen4/5)</button>
+      <button class="cat-btn" onclick="filterCategory('PSU')">電源ユニット (ATX 3.0)</button>
+    </div>
+
+    <div class="search-row">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="型番やパーツ名で検索 (例: 7800X3D, 4070, 32GB)..." oninput="renderParts()">
+      </div>
+      <select class="sort-select" id="sortSelect" onchange="renderParts()">
+        <option value="popular">人気・定番順</option>
+        <option value="price-asc">最安値が安い順</option>
+        <option value="price-desc">最安値が高い順</option>
+        <option value="discount">値下がり率が高い順</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- メイングリッド -->
+  <div class="parts-grid" id="partsGrid"></div>
+
+  <!-- 収益化・広告枠 -->
+  <div class="monetize-slot">
+    <p>💡 <strong>収益化ポイント</strong>：最安値店舗へのボタンやバナーに、Amazonアソシエイト・ValueCommerce（ドスパラ・工房）のアフィリエイトIDを組み込むことで、ユーザーが最安値パーツを購入した際に売上の1〜3%が報酬として還元されます。</p>
+    <div class="sample-affiliate">【広告スペース】今週のタイムセール特化グラボ特集はこちら</div>
+  </div>
+
+</div>
+
+<script>
+  // PCパーツの横断価格マスターデータ（バックエンドPython巡回をシミュレート）
+  const partsData = [
+    {
+      id: 'gpu-4070s',
+      category: 'GPU',
+      name: 'GeForce RTX 4070 SUPER 12GB',
+      spec: '1440p/WQHD最高設定向け / 高効率Ada Lovelace / TDP 220W',
+      trend: '直近比 -¥3,800 (下落中)',
+      discountRank: 4,
+      prices: [
+        { shop: 'パソコン工房', code: 'koubou', price: 92800, shipping: 0, point: 928, url: '#' },
+        { shop: 'ドスパラ', code: 'dospara', price: 93500, shipping: 0, point: 935, url: '#' },
+        { shop: 'Amazon.co.jp', code: 'amazon', price: 94800, shipping: 0, point: 948, url: '#' },
+        { shop: 'ツクモ', code: 'tsukumo', price: 95980, shipping: 0, point: 960, url: '#' }
+      ]
+    },
+    {
+      id: 'cpu-7800x3d',
+      category: 'CPU',
+      name: 'AMD Ryzen 7 7800X3D (8C/16T)',
+      spec: '3D V-Cache搭載 / ゲーミング最強CPU / AM5ソケット',
+      trend: '品薄・価格上昇傾向',
+      discountRank: 1,
+      prices: [
+        { shop: 'ツクモ', code: 'tsukumo', price: 65800, shipping: 0, point: 658, url: '#' },
+        { shop: 'Amazon.co.jp', code: 'amazon', price: 66980, shipping: 0, point: 670, url: '#' },
+        { shop: 'パソコン工房', code: 'koubou', price: 67200, shipping: 0, point: 672, url: '#' },
+        { shop: 'ドスパラ', code: 'dospara', price: 67500, shipping: 0, point: 675, url: '#' }
+      ]
+    },
+    {
+      id: 'gpu-4060',
+      category: 'GPU',
+      name: 'GeForce RTX 4060 8GB',
+      spec: 'フルHDゲーミング鉄板 / 低消費電力 115W / 補助電源8pin×1',
+      trend: '価格安定中',
+      discountRank: 2,
+      prices: [
+        { shop: 'Amazon.co.jp', code: 'amazon', price: 42980, shipping: 0, point: 430, url: '#' },
+        { shop: 'ドスパラ', code: 'dospara', price: 43800, shipping: 0, point: 438, url: '#' },
+        { shop: 'パソコン工房', code: 'koubou', price: 43900, shipping: 0, point: 439, url: '#' },
+        { shop: 'ツクモ', code: 'tsukumo', price: 44200, shipping: 0, point: 442, url: '#' }
+      ]
+    },
+    {
+      id: 'cpu-14700k',
+      category: 'CPU',
+      name: 'Intel Core i7-14700K (20C/28T)',
+      spec: '動画編集＆配信・マルチスレッド最強 / LGA1700',
+      trend: '直近比 -¥2,000',
+      discountRank: 3,
+      prices: [
+        { shop: 'パソコン工房', code: 'koubou', price: 58800, shipping: 0, point: 588, url: '#' },
+        { shop: 'Amazon.co.jp', code: 'amazon', price: 59400, shipping: 0, point: 594, url: '#' },
+        { shop: 'ツクモ', code: 'tsukumo', price: 59980, shipping: 0, point: 600, url: '#' },
+        { shop: 'ドスパラ', code: 'dospara', price: 60500, shipping: 0, point: 605, url: '#' }
+      ]
+    },
+    {
+      id: 'ram-ddr5-32gb',
+      category: 'RAM',
+      name: 'DDR5-6000 32GB (16GB×2) 主要CL30/36',
+      spec: 'Ryzen 7000/9000 & Core 14世代 最適化メモリ / ヒートシンク付',
+      trend: '直近比 -¥1,200',
+      discountRank: 5,
+      prices: [
+        { shop: 'Amazon.co.jp', code: 'amazon', price: 14980, shipping: 0, point: 150, url: '#' },
+        { shop: 'ツクモ', code: 'tsukumo', price: 15480, shipping: 0, point: 155, url: '#' },
+        { shop: 'パソコン工房', code: 'koubou', price: 15800, shipping: 0, point: 158, url: '#' },
+        { shop: 'ドスパラ', code: 'dospara', price: 15980, shipping: 0, point: 160, url: '#' }
+      ]
+    },
+    {
+      id: 'ssd-gen4-2tb',
+      category: 'SSD',
+      name: 'M.2 NVMe SSD 2TB (PCIe Gen4 7000MB/s級)',
+      spec: '読込7,300MB/s / PS5増設対応 / DRAMキャッシュ搭載',
+      trend: 'NAND価格落ち着き最安値更新',
+      discountRank: 6,
+      prices: [
+        { shop: 'パソコン工房', code: 'koubou', price: 18980, shipping: 0, point: 190, url: '#' },
+        { shop: 'Amazon.co.jp', code: 'amazon', price: 19480, shipping: 0, point: 195, url: '#' },
+        { shop: 'ドスパラ', code: 'dospara', price: 19800, shipping: 0, point: 198, url: '#' },
+        { shop: 'ツクモ', code: 'tsukumo', price: 20200, shipping: 0, point: 202, url: '#' }
+      ]
+    },
+    {
+      id: 'psu-850w-gold',
+      category: 'PSU',
+      name: 'ATX 3.0 / PCIe 5.0対応 850W Gold電源',
+      spec: '12VHPWR専用コネクタ付属 / フルモジュラー / 10年保証クラス',
+      trend: '価格安定',
+      discountRank: 2,
+      prices: [
+        { shop: 'ドスパラ', code: 'dospara', price: 16800, shipping: 0, point: 168, url: '#' },
+        { shop: 'パソコン工房', code: 'koubou', price: 16980, shipping: 0, point: 170, url: '#' },
+        { shop: 'Amazon.co.jp', code: 'amazon', price: 17200, shipping: 0, point: 172, url: '#' },
+        { shop: 'ツクモ', code: 'tsukumo', price: 17500, shipping: 0, point: 175, url: '#' }
+      ]
+    }
+  ];
+
+  let currentCategory = 'ALL';
+
+  function filterCategory(cat) {
+    currentCategory = cat;
+    const btns = document.querySelectorAll('.cat-btn');
+    btns.forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.includes(cat) || (cat === 'ALL' && btn.textContent === 'すべて表示'));
+    });
+    renderParts();
+  }
+
+  function renderParts() {
+    const grid = document.getElementById('partsGrid');
+    const query = document.getElementById('searchInput').value.toLowerCase().trim();
+    const sort = document.getElementById('sortSelect').value;
+
+    // フィルタリング
+    let list = partsData.filter(item => {
+      const matchCat = (currentCategory === 'ALL' || item.category === currentCategory);
+      const matchQuery = !query || item.name.toLowerCase().includes(query) || item.spec.toLowerCase().includes(query);
+      return matchCat && matchQuery;
+    });
+
+    // ソート処理
+    list.sort((a, b) => {
+      const minA = Math.min(...a.prices.map(p => p.price));
+      const minB = Math.min(...b.prices.map(p => p.price));
+      if (sort === 'price-asc') return minA - minB;
+      if (sort === 'price-desc') return minB - minA;
+      if (sort === 'discount') return b.discountRank - a.discountRank;
+      return 0; // 人気順（デフォルト）
+    });
+
+    grid.innerHTML = '';
+
+    if (list.length === 0) {
+      grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:40px; color:var(--text-muted);">該当するPCパーツが見つかりませんでした。</div>';
+      return;
+    }
+
+    list.forEach(item => {
+      // 最安値店舗を特定
+      const sortedPrices = [...item.prices].sort((x, y) => x.price - y.price);
+      const best = sortedPrices[0];
+
+      let storeHtml = '';
+      sortedPrices.forEach(p => {
+        const isLowest = p.price === best.price;
+        storeHtml += `
+          <div class="store-item ${isLowest ? 'is-lowest' : ''}">
+            <div class="store-name-group">
+              <span class="store-pill pill-${p.code}">${p.shop}</span>
+              ${isLowest ? '<span style="color:var(--success); font-size:0.7rem; font-weight:bold;">最安</span>' : ''}
+            </div>
+            <div style="text-align:right;">
+              <span class="store-price">¥${p.price.toLocaleString()}</span>
+              <span class="store-subinfo">(${p.point}pt還元)</span>
+            </div>
+          </div>
+        `;
+      });
+
+      const card = document.createElement('div');
+      card.className = 'part-card';
+      card.innerHTML = `
+        <div>
+          <div class="card-top">
+            <span class="tag">${item.category}</span>
+            <span class="trend-down">📉 ${item.trend}</span>
+          </div>
+          <h2 class="part-name">${item.name}</h2>
+          <div class="part-spec">${item.spec}</div>
+
+          <div class="best-price-box">
+            <div>
+              <span class="best-label">現在最安値ショップ</span>
+              <span class="best-store">${best.shop}</span>
+            </div>
+            <div class="best-price">¥${best.price.toLocaleString()}</div>
+          </div>
+
+          <div class="store-list">
+            ${storeHtml}
+          </div>
+        </div>
+
+        <a href="${best.url}" target="_blank" class="btn-buy">
+          ${best.shop} で最安値をチェック →
+        </a>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  // 初期描画
+  renderParts();
+</script>
+
+</body>
+</html>
