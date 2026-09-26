@@ -20,8 +20,6 @@
       --shop-mercari: #ea352d;
       --shop-yahoo: #ff0033;
       --shop-janpara: #005bac;
-      --shop-iosys: #e60012;
-      --shop-sofmap: #004098;
     }
     * { box-sizing: border-box; }
     body {
@@ -90,7 +88,6 @@
       padding: 0 20px 60px 20px;
     }
 
-    /* 中古特化の注意点・お得バナー */
     .used-hero {
       background: linear-gradient(135deg, #1c1917, #292524);
       border: 1px solid #78716c;
@@ -127,7 +124,6 @@
       color: #fafaf9;
     }
 
-    /* カテゴリタブ & 検索 */
     .controls {
       display: flex;
       flex-direction: column;
@@ -193,7 +189,6 @@
       cursor: pointer;
     }
 
-    /* パーツグリッド */
     .parts-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
@@ -241,7 +236,6 @@
     }
     .new-reference s { color: #94a3b8; }
 
-    /* 中古相場ボックス */
     .used-price-box {
       background: var(--bg-sub);
       border-radius: 10px;
@@ -271,7 +265,6 @@
       letter-spacing: -0.5px;
     }
 
-    /* 各中古マーケットへの誘導リンク群 */
     .market-links {
       display: flex;
       flex-direction: column;
@@ -321,14 +314,13 @@
     </div>
     <div class="status-badge">
       <span class="status-dot"></span>
-      メルカリ / ヤフオク / じゃんぱら / イオシス 相場監視
+      メルカリ / ヤフオク / じゃんぱら 相場監視
     </div>
   </div>
 </header>
 
 <div class="container">
 
-  <!-- ガイドバナー -->
   <div class="used-hero">
     <div>
       <h3>💡 「新品は高すぎる」人のための中古パーツ相場ガイド</h3>
@@ -336,12 +328,11 @@
       <div class="hero-tags">
         <span class="hero-tag">🎯 メルカリ: 個人出品最安</span>
         <span class="hero-tag">🔨 ヤフオク: 競り・掘り出し物</span>
-        <span class="hero-tag">🛡️ じゃんぱら・工房中古: 店舗初期不良保証付き</span>
+        <span class="hero-tag">🛡️ じゃんぱら・店舗中古: 保証付き</span>
       </div>
     </div>
   </div>
 
-  <!-- カテゴリタブ & 検索 & ソート -->
   <div class="controls">
     <div class="category-nav">
       <button class="cat-btn active" onclick="filterCategory('ALL')">すべて表示</button>
@@ -353,7 +344,7 @@
 
     <div class="search-row">
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="型番で検索 (例: 3070, 4060, 5700X, 12400F)..." oninput="renderParts()">
+        <input type="text" id="searchInput" placeholder="型番で検索 (例: 3080, 3070, 5700X, 12400F)..." oninput="renderParts()">
       </div>
       <select class="sort-select" id="sortSelect" onchange="renderParts()">
         <option value="popular">人気順</option>
@@ -363,14 +354,27 @@
     </div>
   </div>
 
-  <!-- メイングリッド -->
   <div class="parts-grid" id="partsGrid"></div>
 
 </div>
 
 <script>
-  // メルカリ・ヤフオク・中古専門店向けのパーツデータ
+  // あなた専用のメルカリアンバサダーID
+  const MERCARI_AFID = '0587120265';
+
   const usedParts = [
+    {
+      id: 'rtx-3080',
+      category: 'GPU',
+      name: 'GeForce RTX 3080 10GB',
+      newPriceRef: '新品当時: 約¥100,000〜',
+      usedPriceAvg: 54000,
+      diffPercent: '約46% OFF',
+      mercariQuery: 'RTX+3080',
+      yahooQuery: 'RTX+3080',
+      shopName: 'じゃんぱら / ソフマップ',
+      shopQuery: 'RTX+3080'
+    },
     {
       id: 'rtx-3070',
       category: 'GPU',
@@ -500,8 +504,8 @@
     grid.innerHTML = '';
 
     list.forEach(item => {
-      // 検索用URL生成（アフィリエイト化時はここを書き換え）
-      const mercariUrl = `https://jp.mercari.com/search?keyword=${item.mercariQuery}&status=on_sale`;
+      // あなたのアンバサダーID付きURL
+      const mercariUrl = `https://jp.mercari.com/search?afid=${MERCARI_AFID}&keyword=${item.mercariQuery}&status=on_sale`;
       const yahooUrl = `https://auctions.yahoo.co.jp/search/search?p=${item.yahooQuery}&va=${item.yahooQuery}&exflg=1&b=1&n=50`;
       const rakutenShopUrl = `https://search.rakuten.co.jp/search/mall/${item.shopQuery}+中古/?f=1`;
 
@@ -526,7 +530,7 @@
           <div class="market-links">
             <a href="${mercariUrl}" target="_blank" class="market-btn btn-mercari">
               <span>メルカリで現在出品を見る</span>
-              <span class="market-pill">即購入</span>
+              <span class="market-pill">即購入 (2%還元対象)</span>
             </a>
             <a href="${yahooUrl}" target="_blank" class="market-btn btn-yahoo">
               <span>ヤフオクで最安落札を狙う</span>
@@ -534,7 +538,7 @@
             </a>
             <a href="${rakutenShopUrl}" target="_blank" class="market-btn btn-shop">
               <span>${item.shopName}（保証付き）</span>
-              <span class="market-pill">楽天・店舗保証</span>
+              <span class="market-pill">店舗保証</span>
             </a>
           </div>
         </div>
