@@ -17,9 +17,6 @@
       --text: #f1f5f9;
       --text-muted: #94a3b8;
       --border: #243456;
-      --shop-mercari: #ea352d;
-      --shop-yahoo: #ff0033;
-      --shop-janpara: #005bac;
     }
     * { box-sizing: border-box; }
     body {
@@ -236,6 +233,26 @@
     }
     .new-reference s { color: #94a3b8; }
 
+    /* おすすめな人 ボックス */
+    .recommend-box {
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      font-size: 0.8rem;
+      color: #e0f2fe;
+      line-height: 1.45;
+    }
+    .recommend-title {
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
     .used-price-box {
       background: var(--bg-sub);
       border-radius: 10px;
@@ -324,7 +341,7 @@
   <div class="used-hero">
     <div>
       <h3>💡 「新品は高すぎる」人のための中古パーツ相場ガイド</h3>
-      <p>型落ち・前世代の人気パーツは中古なら30〜50%OFF！各モールの実売・出品相場をチェックできます。</p>
+      <p>型落ち・前世代の人気パーツは中古なら30〜60%OFF！各モールの実売・出品相場をチェックできます。</p>
       <div class="hero-tags">
         <span class="hero-tag">🎯 メルカリ: 個人出品最安</span>
         <span class="hero-tag">🔨 ヤフオク: 競り・掘り出し物</span>
@@ -344,7 +361,7 @@
 
     <div class="search-row">
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="型番で検索 (例: 3080, 3070, 5700X, 12400F)..." oninput="renderParts()">
+        <input type="text" id="searchInput" placeholder="型番で検索 (例: 2070, 3060, 10700K, 5700X)..." oninput="renderParts()">
       </div>
       <select class="sort-select" id="sortSelect" onchange="renderParts()">
         <option value="popular">人気順</option>
@@ -359,10 +376,12 @@
 </div>
 
 <script>
-  // あなた専用のメルカリアンバサダーID
+  // 紹介報酬ID設定
   const MERCARI_AFID = '0587120265';
+  const RAKUTEN_AFID = '';
 
   const usedParts = [
+    // --- GPU (グラフィックボード) ---
     {
       id: 'rtx-3080',
       category: 'GPU',
@@ -370,6 +389,7 @@
       newPriceRef: '新品当時: 約¥100,000〜',
       usedPriceAvg: 54000,
       diffPercent: '約46% OFF',
+      recommend: 'WQHD〜4Kで重い最新作を遊びたい人、Apex・VALORANTを240fps張り付きでプレイしたい人に最適。5万円台で買える前世代ハイエンドの決定版。',
       mercariQuery: 'RTX+3080',
       yahooQuery: 'RTX+3080',
       shopName: 'じゃんぱら / ソフマップ',
@@ -382,6 +402,7 @@
       newPriceRef: '新品当時: 約¥75,000〜',
       usedPriceAvg: 38000,
       diffPercent: '約49% OFF',
+      recommend: '3万円台でWQHD解像度を快適に動かしたい人におすすめ。RTX 4060新品と同価格帯ながら、ゲーム描画性能はこちらが明確に上です。',
       mercariQuery: 'RTX+3070',
       yahooQuery: 'RTX+3070',
       shopName: 'じゃんぱら / ソフマップ',
@@ -394,10 +415,63 @@
       newPriceRef: '新品当時: 約¥60,000〜',
       usedPriceAvg: 31000,
       diffPercent: '約48% OFF',
+      recommend: '「予算3万円前後でフルHD最高画質＆高fpsを出したい」というコスパ重視派に一番おすすめ。旧型PCの換装用にも鉄板。',
       mercariQuery: 'RTX+3060Ti',
       yahooQuery: 'RTX+3060Ti',
       shopName: 'じゃんぱら / イオシス',
       shopQuery: 'RTX+3060Ti'
+    },
+    {
+      id: 'rtx-3060-12g',
+      category: 'GPU',
+      name: 'GeForce RTX 3060 12GB',
+      newPriceRef: '新品最安: 約¥42,000',
+      usedPriceAvg: 28000,
+      diffPercent: '約33% OFF',
+      recommend: 'VRAM大容量12GB搭載。AI画像生成（Stable Diffusion）を格安で始めたい人や、動画編集・MOD盛りだくさんのゲームを遊びたい人向け。',
+      mercariQuery: 'RTX+3060+12GB',
+      yahooQuery: 'RTX+3060+12GB',
+      shopName: 'じゃんぱら / ソフマップ',
+      shopQuery: 'RTX+3060+12GB'
+    },
+    {
+      id: 'rtx-2080s',
+      category: 'GPU',
+      name: 'GeForce RTX 2080 SUPER 8GB',
+      newPriceRef: '新品当時: 約¥85,000〜',
+      usedPriceAvg: 29800,
+      diffPercent: '約65% OFF',
+      recommend: '3万円以下でRTX 3060 Tiと同等以上のパワーが手に入る隠れコスパ枠。電源容量（650W以上推奨）に余裕がある自作経験者におすすめ。',
+      mercariQuery: 'RTX+2080+SUPER',
+      yahooQuery: 'RTX+2080+SUPER',
+      shopName: 'じゃんぱら / ソフマップ',
+      shopQuery: 'RTX+2080+SUPER'
+    },
+    {
+      id: 'rtx-2070s',
+      category: 'GPU',
+      name: 'GeForce RTX 2070 SUPER 8GB',
+      newPriceRef: '新品当時: 約¥65,000〜',
+      usedPriceAvg: 23800,
+      diffPercent: '約63% OFF',
+      recommend: '【2万円台前半の王者】フルHDでVALORANTやApexを144fps〜240fpsで動かすなら最も安く仕上がる定番グラボ。予算を抑えたい学生にも大人気。',
+      mercariQuery: 'RTX+2070+SUPER',
+      yahooQuery: 'RTX+2070+SUPER',
+      shopName: 'じゃんぱら / イオシス',
+      shopQuery: 'RTX+2070+SUPER'
+    },
+    {
+      id: 'gtx-1080ti',
+      category: 'GPU',
+      name: 'GeForce GTX 1080 Ti 11GB',
+      newPriceRef: '新品当時: 約¥100,000〜',
+      usedPriceAvg: 18500,
+      diffPercent: '約81% OFF',
+      recommend: '1万円台でVRAM 11GBという破壊的コスパ。レイトレ不要で、フルHDゲームやサブ機・検証機を格安で組みたい実験派・玄人向け。',
+      mercariQuery: 'GTX+1080Ti',
+      yahooQuery: 'GTX+1080Ti',
+      shopName: 'じゃんぱら / ソフマップ',
+      shopQuery: 'GTX+1080Ti'
     },
     {
       id: 'rtx-4060',
@@ -406,10 +480,65 @@
       newPriceRef: '新品最安: 約¥43,000',
       usedPriceAvg: 36000,
       diffPercent: '約16% OFF',
+      recommend: '消費電力わずか115Wで超省エネ。500W前後の小型電源PCでもそのまま載せ替え可能。DLSS 3（フレーム生成）対応ゲームを安く楽しみたい人に。',
       mercariQuery: 'RTX+4060',
       yahooQuery: 'RTX+4060',
       shopName: '工房中古 / じゃんぱら',
       shopQuery: 'RTX+4060'
+    },
+
+    // --- CPU ---
+    {
+      id: 'core-i7-10700k',
+      category: 'CPU',
+      name: 'Intel Core i7-10700K (8C/16T)',
+      newPriceRef: '新品当時: 約¥48,000',
+      usedPriceAvg: 19800,
+      diffPercent: '約59% OFF',
+      recommend: 'LGA1200マザー（Z490/B460等）の延命・最上位換装に最適。8コア16スレッドでゲーム配信やマルチタスクも余裕でこなします。',
+      mercariQuery: 'i7+10700K',
+      yahooQuery: 'i7+10700K',
+      shopName: 'じゃんぱら / ソフマップ',
+      shopQuery: 'i7+10700K'
+    },
+    {
+      id: 'core-i7-9700k',
+      category: 'CPU',
+      name: 'Intel Core i7-9700K (8C/8T)',
+      newPriceRef: '新品当時: 約¥45,000',
+      usedPriceAvg: 15500,
+      diffPercent: '約65% OFF',
+      recommend: 'Z390/B360環境のCore i3やi5から一気にゲーム性能を引き上げたい人に。高クロック動作でFPSゲームの安定性に優れています。',
+      mercariQuery: 'i7+9700K',
+      yahooQuery: 'i7+9700K',
+      shopName: 'じゃんぱら / ソフマップ',
+      shopQuery: 'i7+9700K'
+    },
+    {
+      id: 'core-i7-8700k',
+      category: 'CPU',
+      name: 'Intel Core i7-8700K (6C/12T)',
+      newPriceRef: '新品当時: 約¥42,000',
+      usedPriceAvg: 12000,
+      diffPercent: '約71% OFF',
+      recommend: '約1.2万円で手に入る6コア12スレッドの名機。第8世代対応マザー（Z370等）を持っている人が格安でFPS動作を改善するのにベスト。',
+      mercariQuery: 'i7+8700K',
+      yahooQuery: 'i7+8700K',
+      shopName: 'じゃんぱら / イオシス',
+      shopQuery: 'i7+8700K'
+    },
+    {
+      id: 'core-i5-12400f',
+      category: 'CPU',
+      name: 'Intel Core i5-12400F (6C/12T)',
+      newPriceRef: '新品最安: 約¥19,000',
+      usedPriceAvg: 12800,
+      diffPercent: '約32% OFF',
+      recommend: '1万円台前半で買える現役級の超優等生。消費電力が低く発熱も控えめで、RTX 3060〜4060クラスのグラボ性能を100%引き出せます。',
+      mercariQuery: 'i5+12400F',
+      yahooQuery: 'i5+12400F',
+      shopName: 'じゃんぱら / 工房中古',
+      shopQuery: 'i5+12400F'
     },
     {
       id: 'ryzen-5700x',
@@ -418,42 +547,35 @@
       newPriceRef: '新品最安: 約¥23,000',
       usedPriceAvg: 16500,
       diffPercent: '約28% OFF',
+      recommend: 'AM4マザー（B450/B550等）を使っている人の最終アップグレード先。TDP 65Wで発熱が少なく、静音・省電力でゲームと作業を両立したい人に。',
       mercariQuery: 'Ryzen+7+5700X',
       yahooQuery: 'Ryzen+7+5700X',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'Ryzen+7+5700X'
     },
     {
-      id: 'core-i5-12400f',
-      category: 'CPU',
-      name: 'Intel Core i5-12400F',
-      newPriceRef: '新品最安: 約¥19,000',
-      usedPriceAvg: 12800,
-      diffPercent: '約32% OFF',
-      mercariQuery: 'i5+12400F',
-      yahooQuery: 'i5+12400F',
-      shopName: 'じゃんぱら / 工房中古',
-      shopQuery: 'i5+12400F'
-    },
-    {
       id: 'ryzen-7800x3d',
       category: 'CPU',
-      name: 'AMD Ryzen 7 7800X3D',
+      name: 'AMD Ryzen 7 7800X3D (8C/16T)',
       newPriceRef: '新品最安: 約¥66,000',
       usedPriceAvg: 54000,
       diffPercent: '約18% OFF',
+      recommend: '現行最強のゲーミングCPU。VALORANTや競技FPSでプロ級の高フレームレートを追求するガチゲーマー向け。新品高騰のため中古相場の注目度No.1。',
       mercariQuery: 'Ryzen+7+7800X3D',
       yahooQuery: 'Ryzen+7+7800X3D',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'Ryzen+7+7800X3D'
     },
+
+    // --- マザーボード・メモリ ---
     {
       id: 'b550-board',
       category: 'MB',
-      name: 'AMD B550チップセット ATX/MicroATX',
+      name: 'AMD B550マザーボード (AM4)',
       newPriceRef: '新品相場: 約¥14,000',
       usedPriceAvg: 8500,
       diffPercent: '約39% OFF',
+      recommend: 'Ryzen 5000番台で安く自作PCを一式組みたい人に。PCIe 4.0対応で高速M.2 SSDもフルスピード動作します。',
       mercariQuery: 'B550+マザーボード',
       yahooQuery: 'B550+マザーボード',
       shopName: 'じゃんぱら / 工房中古',
@@ -466,6 +588,7 @@
       newPriceRef: '新品最安: 約¥9,000',
       usedPriceAvg: 5800,
       diffPercent: '約35% OFF',
+      recommend: 'タルコフやシティーズ、Discord立ち上げながらのゲームで「メモリ16GBじゃ足りない」と感じている人の即効増設におすすめ。',
       mercariQuery: 'DDR4+32GB+16GB2枚',
       yahooQuery: 'DDR4+32GB',
       shopName: 'じゃんぱら / ソフマップ',
@@ -491,7 +614,7 @@
 
     let list = usedParts.filter(item => {
       const matchCat = (currentCategory === 'ALL' || item.category === currentCategory);
-      const matchQuery = !query || item.name.toLowerCase().includes(query);
+      const matchQuery = !query || item.name.toLowerCase().includes(query) || (item.recommend && item.recommend.toLowerCase().includes(query));
       return matchCat && matchQuery;
     });
 
@@ -504,10 +627,13 @@
     grid.innerHTML = '';
 
     list.forEach(item => {
-      // あなたのアンバサダーID付きURL
       const mercariUrl = `https://jp.mercari.com/search?afid=${MERCARI_AFID}&keyword=${item.mercariQuery}&status=on_sale`;
       const yahooUrl = `https://auctions.yahoo.co.jp/search/search?p=${item.yahooQuery}&va=${item.yahooQuery}&exflg=1&b=1&n=50`;
-      const rakutenShopUrl = `https://search.rakuten.co.jp/search/mall/${item.shopQuery}+中古/?f=1`;
+      
+      let rakutenShopUrl = `https://search.rakuten.co.jp/search/mall/${item.shopQuery}+中古/?f=1`;
+      if (RAKUTEN_AFID) {
+        rakutenShopUrl = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFID}/?pc=${encodeURIComponent(rakutenShopUrl)}`;
+      }
 
       const card = document.createElement('div');
       card.className = 'part-card';
@@ -518,6 +644,11 @@
           </div>
           <h2 class="part-name">${item.name}</h2>
           <div class="new-reference">参考: <s>${item.newPriceRef}</s></div>
+
+          <div class="recommend-box">
+            <div class="recommend-title">💡 こんな人におすすめ</div>
+            <div>${item.recommend}</div>
+          </div>
 
           <div class="used-price-box">
             <div>
@@ -530,7 +661,7 @@
           <div class="market-links">
             <a href="${mercariUrl}" target="_blank" class="market-btn btn-mercari">
               <span>メルカリで現在出品を見る</span>
-              <span class="market-pill">即購入 (2%還元対象)</span>
+              <span class="market-pill">即購入 (2%還元)</span>
             </a>
             <a href="${yahooUrl}" target="_blank" class="market-btn btn-yahoo">
               <span>ヤフオクで最安落札を狙う</span>
