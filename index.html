@@ -375,10 +375,11 @@
 </div>
 
 <script>
-  // アフィリエイトID設定
+  // 3大モール アフィリエイト設定（完全連携済み）
   const MERCARI_AFID = '0587120265';
   const RAKUTEN_AFID = '57ef0d8f.f3c52344.57ef0d90.d175d532';
-  const YAHOO_AFID = ''; // Yahoo!アフィリエイトIDを取得したらここに入れる
+  const VC_YAHOO_SID = '3782755';
+  const VC_YAHOO_PID = '892714269';
 
   const usedParts = [
     // --- GPU (グラフィックボード) ---
@@ -720,16 +721,14 @@
     grid.innerHTML = '';
 
     list.forEach(item => {
-      // 1. メルカリ（自動成果付与）
+      // 1. メルカリ（アンバサダー自動付与）
       const mercariUrl = `https://jp.mercari.com/search?afid=${MERCARI_AFID}&keyword=${item.mercariQuery}&status=on_sale`;
       
-      // 2. Yahoo!ショッピング中古ストア検索（商品状態：中古絞り込み）
-      let yahooShopUrl = `https://shopping.yahoo.co.jp/search?p=${item.yahooQuery}&used=1`;
-      if (YAHOO_AFID) {
-        yahooShopUrl = `https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=${YAHOO_AFID}&pid=...&vc_url=${encodeURIComponent(yahooShopUrl)}`;
-      }
+      // 2. Yahoo!ショッピング中古（バリューコマースMyLink自動付与）
+      const yahooSearchRaw = `https://shopping.yahoo.co.jp/search?p=${item.yahooQuery}&used=1`;
+      const yahooShopUrl = `https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=${VC_YAHOO_SID}&pid=${VC_YAHOO_PID}&vc_url=${encodeURIComponent(yahooSearchRaw)}`;
       
-      // 3. 楽天中古・じゃんぱら等（自動成果付与）
+      // 3. 楽天中古・じゃんぱら等（楽天アフィリエイト自動付与）
       const rakutenSearchRaw = `https://search.rakuten.co.jp/search/mall/${item.shopQuery}+中古/?f=1`;
       const rakutenShopUrl = `https://hb.afl.rakuten.co.jp/ichiba/${RAKUTEN_AFID}/?pc=${encodeURIComponent(rakutenSearchRaw)}`;
 
@@ -763,7 +762,7 @@
             </a>
             <a href="${yahooShopUrl}" target="_blank" class="market-btn btn-yahoo">
               <span>Yahoo!ショッピング中古を探す</span>
-              <span class="market-pill">PayPay還元</span>
+              <span class="market-pill">PayPay還元・中古</span>
             </a>
             <a href="${rakutenShopUrl}" target="_blank" class="market-btn btn-shop">
               <span>${item.shopName}（保証付き）</span>
