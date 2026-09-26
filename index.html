@@ -330,7 +330,7 @@
     </div>
     <div class="status-badge">
       <span class="status-dot"></span>
-      メルカリ / ヤフオク / じゃんぱら 相場監視
+      メルカリ / ヤフオク / 楽天中古 相場監視
     </div>
   </div>
 </header>
@@ -360,7 +360,7 @@
 
     <div class="search-row">
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="型番や用途で検索 (例: B550, Z490, DDR4, 32GB, AM4)..." oninput="renderParts()">
+        <input type="text" id="searchInput" placeholder="型番や用途で検索 (例: 2070, 3060, B550, VALORANT)..." oninput="renderParts()">
       </div>
       <select class="sort-select" id="sortSelect" onchange="renderParts()">
         <option value="popular">人気順</option>
@@ -375,8 +375,9 @@
 </div>
 
 <script>
+  // あなたのアフィリエイトID（完全設定済み）
   const MERCARI_AFID = '0587120265';
-  const RAKUTEN_AFID = '';
+  const RAKUTEN_AFID = '57ef0d8f.f3c52344.57ef0d90.d175d532';
 
   const usedParts = [
     // --- GPU (グラフィックボード) ---
@@ -718,13 +719,15 @@
     grid.innerHTML = '';
 
     list.forEach(item => {
+      // 1. メルカリ（ID適用済み）
       const mercariUrl = `https://jp.mercari.com/search?afid=${MERCARI_AFID}&keyword=${item.mercariQuery}&status=on_sale`;
+      
+      // 2. ヤフオク
       const yahooUrl = `https://auctions.yahoo.co.jp/search/search?p=${item.yahooQuery}&va=${item.yahooQuery}&exflg=1&b=1&n=50`;
       
-      let rakutenShopUrl = `https://search.rakuten.co.jp/search/mall/${item.shopQuery}+中古/?f=1`;
-      if (RAKUTEN_AFID) {
-        rakutenShopUrl = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFID}/?pc=${encodeURIComponent(rakutenShopUrl)}`;
-      }
+      // 3. 楽天中古・じゃんぱら（ID適用済み）
+      const rakutenSearchRaw = `https://search.rakuten.co.jp/search/mall/${item.shopQuery}+中古/?f=1`;
+      const rakutenShopUrl = `https://hb.afl.rakuten.co.jp/ichiba/${RAKUTEN_AFID}/?pc=${encodeURIComponent(rakutenSearchRaw)}`;
 
       const card = document.createElement('div');
       card.className = 'part-card';
@@ -760,7 +763,7 @@
             </a>
             <a href="${rakutenShopUrl}" target="_blank" class="market-btn btn-shop">
               <span>${item.shopName}（保証付き）</span>
-              <span class="market-pill">店舗保証</span>
+              <span class="market-pill">楽天・店舗保証 (2〜4%還元)</span>
             </a>
           </div>
         </div>
