@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RigPrice - リアルタイムPCパーツ最安値チェッカー</title>
+  <title>RigPrice - 自作PCパーツ最安値＆BTOゲーミングPC比較</title>
   <style>
     :root {
       --bg-main: #0a0f1d;
@@ -89,7 +89,44 @@
       padding: 0 20px 60px 20px;
     }
 
-    /* 検索＆フィルターコントロール */
+    /* 高報酬BTOバナー枠 */
+    .bto-hero {
+      background: linear-gradient(135deg, #1e1b4b, #172554);
+      border: 1px solid #3b82f6;
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    .bto-hero-text h3 {
+      margin: 0 0 6px 0;
+      font-size: 1.15rem;
+      color: #fff;
+    }
+    .bto-hero-text p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #93c5fd;
+    }
+    .bto-btn {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 10px 20px;
+      border-radius: 8px;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .bto-btn:hover { opacity: 0.9; }
+
+    /* カテゴリタブ & 検索 */
     .controls {
       display: flex;
       flex-direction: column;
@@ -106,10 +143,10 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       color: var(--text-muted);
-      padding: 10px 20px;
+      padding: 10px 18px;
       border-radius: 10px;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       cursor: pointer;
       white-space: nowrap;
       transition: all 0.2s;
@@ -132,7 +169,6 @@
     .search-box {
       flex: 1;
       min-width: 260px;
-      position: relative;
     }
     .search-box input {
       width: 100%;
@@ -145,9 +181,7 @@
       outline: none;
       transition: border-color 0.2s;
     }
-    .search-box input:focus {
-      border-color: var(--accent);
-    }
+    .search-box input:focus { border-color: var(--accent); }
     .sort-select {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -158,21 +192,6 @@
       outline: none;
       cursor: pointer;
     }
-
-    /* 特売バナー */
-    .alert-banner {
-      background: linear-gradient(90deg, rgba(56, 189, 248, 0.15), rgba(16, 185, 129, 0.15));
-      border: 1px solid var(--accent);
-      border-radius: 12px;
-      padding: 14px 20px;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 0.88rem;
-    }
-    .alert-banner strong { color: var(--accent); }
 
     /* パーツグリッド */
     .parts-grid {
@@ -322,28 +341,15 @@
       transform: scale(0.99);
     }
 
-    /* 広告枠 */
-    .monetize-slot {
-      margin-top: 40px;
-      background: var(--bg-card);
-      border: 1px dashed var(--border);
-      border-radius: 12px;
-      padding: 24px;
+    /* BTO代替案リンク */
+    .bto-alt-link {
+      display: block;
       text-align: center;
-    }
-    .monetize-slot p {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      margin: 0 0 10px 0;
-    }
-    .sample-affiliate {
-      display: inline-block;
-      background: var(--bg-sub);
-      padding: 8px 16px;
-      border-radius: 8px;
+      margin-top: 10px;
+      font-size: 0.78rem;
       color: var(--accent);
-      font-size: 0.8rem;
-      font-weight: bold;
+      text-decoration: underline;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -353,7 +359,7 @@
   <div class="header-inner">
     <div class="logo">
       <span>⚡</span> RigPrice
-      <span style="font-size:0.8rem; font-weight:normal; color:var(--text-muted); margin-left:6px;">自作PCパーツ横断最安値チェッカー</span>
+      <span style="font-size:0.8rem; font-weight:normal; color:var(--text-muted); margin-left:6px;">自作PCパーツ＆ゲーミングBTO比較</span>
     </div>
     <div class="status-badge">
       <span class="status-dot"></span>
@@ -364,34 +370,37 @@
 
 <div class="container">
 
-  <!-- 特売ハイライト通知 -->
-  <div class="alert-banner">
-    <div>
-      🔥 <strong>【価格下落検知】</strong> RTX 4070 Super が直近1週間で約4,000円値下がり！最安店舗を確認してください。
+  <!-- 高単価BTO完成品PCへの誘導バナー -->
+  <div class="bto-hero">
+    <div class="bto-hero-text">
+      <h3>🖥️ 「パーツから組み立てるのは面倒…」という方へ</h3>
+      <p>RTX 4070 / 4060搭載の即納ゲーミング完成品PC（保証・サポート付き）がセール中！</p>
     </div>
-    <div style="font-size:0.75rem; color:var(--text-muted);">自動更新: 1時間毎</div>
+    <a href="#" target="_blank" class="bto-btn">
+      ドスパラ・工房の即納PCをチェック →
+    </a>
   </div>
 
   <!-- カテゴリタブ & 検索 & ソート -->
   <div class="controls">
     <div class="category-nav">
       <button class="cat-btn active" onclick="filterCategory('ALL')">すべて表示</button>
+      <button class="cat-btn" onclick="filterCategory('SET')">💡 予算別おすすめ一式セット</button>
       <button class="cat-btn" onclick="filterCategory('GPU')">GPU (グラフィックボード)</button>
       <button class="cat-btn" onclick="filterCategory('CPU')">CPU (プロセッサ)</button>
       <button class="cat-btn" onclick="filterCategory('RAM')">メモリ (DDR5)</button>
-      <button class="cat-btn" onclick="filterCategory('SSD')">M.2 SSD (Gen4/5)</button>
-      <button class="cat-btn" onclick="filterCategory('PSU')">電源ユニット (ATX 3.0)</button>
+      <button class="cat-btn" onclick="filterCategory('SSD')">M.2 SSD (Gen4)</button>
+      <button class="cat-btn" onclick="filterCategory('PSU')">電源ユニット</button>
     </div>
 
     <div class="search-row">
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="型番やパーツ名で検索 (例: 7800X3D, 4070, 32GB)..." oninput="renderParts()">
+        <input type="text" id="searchInput" placeholder="型番やパーツ名で検索 (例: 4070, 7800X3D, 15万円)..." oninput="renderParts()">
       </div>
       <select class="sort-select" id="sortSelect" onchange="renderParts()">
         <option value="popular">人気・定番順</option>
         <option value="price-asc">最安値が安い順</option>
         <option value="price-desc">最安値が高い順</option>
-        <option value="discount">値下がり率が高い順</option>
       </select>
     </div>
   </div>
@@ -399,24 +408,47 @@
   <!-- メイングリッド -->
   <div class="parts-grid" id="partsGrid"></div>
 
-  <!-- 収益化・広告枠 -->
-  <div class="monetize-slot">
-    <p>💡 <strong>収益化ポイント</strong>：最安値店舗へのボタンやバナーに、Amazonアソシエイト・ValueCommerce（ドスパラ・工房）のアフィリエイトIDを組み込むことで、ユーザーが最安値パーツを購入した際に売上の1〜3%が報酬として還元されます。</p>
-    <div class="sample-affiliate">【広告スペース】今週のタイムセール特化グラボ特集はこちら</div>
-  </div>
-
 </div>
 
 <script>
-  // PCパーツの横断価格マスターデータ（バックエンドPython巡回をシミュレート）
   const partsData = [
+    // 一括セット（高額報酬狙い）
+    {
+      id: 'set-mid',
+      category: 'SET',
+      name: '【予算16万円】フルHD〜WQHD快適ゲーミング一式セット',
+      spec: 'Ryzen 5 7600 + RTX 4060 + 32GB RAM + 1TB SSD + 650W電源',
+      trend: 'パーツ個別購入で最安合計を算出',
+      btoAltText: '同スペックの完成品PC（GALLERIA等）を見る',
+      prices: [
+        { shop: 'パソコン工房', code: 'koubou', price: 158800, shipping: 0, point: 1588, url: '#' },
+        { shop: 'ドスパラ', code: 'dospara', price: 161200, shipping: 0, point: 1612, url: '#' },
+        { shop: 'ツクモ', code: 'tsukumo', price: 162900, shipping: 0, point: 1629, url: '#' },
+        { shop: 'Amazon.co.jp', code: 'amazon', price: 164500, shipping: 0, point: 1645, url: '#' }
+      ]
+    },
+    {
+      id: 'set-high',
+      category: 'SET',
+      name: '【予算25万円】WQHD高リフレッシュレート・配信最強セット',
+      spec: 'Ryzen 7 7800X3D + RTX 4070 SUPER + 32GB RAM + 2TB SSD + 850W電源',
+      trend: 'VALORANT 400fps / Apex 240fps固定可能',
+      btoAltText: '同スペックの完成品PCを見る',
+      prices: [
+        { shop: 'パソコン工房', code: 'koubou', price: 248000, shipping: 0, point: 2480, url: '#' },
+        { shop: 'ツクモ', code: 'tsukumo', price: 251000, shipping: 0, point: 2510, url: '#' },
+        { shop: 'ドスパラ', code: 'dospara', price: 252800, shipping: 0, point: 2528, url: '#' },
+        { shop: 'Amazon.co.jp', code: 'amazon', price: 256000, shipping: 0, point: 2560, url: '#' }
+      ]
+    },
+    // 単品パーツ
     {
       id: 'gpu-4070s',
       category: 'GPU',
       name: 'GeForce RTX 4070 SUPER 12GB',
-      spec: '1440p/WQHD最高設定向け / 高効率Ada Lovelace / TDP 220W',
-      trend: '直近比 -¥3,800 (下落中)',
-      discountRank: 4,
+      spec: '1440p/WQHD最高設定向け / TDP 220W',
+      trend: '直近比 -¥3,800',
+      btoAltText: 'RTX 4070 Super搭載完成品PCを見る',
       prices: [
         { shop: 'パソコン工房', code: 'koubou', price: 92800, shipping: 0, point: 928, url: '#' },
         { shop: 'ドスパラ', code: 'dospara', price: 93500, shipping: 0, point: 935, url: '#' },
@@ -428,9 +460,9 @@
       id: 'cpu-7800x3d',
       category: 'CPU',
       name: 'AMD Ryzen 7 7800X3D (8C/16T)',
-      spec: '3D V-Cache搭載 / ゲーミング最強CPU / AM5ソケット',
+      spec: '3D V-Cache搭載 / ゲーミング最強CPU',
       trend: '品薄・価格上昇傾向',
-      discountRank: 1,
+      btoAltText: 'Ryzen 7 7800X3D搭載完成品PCを見る',
       prices: [
         { shop: 'ツクモ', code: 'tsukumo', price: 65800, shipping: 0, point: 658, url: '#' },
         { shop: 'Amazon.co.jp', code: 'amazon', price: 66980, shipping: 0, point: 670, url: '#' },
@@ -442,9 +474,9 @@
       id: 'gpu-4060',
       category: 'GPU',
       name: 'GeForce RTX 4060 8GB',
-      spec: 'フルHDゲーミング鉄板 / 低消費電力 115W / 補助電源8pin×1',
+      spec: 'フルHDゲーミング鉄板 / 低消費電力 115W',
       trend: '価格安定中',
-      discountRank: 2,
+      btoAltText: 'RTX 4060搭載完成品PCを見る',
       prices: [
         { shop: 'Amazon.co.jp', code: 'amazon', price: 42980, shipping: 0, point: 430, url: '#' },
         { shop: 'ドスパラ', code: 'dospara', price: 43800, shipping: 0, point: 438, url: '#' },
@@ -453,26 +485,12 @@
       ]
     },
     {
-      id: 'cpu-14700k',
-      category: 'CPU',
-      name: 'Intel Core i7-14700K (20C/28T)',
-      spec: '動画編集＆配信・マルチスレッド最強 / LGA1700',
-      trend: '直近比 -¥2,000',
-      discountRank: 3,
-      prices: [
-        { shop: 'パソコン工房', code: 'koubou', price: 58800, shipping: 0, point: 588, url: '#' },
-        { shop: 'Amazon.co.jp', code: 'amazon', price: 59400, shipping: 0, point: 594, url: '#' },
-        { shop: 'ツクモ', code: 'tsukumo', price: 59980, shipping: 0, point: 600, url: '#' },
-        { shop: 'ドスパラ', code: 'dospara', price: 60500, shipping: 0, point: 605, url: '#' }
-      ]
-    },
-    {
       id: 'ram-ddr5-32gb',
       category: 'RAM',
-      name: 'DDR5-6000 32GB (16GB×2) 主要CL30/36',
-      spec: 'Ryzen 7000/9000 & Core 14世代 最適化メモリ / ヒートシンク付',
+      name: 'DDR5-6000 32GB (16GB×2)',
+      spec: 'Ryzen 7000/9000 & Core 14世代 最適化メモリ',
       trend: '直近比 -¥1,200',
-      discountRank: 5,
+      btoAltText: '',
       prices: [
         { shop: 'Amazon.co.jp', code: 'amazon', price: 14980, shipping: 0, point: 150, url: '#' },
         { shop: 'ツクモ', code: 'tsukumo', price: 15480, shipping: 0, point: 155, url: '#' },
@@ -483,29 +501,15 @@
     {
       id: 'ssd-gen4-2tb',
       category: 'SSD',
-      name: 'M.2 NVMe SSD 2TB (PCIe Gen4 7000MB/s級)',
-      spec: '読込7,300MB/s / PS5増設対応 / DRAMキャッシュ搭載',
-      trend: 'NAND価格落ち着き最安値更新',
-      discountRank: 6,
+      name: 'M.2 NVMe SSD 2TB (Gen4 7000MB/s級)',
+      spec: '読込7,300MB/s / PS5増設対応',
+      trend: '最安値更新',
+      btoAltText: '',
       prices: [
         { shop: 'パソコン工房', code: 'koubou', price: 18980, shipping: 0, point: 190, url: '#' },
         { shop: 'Amazon.co.jp', code: 'amazon', price: 19480, shipping: 0, point: 195, url: '#' },
         { shop: 'ドスパラ', code: 'dospara', price: 19800, shipping: 0, point: 198, url: '#' },
         { shop: 'ツクモ', code: 'tsukumo', price: 20200, shipping: 0, point: 202, url: '#' }
-      ]
-    },
-    {
-      id: 'psu-850w-gold',
-      category: 'PSU',
-      name: 'ATX 3.0 / PCIe 5.0対応 850W Gold電源',
-      spec: '12VHPWR専用コネクタ付属 / フルモジュラー / 10年保証クラス',
-      trend: '価格安定',
-      discountRank: 2,
-      prices: [
-        { shop: 'ドスパラ', code: 'dospara', price: 16800, shipping: 0, point: 168, url: '#' },
-        { shop: 'パソコン工房', code: 'koubou', price: 16980, shipping: 0, point: 170, url: '#' },
-        { shop: 'Amazon.co.jp', code: 'amazon', price: 17200, shipping: 0, point: 172, url: '#' },
-        { shop: 'ツクモ', code: 'tsukumo', price: 17500, shipping: 0, point: 175, url: '#' }
       ]
     }
   ];
@@ -526,32 +530,23 @@
     const query = document.getElementById('searchInput').value.toLowerCase().trim();
     const sort = document.getElementById('sortSelect').value;
 
-    // フィルタリング
     let list = partsData.filter(item => {
       const matchCat = (currentCategory === 'ALL' || item.category === currentCategory);
       const matchQuery = !query || item.name.toLowerCase().includes(query) || item.spec.toLowerCase().includes(query);
       return matchCat && matchQuery;
     });
 
-    // ソート処理
     list.sort((a, b) => {
       const minA = Math.min(...a.prices.map(p => p.price));
       const minB = Math.min(...b.prices.map(p => p.price));
       if (sort === 'price-asc') return minA - minB;
       if (sort === 'price-desc') return minB - minA;
-      if (sort === 'discount') return b.discountRank - a.discountRank;
-      return 0; // 人気順（デフォルト）
+      return 0;
     });
 
     grid.innerHTML = '';
 
-    if (list.length === 0) {
-      grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:40px; color:var(--text-muted);">該当するPCパーツが見つかりませんでした。</div>';
-      return;
-    }
-
     list.forEach(item => {
-      // 最安値店舗を特定
       const sortedPrices = [...item.prices].sort((x, y) => x.price - y.price);
       const best = sortedPrices[0];
 
@@ -577,7 +572,7 @@
       card.innerHTML = `
         <div>
           <div class="card-top">
-            <span class="tag">${item.category}</span>
+            <span class="tag">${item.category === 'SET' ? '一式セット' : item.category}</span>
             <span class="trend-down">📉 ${item.trend}</span>
           </div>
           <h2 class="part-name">${item.name}</h2>
@@ -596,15 +591,17 @@
           </div>
         </div>
 
-        <a href="${best.url}" target="_blank" class="btn-buy">
-          ${best.shop} で最安値をチェック →
-        </a>
+        <div>
+          <a href="${best.url}" target="_blank" class="btn-buy">
+            ${best.shop} で最安値をチェック →
+          </a>
+          ${item.btoAltText ? `<a href="#" target="_blank" class="bto-alt-link">${item.btoAltText} →</a>` : ''}
+        </div>
       `;
       grid.appendChild(card);
     });
   }
 
-  // 初期描画
   renderParts();
 </script>
 
