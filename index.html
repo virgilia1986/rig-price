@@ -233,7 +233,6 @@
     }
     .new-reference s { color: #94a3b8; }
 
-    /* おすすめな人 ボックス */
     .recommend-box {
       background: rgba(56, 189, 248, 0.08);
       border: 1px solid rgba(56, 189, 248, 0.25);
@@ -355,13 +354,13 @@
       <button class="cat-btn active" onclick="filterCategory('ALL')">すべて表示</button>
       <button class="cat-btn" onclick="filterCategory('GPU')">GPU (グラボ)</button>
       <button class="cat-btn" onclick="filterCategory('CPU')">CPU</button>
-      <button class="cat-btn" onclick="filterCategory('RAM')">メモリ</button>
       <button class="cat-btn" onclick="filterCategory('MB')">マザーボード</button>
+      <button class="cat-btn" onclick="filterCategory('RAM')">メモリ</button>
     </div>
 
     <div class="search-row">
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="型番で検索 (例: 2070, 3060, 10700K, 5700X)..." oninput="renderParts()">
+        <input type="text" id="searchInput" placeholder="型番や用途で検索 (例: B550, Z490, DDR4, 32GB, AM4)..." oninput="renderParts()">
       </div>
       <select class="sort-select" id="sortSelect" onchange="renderParts()">
         <option value="popular">人気順</option>
@@ -376,7 +375,6 @@
 </div>
 
 <script>
-  // 紹介報酬ID設定
   const MERCARI_AFID = '0587120265';
   const RAKUTEN_AFID = '';
 
@@ -567,7 +565,7 @@
       shopQuery: 'Ryzen+7+7800X3D'
     },
 
-    // --- マザーボード・メモリ ---
+    // --- マザーボード ---
     {
       id: 'b550-board',
       category: 'MB',
@@ -582,6 +580,60 @@
       shopQuery: 'B550+マザーボード'
     },
     {
+      id: 'x570-board',
+      category: 'MB',
+      name: 'AMD X570マザーボード (AM4)',
+      newPriceRef: '新品当時: 約¥28,000〜',
+      usedPriceAvg: 12500,
+      diffPercent: '約55% OFF',
+      recommend: '堅牢な電源回路と複数のPCIe 4.0スロットを備えるAM4最上位チップセット。5700Xや5800X3Dで高負荷ゲームを長時間安定動作させたい人に。',
+      mercariQuery: 'X570+マザーボード',
+      yahooQuery: 'X570+マザーボード',
+      shopName: 'じゃんぱら / ソフマップ',
+      shopQuery: 'X570+マザーボード'
+    },
+    {
+      id: 'b660-b760-board',
+      category: 'MB',
+      name: 'Intel B660 / B760マザーボード (LGA1700)',
+      newPriceRef: '新品相場: 約¥16,000',
+      usedPriceAvg: 9800,
+      diffPercent: '約38% OFF',
+      recommend: 'Core i5-12400Fや13世代・14世代Intel CPUをコスパ良く載せたい人に最適。DDR4対応版を選べばメモリ流用でさらに安く組めます。',
+      mercariQuery: 'B660+マザーボード',
+      yahooQuery: 'B660+マザーボード',
+      shopName: 'じゃんぱら / 工房中古',
+      shopQuery: 'B660+マザーボード'
+    },
+    {
+      id: 'z490-board',
+      category: 'MB',
+      name: 'Intel Z490マザーボード (LGA1200)',
+      newPriceRef: '新品当時: 約¥22,000〜',
+      usedPriceAvg: 8000,
+      diffPercent: '約63% OFF',
+      recommend: 'Core i7-10700K等の第10世代K付きCPUの性能を限界まで引き出したい人向け。メモリオーバークロックや多機能拡張を楽しみたい玄人に。',
+      mercariQuery: 'Z490+マザーボード',
+      yahooQuery: 'Z490+マザーボード',
+      shopName: 'じゃんぱら / ソフマップ',
+      shopQuery: 'Z490+マザーボード'
+    },
+    {
+      id: 'a520-board',
+      category: 'MB',
+      name: 'AMD A520マザーボード (AM4)',
+      newPriceRef: '新品相場: 約¥8,000',
+      usedPriceAvg: 4500,
+      diffPercent: '約43% OFF',
+      recommend: '4,000円台で手に入る超格安マザー。OCやPCIe 4.0は不要で、とにかく総額を抑えて動くサブ機・低価格ゲーミングPCを作りたい人に。',
+      mercariQuery: 'A520+マザーボード',
+      yahooQuery: 'A520+マザーボード',
+      shopName: 'じゃんぱら / 工房中古',
+      shopQuery: 'A520+マザーボード'
+    },
+
+    // --- メモリ ---
+    {
       id: 'ddr4-32gb',
       category: 'RAM',
       name: 'DDR4-3200 32GB (16GB×2)',
@@ -593,6 +645,45 @@
       yahooQuery: 'DDR4+32GB',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'DDR4+32GB'
+    },
+    {
+      id: 'ddr4-16gb',
+      category: 'RAM',
+      name: 'DDR4-3200 16GB (8GB×2)',
+      newPriceRef: '新品最安: 約¥4,800',
+      usedPriceAvg: 2800,
+      diffPercent: '約41% OFF',
+      recommend: '2,000円台で買える格安メモリ。フルHDゲーミングPCの初期導入や、家族用・サブPCの必要十分な容量確保に最適。',
+      mercariQuery: 'DDR4+16GB+8GB2枚',
+      yahooQuery: 'DDR4+16GB',
+      shopName: 'じゃんぱら / イオシス',
+      shopQuery: 'DDR4+16GB'
+    },
+    {
+      id: 'ddr4-3600-32gb',
+      category: 'RAM',
+      name: 'DDR4-3600 32GB (16GB×2) 高速モデル',
+      newPriceRef: '新品相場: 約¥12,000',
+      usedPriceAvg: 7200,
+      diffPercent: '約40% OFF',
+      recommend: 'Ryzen 5000シリーズで最高のゲームレスポンスを発揮する3600MHz仕様。競技FPSで1fpsでも最低フレームレートを底上げしたい人に。',
+      mercariQuery: 'DDR4+3600+32GB',
+      yahooQuery: 'DDR4+3600+32GB',
+      shopName: 'じゃんぱら / ソフマップ',
+      shopQuery: 'DDR4+3600+32GB'
+    },
+    {
+      id: 'ddr5-32gb',
+      category: 'RAM',
+      name: 'DDR5-5600/6000 32GB (16GB×2)',
+      newPriceRef: '新品最安: 約¥15,000',
+      usedPriceAvg: 10800,
+      diffPercent: '約28% OFF',
+      recommend: 'Ryzen 7000/9000番台や第13/14世代Core向けの最新規格。新品高騰が続く中で、1万円前後の良質な中古出品は狙い目です。',
+      mercariQuery: 'DDR5+32GB+16GB2枚',
+      yahooQuery: 'DDR5+32GB',
+      shopName: 'じゃんぱら / 工房中古',
+      shopQuery: 'DDR5+32GB'
     }
   ];
 
