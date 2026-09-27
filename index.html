@@ -229,12 +229,12 @@
     let allParts = [];
 
     // ==========================================
-    // アフィリエイト設定（ご自身のIDを設定）
+    // アフィリエイトID設定
     // ==========================================
     const MERCARI_AFFILIATE_ID = "3331168449";
     const RAKUTEN_AFFILIATE_ID = "5091a1e4.767a4d53.5091a1e5.9fa5c735";
     
-    // バリューコマース（ヤフオク提携時の sid と pid を入力、空文字なら通常URLに自動切替）
+    // バリューコマース（ヤフオク提携時の sid と pid を入力。空欄なら通常ヤフオク中古URL）
     const VC_SID = "";
     const VC_PID = "";
 
@@ -251,11 +251,11 @@
     function renderCards(parts) {
       const grid = document.getElementById('partsGrid');
       grid.innerHTML = parts.map(p => {
-        // 1. メルカリ（アンバサダー直結）
+        // 1. メルカリ（型番でのシンプル検索）
         const mercariWord = encodeURIComponent(p.mercariQuery || p.name);
         const mercariUrl = `https://jp.mercari.com/search?keyword=${mercariWord}&afid=${MERCARI_AFFILIATE_ID}`;
 
-        // 2. ヤフオク（istatus=2で中古確定 ＋ バリューコマース経由）
+        // 2. ヤフオク（istatus=2で中古確定）
         const yahooWord = encodeURIComponent(p.yahooQuery || p.name);
         const rawYahooUrl = `https://auctions.yahoo.co.jp/search/search?p=${yahooWord}&istatus=2`;
         let yahooFinalUrl = rawYahooUrl;
@@ -263,10 +263,10 @@
           yahooFinalUrl = `https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=${VC_SID}&pid=${VC_PID}&vc_url=${encodeURIComponent(rawYahooUrl)}`;
         }
 
-        // 3. 楽天中古（used=1で中古確定 ＋ 楽天公式アフィリエイトゲートウェイ）
-        const rakutenWord = encodeURIComponent(p.shopQuery || p.name);
-        const targetRakutenSearch = `https://search.rakuten.co.jp/search/mall/${rakutenWord}/?used=1`;
-        const rakutenUrl = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=${encodeURIComponent(targetRakutenSearch)}`;
+        // 3. 楽天中古（公式仕様：二重エンコード＋クエリなしパス形式で確実に中古検索結果へ直結）
+        const rakutenKeyword = (p.shopQuery || p.name) + " 中古";
+        const doubleEncodedKeyword = encodeURIComponent(encodeURIComponent(rakutenKeyword));
+        const rakutenUrl = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F${doubleEncodedKeyword}%2F`;
 
         return `
           <div class="card" data-category="${p.category}">
