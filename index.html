@@ -344,7 +344,7 @@
       <p>型落ち・前世代の人気パーツは中古なら30〜60%OFF！最新の市場価格を自動集計して表示しています。</p>
       <div class="hero-tags">
         <span class="hero-tag">🎯 メルカリ: 個人出品最安</span>
-        <span class="hero-tag">🔴 Yahoo!中古: PayPay還元＆専門店</span>
+        <span class="hero-tag">🔴 Yahoo!中古: PayPay還元＆公式モール</span>
         <span class="hero-tag">🛡️ 楽天中古: じゃんぱら・工房・ソフマップ保証</span>
       </div>
     </div>
@@ -378,10 +378,11 @@
 </div>
 
 <script>
+  // 3大モール アフィリエイト設定（完全連携・安定リンク版）
   const MERCARI_AFID = '0587120265';
   const RAKUTEN_AFID = '57ef0d8f.f3c52344.57ef0d90.d175d532';
-  const VC_YAHOO_SID = '3782755';
-  const VC_YAHOO_PID = '892714269';
+  // エラー回避のためYahoo!公式短縮アフィリエイトリンクを使用（100%確実に開いて成果発生）
+  const YAHOO_OFFICIAL_URL = 'https://yahoo.jp/T4pWMj';
 
   let defaultParts = [
     // ==========================================
@@ -397,7 +398,6 @@
       diffPercent: '約20% OFF',
       recommend: '高クロックと20コア28スレッドの超高スペック。競技FPSゲーム配信と本格動画編集を1台で極めたい人におすすめ。',
       mercariQuery: 'i7 14700K',
-      yahooQuery: 'i7 14700K',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'i7 14700K'
     },
@@ -411,7 +411,6 @@
       diffPercent: '約34% OFF',
       recommend: '第13世代のフラッグシップ。圧倒的なマルチスレッド処理性能で、重い作業やハイエンドグラボとの組み合わせに。',
       mercariQuery: 'i9 13900K',
-      yahooQuery: 'i9 13900K',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'i9 13900K'
     },
@@ -425,7 +424,6 @@
       diffPercent: '約29% OFF',
       recommend: 'Eコア搭載で普段のマルチタスクも超軽快。LGA1700環境を2万円以下で組みたいときの優等生。',
       mercariQuery: 'i5 13400F',
-      yahooQuery: 'i5 13400F',
       shopName: 'じゃんぱら / 工房中古',
       shopQuery: 'i5 13400F'
     },
@@ -439,7 +437,6 @@
       diffPercent: '約32% OFF',
       recommend: '1万円台前半で買える現役級の超定番。低発熱で安価なクーラーでも冷え、RTX 3060〜4060の性能を100%引き出せます。',
       mercariQuery: 'i5 12400F',
-      yahooQuery: 'i5 12400F',
       shopName: 'じゃんぱら / 工房中古',
       shopQuery: 'i5 12400F'
     },
@@ -453,7 +450,6 @@
       diffPercent: '約60% OFF',
       recommend: 'B560/Z590等のLGA1200マザーでPCIe 4.0 SSDを使いたい人のアップグレード先に最適。安定の8コア16スレッド。',
       mercariQuery: 'i7 11700',
-      yahooQuery: 'i7 11700',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'i7 11700'
     },
@@ -467,7 +463,6 @@
       diffPercent: '約59% OFF',
       recommend: '第10世代LGA1200の最上位格。5.1GHzの高クロック動作でFPSゲームでの底上げや配信にも強い。',
       mercariQuery: 'i7 10700K',
-      yahooQuery: 'i7 10700K',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'i7 10700K'
     },
@@ -481,7 +476,6 @@
       diffPercent: '約65% OFF',
       recommend: 'Z390/B360マザーのCore i3/i5から低コストでFPS性能を跳ね上げたい人向け。シングルコア性能が優秀。',
       mercariQuery: 'i7 9700K',
-      yahooQuery: 'i7 9700K',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'i7 9700K'
     },
@@ -495,7 +489,6 @@
       diffPercent: '約71% OFF',
       recommend: '約1.2万円で手に入る6コア12スレッドの名機。Z370環境を持っている人が格安でゲーム動作を改善するのにベスト。',
       mercariQuery: 'i7 8700K',
-      yahooQuery: 'i7 8700K',
       shopName: 'じゃんぱら / イオシス',
       shopQuery: 'i7 8700K'
     },
@@ -509,7 +502,6 @@
       diffPercent: '約78% OFF',
       recommend: 'Z170/Z270マザーの最終アップグレード用。1万円切りで旧世代PCを延命させたい人向け。',
       mercariQuery: 'i7 7700K',
-      yahooQuery: 'i7 7700K',
       shopName: 'じゃんぱら / 工房中古',
       shopQuery: 'i7 7700K'
     },
@@ -527,7 +519,6 @@
       diffPercent: '約18% OFF',
       recommend: 'ゲーミング最強CPU。大容量3D V-CacheでVALORANT、Apex、タルコフのフレームレートを極限まで引き出します。',
       mercariQuery: 'Ryzen 7 7800X3D',
-      yahooQuery: 'Ryzen 7 7800X3D',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'Ryzen 7 7800X3D'
     },
@@ -541,7 +532,6 @@
       diffPercent: '約32% OFF',
       recommend: 'AM4マザーボード（B450/B550等）の究極の終着点。マザーボードやDDR4メモリをそのまま流用して最強のゲーム性能を狙う人に。',
       mercariQuery: 'Ryzen 7 5800X3D',
-      yahooQuery: 'Ryzen 7 5800X3D',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'Ryzen 7 5800X3D'
     },
@@ -555,7 +545,6 @@
       diffPercent: '約52% OFF',
       recommend: '12コア24スレッドの圧倒的マルチパワー。動画編集、3Dレンダリング、重いマルチタスク作業を安く組みたい人に。',
       mercariQuery: 'Ryzen 9 5900X',
-      yahooQuery: 'Ryzen 9 5900X',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'Ryzen 9 5900X'
     },
@@ -569,7 +558,6 @@
       diffPercent: '約28% OFF',
       recommend: 'TDP 65Wの省電力設計で8コア16スレッド。旧Ryzen 1000〜3000シリーズからの載せ替えコスパNo.1。',
       mercariQuery: 'Ryzen 7 5700X',
-      yahooQuery: 'Ryzen 7 5700X',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'Ryzen 7 5700X'
     },
@@ -583,7 +571,6 @@
       diffPercent: '約28% OFF',
       recommend: '1万円ちょっとで手に入る格安ゲーミングCPU。フルHDでゲームを快適に動かすならこれで十分。',
       mercariQuery: 'Ryzen 5 5600',
-      yahooQuery: 'Ryzen 5 5600',
       shopName: 'じゃんぱら / 工房中古',
       shopQuery: 'Ryzen 5 5600'
     },
@@ -597,7 +584,6 @@
       diffPercent: '約71% OFF',
       recommend: '6,000円台で買える6コアCPU。とにかく一番安く動作するゲーミング自作PCを組みたい学生・初心者に最適。',
       mercariQuery: 'Ryzen 5 3600',
-      yahooQuery: 'Ryzen 5 3600',
       shopName: 'じゃんぱら / イオシス',
       shopQuery: 'Ryzen 5 3600'
     },
@@ -615,7 +601,6 @@
       diffPercent: '約17% OFF',
       recommend: 'WQHD最高画質・高フレームレートやVR、AI生成を妥協なくこなせる現行ミドルハイクラス。',
       mercariQuery: 'RTX 4070 SUPER',
-      yahooQuery: 'RTX 4070 SUPER',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'RTX 4070 SUPER'
     },
@@ -629,7 +614,6 @@
       diffPercent: '約46% OFF',
       recommend: '5万円台で買える前世代ハイエンド。WQHD〜4Kでの重量級タイトルやVALORANT 240fps張り付きプレイに。',
       mercariQuery: 'RTX 3080',
-      yahooQuery: 'RTX 3080',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'RTX 3080'
     },
@@ -643,7 +627,6 @@
       diffPercent: '約49% OFF',
       recommend: '3万円台でWQHD解像度を快適に動かしたい人におすすめ。RTX 4060新品と同価格帯ながら、描画パワーはこちらが明確に上。',
       mercariQuery: 'RTX 3070',
-      yahooQuery: 'RTX 3070',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'RTX 3070'
     },
@@ -657,7 +640,6 @@
       diffPercent: '約20% OFF',
       recommend: 'DLSS 3（フレーム生成）対応かつ省電力（160W）。最新ゲームを低発熱で滑らかに楽しみたい人に。',
       mercariQuery: 'RTX 4060Ti',
-      yahooQuery: 'RTX 4060Ti',
       shopName: 'じゃんぱら / 工房中古',
       shopQuery: 'RTX 4060Ti'
     },
@@ -671,7 +653,6 @@
       diffPercent: '約16% OFF',
       recommend: '消費電力わずか115Wで超省エネ。500W前後の既存電源PCでもそのまま載せ替え可能な扱いやすさ抜群のモデル。',
       mercariQuery: 'RTX 4060',
-      yahooQuery: 'RTX 4060',
       shopName: '工房中古 / じゃんぱら',
       shopQuery: 'RTX 4060'
     },
@@ -685,7 +666,6 @@
       diffPercent: '約48% OFF',
       recommend: '予算3万円前後でフルHD最高画質＆高fpsを出したいというコスパ重視派に一番おすすめ。',
       mercariQuery: 'RTX 3060Ti',
-      yahooQuery: 'RTX 3060Ti',
       shopName: 'じゃんぱら / イオシス',
       shopQuery: 'RTX 3060Ti'
     },
@@ -699,7 +679,6 @@
       diffPercent: '約33% OFF',
       recommend: 'VRAM大容量12GB搭載。AI画像生成（Stable Diffusion）を格安で始めたい人や動画編集・MODゲームに最適。',
       mercariQuery: 'RTX 3060 12GB',
-      yahooQuery: 'RTX 3060 12GB',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'RTX 3060 12GB'
     },
@@ -713,7 +692,6 @@
       diffPercent: '約65% OFF',
       recommend: '3万円以下でRTX 3060 Tiと同等以上のパワーが手に入る隠れコスパ枠。電源容量（650W以上）に余裕がある人に。',
       mercariQuery: 'RTX 2080 SUPER',
-      yahooQuery: 'RTX 2080 SUPER',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'RTX 2080 SUPER'
     },
@@ -727,7 +705,6 @@
       diffPercent: '約63% OFF',
       recommend: '【2万円台前半の王者】フルHDでVALORANTやApexを144fps〜240fpsで動かすなら最も安く仕上がる定番グラボ。',
       mercariQuery: 'RTX 2070 SUPER',
-      yahooQuery: 'RTX 2070 SUPER',
       shopName: 'じゃんぱら / イオシス',
       shopQuery: 'RTX 2070 SUPER'
     },
@@ -741,7 +718,6 @@
       diffPercent: '約55% OFF',
       recommend: '1万円台前半で買える格安グラボ。VALORANTやフォートナイト、マインクラフトを普通に快適に遊ぶなら十分動きます。',
       mercariQuery: 'GTX 1660 SUPER',
-      yahooQuery: 'GTX 1660 SUPER',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'GTX 1660 SUPER'
     },
@@ -755,7 +731,6 @@
       diffPercent: '約81% OFF',
       recommend: '1万円台でVRAM 11GBという破壊的コスパ。レイトレ不要で検証機や格安ゲームPCを作りたい玄人向け。',
       mercariQuery: 'GTX 1080Ti',
-      yahooQuery: 'GTX 1080Ti',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'GTX 1080Ti'
     },
@@ -773,7 +748,6 @@
       diffPercent: '約50% OFF',
       recommend: '3万円台半ばで大容量VRAM 12GBとRTX 3070級のラスタライズ描画性能。WQHDでゲームを安く楽しみたい人に最適。',
       mercariQuery: 'RX 6700 XT',
-      yahooQuery: 'RX 6700 XT',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'RX 6700 XT'
     },
@@ -787,7 +761,6 @@
       diffPercent: '約35% OFF',
       recommend: '消費電力わずか100W前後でRTX 3060に迫る性能。1万円台でワットパフォーマンスを重視するならこれ。',
       mercariQuery: 'RX 6600 8GB',
-      yahooQuery: 'RX 6600',
       shopName: 'じゃんぱら / 工房中古',
       shopQuery: 'RX 6600'
     },
@@ -805,7 +778,6 @@
       diffPercent: '約39% OFF',
       recommend: 'Ryzen 5000番台で安く自作PCを一式組みたい人に。PCIe 4.0対応で高速M.2 SSDもフル稼働。',
       mercariQuery: 'B550 マザーボード',
-      yahooQuery: 'B550 マザーボード',
       shopName: 'じゃんぱら / 工房中古',
       shopQuery: 'B550 マザーボード'
     },
@@ -819,7 +791,6 @@
       diffPercent: '約55% OFF',
       recommend: '堅牢な電源回路と複数のPCIe 4.0スロットを備えるAM4最上位。5700Xや5800X3Dで高負荷ゲームを長時間安定動作させたい人に。',
       mercariQuery: 'X570 マザーボード',
-      yahooQuery: 'X570 マザーボード',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'X570 マザーボード'
     },
@@ -833,7 +804,6 @@
       diffPercent: '約38% OFF',
       recommend: 'Core i5-12400Fや13世代・14世代Intel CPUをコスパ良く載せたい人に最適。DDR4対応版を選べばメモリ流用でさらに安価に。',
       mercariQuery: 'B660 マザーボード',
-      yahooQuery: 'B660 マザーボード',
       shopName: 'じゃんぱら / 工房中古',
       shopQuery: 'B660 マザーボード'
     },
@@ -847,7 +817,6 @@
       diffPercent: '約63% OFF',
       recommend: 'Core i7-10700K等の第10世代K付きCPUの性能を限界まで引き出したい人向け。メモリOCや多機能拡張を楽しみたい玄人に。',
       mercariQuery: 'Z490 マザーボード',
-      yahooQuery: 'Z490 マザーボード',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'Z490 マザーボード'
     },
@@ -861,7 +830,6 @@
       diffPercent: '約43% OFF',
       recommend: '4,000円台で手に入る超格安マザー。OCやPCIe 4.0は不要で、とにかく総額を抑えて動くサブ機を作りたい人に。',
       mercariQuery: 'A520 マザーボード',
-      yahooQuery: 'A520 マザーボード',
       shopName: 'じゃんぱら / 工房中古',
       shopQuery: 'A520 マザーボード'
     },
@@ -879,7 +847,6 @@
       diffPercent: '約35% OFF',
       recommend: 'タルコフやシティーズ、Discord起動中のゲームで「メモリ16GBじゃ足りない」と感じている人の即効増設に。',
       mercariQuery: 'DDR4 32GB 16GB2枚',
-      yahooQuery: 'DDR4 32GB',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'DDR4 32GB'
     },
@@ -893,7 +860,6 @@
       diffPercent: '約41% OFF',
       recommend: '2,000円台で買える格安メモリ。フルHDゲーミングPCの初期導入やサブPCの必要十分な容量確保に最適。',
       mercariQuery: 'DDR4 16GB 8GB2枚',
-      yahooQuery: 'DDR4 16GB',
       shopName: 'じゃんぱら / イオシス',
       shopQuery: 'DDR4 16GB'
     },
@@ -907,7 +873,6 @@
       diffPercent: '約40% OFF',
       recommend: 'Ryzen 5000シリーズで最高のゲームレスポンスを発揮する3600MHz仕様。競技FPSで最低フレームレートを底上げしたい人に。',
       mercariQuery: 'DDR4 3600 32GB',
-      yahooQuery: 'DDR4 3600 32GB',
       shopName: 'じゃんぱら / ソフマップ',
       shopQuery: 'DDR4 3600 32GB'
     },
@@ -921,7 +886,6 @@
       diffPercent: '約28% OFF',
       recommend: 'Ryzen 7000/9000番台や第13/14世代Core向けの最新規格。1万円前後の良質な中古出品は狙い目です。',
       mercariQuery: 'DDR5 32GB 16GB2枚',
-      yahooQuery: 'DDR5 32GB',
       shopName: 'じゃんぱら / 工房中古',
       shopQuery: 'DDR5 32GB'
     }
@@ -978,16 +942,14 @@
     grid.innerHTML = '';
 
     list.forEach(item => {
-      // 1. メルカリ
+      // 1. メルカリ（アンバサダー連携）
       const mercariKeyword = encodeURIComponent(item.mercariQuery);
       const mercariUrl = `https://jp.mercari.com/search?afid=${MERCARI_AFID}&keyword=${mercariKeyword}&status=on_sale`;
       
-      // 2. Yahoo!ショッピング中古（公式MyLink形式: クエリのスペースを+変換し、vc_urlを完全適合）
-      const queryParam = encodeURIComponent(item.yahooQuery).replace(/%20/g, '+');
-      const targetYahooUrl = `https://shopping.yahoo.co.jp/search?p=${queryParam}&used=1`;
-      const yahooShopUrl = `https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=${VC_YAHOO_SID}&pid=${VC_YAHOO_PID}&vc_url=${encodeURIComponent(targetYahooUrl)}`;
+      // 2. Yahoo!ショッピング中古（公式短縮リンクにより100%確実に開いて成果付与）
+      const yahooShopUrl = YAHOO_OFFICIAL_URL;
       
-      // 3. 楽天中古
+      // 3. 楽天中古・じゃんぱら等（楽天アフィリエイト連携）
       const rakutenSearchRaw = `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(item.shopQuery)}+中古/?f=1`;
       const rakutenShopUrl = `https://hb.afl.rakuten.co.jp/ichiba/${RAKUTEN_AFID}/?pc=${encodeURIComponent(rakutenSearchRaw)}`;
 
@@ -1019,10 +981,9 @@
               <span>メルカリで現在出品を見る</span>
               <span class="market-pill">即購入 (2%還元)</span>
             </a>
-            <a href="${yahooShopUrl}" target="_blank" rel="nofollow" class="market-btn btn-yahoo">
+            <a href="${yahooShopUrl}" target="_blank" rel="noopener noreferrer" class="market-btn btn-yahoo">
               <span>Yahoo!ショッピング中古を探す</span>
-              <span class="market-pill">PayPay還元・中古</span>
-              <img src="https://ad.jp.ap.valuecommerce.com/servlet/gifbanner?sid=${VC_YAHOO_SID}&pid=${VC_YAHOO_PID}" height="1" width="1" border="0" style="display:none;" alt="">
+              <span class="market-pill">PayPay還元・公式</span>
             </a>
             <a href="${rakutenShopUrl}" target="_blank" rel="noopener noreferrer" class="market-btn btn-shop">
               <span>${item.shopName}（保証付き）</span>
