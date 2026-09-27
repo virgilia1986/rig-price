@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RigPrice Used | 自作PC・フリマ相場比較 & リアルタイム最安ナビ</title>
-  <meta name="description" content="中古PCパーツ（CPU、GPU、マザーボード、メモリ）のフリマ相場・最安値を一発比較。メルカリ、Yahoo!ショッピング中古、楽天中古から賢くお得にパーツを探せます。">
+  <meta name="description" content="中古PCパーツ（CPU、GPU、マザーボード、メモリ）のフリマ相場・最安値を一発比較。メルカリ、ヤフオク、楽天中古から賢くお得にパーツを探せます。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -203,7 +203,7 @@
 
   <header>
     <h1>RigPrice Used</h1>
-    <p>中古PCパーツ・フリマ相場比較ナビ。メルカリ・Yahoo!・楽天の中古価格をまとめてチェック。</p>
+    <p>中古PCパーツ・フリマ相場比較ナビ。メルカリ・ヤフオク・楽天の中古価格をまとめてチェック。</p>
   </header>
 
   <div class="container">
@@ -230,7 +230,6 @@
 
     // アフィリエイトID
     const MERCARI_AFFILIATE_ID = "3331168449";
-    const RAKUTEN_AFFILIATE_ID = "5091a1e4.767a4d53.5091a1e5.9fa5c735";
 
     async function loadParts() {
       try {
@@ -245,17 +244,17 @@
     function renderCards(parts) {
       const grid = document.getElementById('partsGrid');
       grid.innerHTML = parts.map(p => {
-        // 1. メルカリ: 販売中（status=on_sale）かつ中古（item_condition_id=2,3,4,5）で完全中古絞り込み
-        const mercariEncoded = encodeURIComponent(p.mercariQuery || p.name);
-        const mercariUrl = `https://jp.mercari.com/search?keyword=${mercariEncoded}&status=on_sale&item_condition_id=2,3,4,5&afid=${MERCARI_AFFILIATE_ID}`;
+        // 1. メルカリ: 細かい条件をなくし、シンプルにキーワード検索
+        const mercariWord = encodeURIComponent(p.mercariQuery || p.name);
+        const mercariUrl = `https://jp.mercari.com/search?keyword=${mercariWord}&afid=${MERCARI_AFFILIATE_ID}`;
 
-        // 2. Yahoo!ショッピング: used=2（中古品のみ）で完全中古絞り込み
-        const yahooEncoded = encodeURIComponent(p.yahooQuery || p.name);
-        const yahooUrl = `https://shopping.yahoo.co.jp/search?p=${yahooEncoded}&used=2`;
+        // 2. ヤフオク中古: istatus=2 で確実に「中古品のみ」に絞り込み
+        const yahooWord = encodeURIComponent(p.yahooQuery || p.name);
+        const yahooUrl = `https://auctions.yahoo.co.jp/search/search?p=${yahooWord}&istatus=2`;
 
-        // 3. 楽天市場: used=1（中古品のみ）を直結。リダイレクト転送で壊れない確実な直接検索URL
+        // 3. 楽天中古: used=1 で確実に「中古品のみ」に絞り込み
         const rakutenWord = encodeURIComponent(p.shopQuery || p.name);
-        const rakutenUrl = `https://search.rakuten.co.jp/search/mall/${rakutenWord}/?used=1&scid=af_pc_etc&sc2id=af_101_0_0`;
+        const rakutenUrl = `https://search.rakuten.co.jp/search/mall/${rakutenWord}/?used=1`;
 
         return `
           <div class="card" data-category="${p.category}">
@@ -272,7 +271,7 @@
             <div class="card-desc">${p.recommend}</div>
             <div class="btn-group">
               <a href="${mercariUrl}" target="_blank" rel="noopener" class="btn btn-mercari btn-single">メルカリで探す</a>
-              <a href="${yahooUrl}" target="_blank" rel="noopener" class="btn btn-yahoo">Yahoo!中古</a>
+              <a href="${yahooUrl}" target="_blank" rel="noopener" class="btn btn-yahoo">ヤフオク中古</a>
               <a href="${rakutenUrl}" target="_blank" rel="noopener" class="btn btn-rakuten">楽天中古</a>
             </div>
           </div>
