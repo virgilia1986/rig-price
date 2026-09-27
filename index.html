@@ -263,10 +263,11 @@
           yahooFinalUrl = `https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=${VC_SID}&pid=${VC_PID}&vc_url=${encodeURIComponent(rawYahooUrl)}`;
         }
 
-        // 3. 代替案1: 楽天公認の「ソフマップ中古専門 楽天市場店」直結アフィリエイト
-        // 転送拒否を100%回避し、楽天ポイント・保証付き中古在庫へ誘導
-        const targetShopUrl = "https://item.rakuten.co.jp/akiba-u-shop/c/";
-        const rakutenUrl = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=${encodeURIComponent(targetShopUrl)}`;
+        // 3. ソフマップ中古（楽天市場店）の店舗内商品検索URL
+        // 確実に指定パーツの中古検索結果一覧が開き、アフィリエイトも正常計測
+        const queryTerm = encodeURIComponent(p.shopQuery || p.name);
+        const shopSearchUrl = `https://esearch.rakuten.co.jp/rms/sd/esearch/vc?sv=6&sid=269553&sitem=${queryTerm}`;
+        const rakutenUrl = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=${encodeURIComponent(shopSearchUrl)}`;
 
         return `
           <div class="card" data-category="${p.category}">
