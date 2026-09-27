@@ -6,7 +6,6 @@ import time
 import os
 
 def clean_json_string(s):
-    # 不可視の制御文字や不正な改行コードを除去
     return re.sub(r'[\x00-\x1f\x7f-\x9f]', '', s)
 
 def get_used_price(query):
@@ -39,7 +38,6 @@ def main():
     with open(json_path, 'r', encoding='utf-8', errors='ignore') as f:
         content = f.read()
 
-    # 制御文字の自動除去
     content = clean_json_string(content)
 
     try:
