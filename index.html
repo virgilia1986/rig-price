@@ -378,7 +378,7 @@
 </div>
 
 <script>
-  // 3大モール アフィリエイト設定（完全連携済み）
+  // 3大モール アフィリエイト設定
   const MERCARI_AFID = '0587120265';
   const RAKUTEN_AFID = '57ef0d8f.f3c52344.57ef0d90.d175d532';
   const VC_YAHOO_SID = '3782755';
@@ -983,9 +983,9 @@
       const mercariKeyword = encodeURIComponent(item.mercariQuery);
       const mercariUrl = `https://jp.mercari.com/search?afid=${MERCARI_AFID}&keyword=${mercariKeyword}&status=on_sale`;
       
-      // 2. Yahoo!ショッピング中古（バリューコマース公式形式・エンコード完全修正）
-      const yahooTargetUrl = `https://shopping.yahoo.co.jp/search?p=${encodeURIComponent(item.yahooQuery)}&used=1`;
-      const yahooShopUrl = `https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=${VC_YAHOO_SID}&pid=${VC_YAHOO_PID}&vc_url=${encodeURIComponent(yahooTargetUrl)}`;
+      // 2. Yahoo!ショッピング中古（バリューコマース公式形式・二重エンコード防止）
+      const yahooRawTarget = 'https://shopping.yahoo.co.jp/search?p=' + encodeURIComponent(item.yahooQuery) + '&used=1';
+      const yahooShopUrl = 'https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=' + VC_YAHOO_SID + '&pid=' + VC_YAHOO_PID + '&vc_url=' + encodeURIComponent(yahooRawTarget);
       
       // 3. 楽天中古・じゃんぱら等
       const rakutenSearchRaw = `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(item.shopQuery)}+中古/?f=1`;
@@ -1019,7 +1019,7 @@
               <span>メルカリで現在出品を見る</span>
               <span class="market-pill">即購入 (2%還元)</span>
             </a>
-            <a href="${yahooShopUrl}" target="_blank" rel="nofollow noopener" class="market-btn btn-yahoo">
+            <a href="${yahooShopUrl}" target="_blank" rel="nofollow" class="market-btn btn-yahoo">
               <span>Yahoo!ショッピング中古を探す</span>
               <span class="market-pill">PayPay還元・中古</span>
             </a>
