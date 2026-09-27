@@ -220,7 +220,7 @@
     <div class="cards-grid" id="partsGrid"></div>
 
     <div class="notice">
-      <p>※表示されている中古相場価格は大手フリマ・中古専門店の直近の平均価格（自動巡回）です。在庫状況や商品の状態によって実際の出品価格とは異なる場合があります。</p>
+      <p>※表示されている中古相場価格は大手中古専門店・モールの直近の平均価格（自動巡回）です。在庫状況や商品の状態によって実際の出品価格とは異なる場合があります。</p>
       <p>※当サイトの各リンクはメルカリアンバサダーおよび各モールのアフィリエイトプログラムを利用しています。</p>
     </div>
   </div>
@@ -247,12 +247,15 @@
       grid.innerHTML = parts.map(p => {
         const mercariEncoded = encodeURIComponent(p.mercariQuery || p.name);
         const yahooEncoded = encodeURIComponent((p.yahooQuery || p.name) + " 中古");
-        const rakutenEncoded = encodeURIComponent(p.shopQuery || p.name);
-
+        
+        // 楽天検索URL（中古絞り込み f=1 & パラメータ最適化）
+        const rakutenSearchWord = encodeURIComponent((p.shopQuery || p.name) + " 中古");
+        const destinationRakuten = `https://search.rakuten.co.jp/search/mall/${rakutenSearchWord}/?f=1`;
+        
+        // メルカリ & 楽天アフィリエイトURL生成
         const mercariUrl = `https://jp.mercari.com/search?keyword=${mercariEncoded}&afid=${MERCARI_AFFILIATE_ID}`;
         const yahooUrl = `https://shopping.yahoo.co.jp/search?p=${yahooEncoded}&used=2`;
-        const rakutenRawUrl = `https://search.rakuten.co.jp/search/mall/${rakutenEncoded}/?f=1`;
-        const rakutenUrl = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=${encodeURIComponent(rakutenRawUrl)}`;
+        const rakutenUrl = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=${encodeURIComponent(destinationRakuten)}&m=${encodeURIComponent(destinationRakuten)}`;
 
         return `
           <div class="card" data-category="${p.category}">
