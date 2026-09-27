@@ -211,7 +211,7 @@
   },
   {
     "id": "rtx-4070s",
-    "category: "GPU-NVIDIA",
+    "category": "GPU-NVIDIA",
     "badge": "NVIDIA GPU",
     "name": "GeForce RTX 4070 SUPER 12GB",
     "newPriceRef": "新品最安: 約¥95,000",
@@ -225,7 +225,7 @@
   },
   {
     "id": "rtx-3080",
-    "category: "GPU-NVIDIA",
+    "category": "GPU-NVIDIA",
     "badge": "NVIDIA GPU",
     "name": "GeForce RTX 3080 10GB",
     "newPriceRef": "新品当時: 約¥100,000〜",
@@ -239,7 +239,7 @@
   },
   {
     "id": "rtx-3070",
-    "category: "GPU-NVIDIA",
+    "category": "GPU-NVIDIA",
     "badge": "NVIDIA GPU",
     "name": "GeForce RTX 3070 8GB",
     "newPriceRef": "新品当時: 約¥75,000〜",
@@ -253,7 +253,7 @@
   },
   {
     "id": "rtx-4060ti",
-    "category: "GPU-NVIDIA",
+    "category": "GPU-NVIDIA",
     "badge": "NVIDIA GPU",
     "name": "GeForce RTX 4060 Ti 8GB",
     "newPriceRef": "新品最安: 約¥58,000",
@@ -267,7 +267,7 @@
   },
   {
     "id": "rtx-4060",
-    "category: "GPU-NVIDIA",
+    "category": "GPU-NVIDIA",
     "badge": "NVIDIA GPU",
     "name": "GeForce RTX 4060 8GB",
     "newPriceRef": "新品最安: 約¥43,000",
@@ -281,7 +281,7 @@
   },
   {
     "id": "rtx-3060ti",
-    "category: "GPU-NVIDIA",
+    "category": "GPU-NVIDIA",
     "badge": "NVIDIA GPU",
     "name": "GeForce RTX 3060 Ti 8GB",
     "newPriceRef": "新品当時: 約¥60,000〜",
@@ -295,7 +295,7 @@
   },
   {
     "id": "rtx-3060-12g",
-    "category: "GPU-NVIDIA",
+    "category": "GPU-NVIDIA",
     "badge": "NVIDIA GPU",
     "name": "GeForce RTX 3060 12GB",
     "newPriceRef": "新品最安: 約¥42,000",
@@ -309,7 +309,7 @@
   },
   {
     "id": "rtx-2080s",
-    "category: "GPU-NVIDIA",
+    "category": "GPU-NVIDIA",
     "badge": "NVIDIA GPU",
     "name": "GeForce RTX 2080 SUPER 8GB",
     "newPriceRef": "新品当時: 約¥85,000〜",
@@ -323,7 +323,7 @@
   },
   {
     "id": "rtx-2070s",
-    "category: "GPU-NVIDIA",
+    "category": "GPU-NVIDIA",
     "badge": "NVIDIA GPU",
     "name": "GeForce RTX 2070 SUPER 8GB",
     "newPriceRef": "新品当時: 約¥65,000〜",
@@ -337,7 +337,7 @@
   },
   {
     "id": "gtx-1660s",
-    "category: "GPU-NVIDIA",
+    "category": "GPU-NVIDIA",
     "badge": "NVIDIA GPU",
     "name": "GeForce GTX 1660 SUPER 6GB",
     "newPriceRef": "新品当時: 約¥30,000〜",
@@ -351,7 +351,7 @@
   },
   {
     "id": "gtx-1080ti",
-    "category: "GPU-NVIDIA",
+    "category": "GPU-NVIDIA",
     "badge": "NVIDIA GPU",
     "name": "GeForce GTX 1080 Ti 11GB",
     "newPriceRef": "新品当時: 約¥100,000〜",
@@ -365,7 +365,7 @@
   },
   {
     "id": "rx-6700xt",
-    "category: "GPU-AMD",
+    "category": "GPU-AMD",
     "badge": "AMD GPU",
     "name": "Radeon RX 6700 XT 12GB",
     "newPriceRef": "新品当時: 約¥68,000〜",
@@ -379,7 +379,7 @@
   },
   {
     "id": "rx-6600",
-    "category: "GPU-AMD",
+    "category": "GPU-AMD",
     "badge": "AMD GPU",
     "name": "Radeon RX 6600 8GB",
     "newPriceRef": "新品最安: 約¥28,000",
@@ -407,7 +407,7 @@
   },
   {
     "id": "x570-board",
-    "category: "MB",
+    "category": "MB",
     "badge": "マザーボード",
     "name": "AMD X570マザーボード (AM4)",
     "newPriceRef": "新品当時: 約¥28,000〜",
@@ -435,7 +435,7 @@
   },
   {
     "id": "z490-board",
-    "category: "MB",
+    "category": "MB",
     "badge": "マザーボード",
     "name": "Intel Z490マザーボード (LGA1200)",
     "newPriceRef": "新品当時: 約¥22,000〜",
