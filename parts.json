@@ -8,10 +8,10 @@
     "usedPriceAvg": 49800,
     "diffPercent": "約20% OFF",
     "recommend": "高クロックと20コア28スレッドの超高スペック。競技FPSゲーム配信と本格動画編集を1台で極めたい人におすすめ。",
-    "mercariQuery": "Core i7 14700K CPU 単体",
-    "yahooQuery": "Core i7 14700K CPU 単体",
+    "mercariQuery": "i7 14700K",
+    "yahooQuery": "i7 14700K",
     "shopName": "じゃんぱら / ソフマップ",
-    "shopQuery": "Core i7 14700K CPU"
+    "shopQuery": "i7 14700K"
   },
   {
     "id": "core-i9-13900k",
@@ -22,10 +22,10 @@
     "usedPriceAvg": 56000,
     "diffPercent": "約34% OFF",
     "recommend": "第13世代のフラッグシップ。圧倒的なマルチスレッド処理性能で、重い作業やハイエンドグラボとの組み合わせに。",
-    "mercariQuery": "Core i9 13900K CPU 単体",
-    "yahooQuery": "Core i9 13900K CPU 単体",
+    "mercariQuery": "i9 13900K",
+    "yahooQuery": "i9 13900K",
     "shopName": "じゃんぱら / ソフマップ",
-    "shopQuery": "Core i9 13900K CPU"
+    "shopQuery": "i9 13900K"
   },
   {
     "id": "core-i5-13400f",
@@ -36,10 +36,10 @@
     "usedPriceAvg": 18500,
     "diffPercent": "約29% OFF",
     "recommend": "Eコア搭載で普段のマルチタスクも超軽快。LGA1700環境を2万円以下で組みたいときの優等生。",
-    "mercariQuery": "Core i5 13400F CPU 単体",
-    "yahooQuery": "Core i5 13400F CPU 単体",
+    "mercariQuery": "i5 13400F",
+    "yahooQuery": "i5 13400F",
     "shopName": "じゃんぱら / 工房中古",
-    "shopQuery": "Core i5 13400F CPU"
+    "shopQuery": "i5 13400F"
   },
   {
     "id": "core-i5-12400f",
@@ -50,10 +50,10 @@
     "usedPriceAvg": 12800,
     "diffPercent": "約32% OFF",
     "recommend": "1万円台前半で買える現役級の超定番。低発熱で安価なクーラーでも冷え、RTX 3060〜4060の性能を100%引き出せます。",
-    "mercariQuery": "Core i5 12400F CPU 単体",
-    "yahooQuery": "Core i5 12400F CPU 単体",
+    "mercariQuery": "i5 12400F",
+    "yahooQuery": "i5 12400F",
     "shopName": "じゃんぱら / 工房中古",
-    "shopQuery": "Core i5 12400F CPU"
+    "shopQuery": "i5 12400F"
   },
   {
     "id": "core-i7-11700",
@@ -64,10 +64,10 @@
     "usedPriceAvg": 18000,
     "diffPercent": "約60% OFF",
     "recommend": "B560/Z590等のLGA1200マザーでPCIe 4.0 SSDを使いたい人のアップグレード先に最適。安定の8コア16スレッド。",
-    "mercariQuery": "Core i7 11700 CPU 単体",
-    "yahooQuery": "Core i7 11700 CPU 単体",
+    "mercariQuery": "i7 11700",
+    "yahooQuery": "i7 11700",
     "shopName": "じゃんぱら / ソフマップ",
-    "shopQuery": "Core i7 11700 CPU"
+    "shopQuery": "i7 11700"
   },
   {
     "id": "core-i7-10700k",
@@ -78,10 +78,10 @@
     "usedPriceAvg": 19800,
     "diffPercent": "約59% OFF",
     "recommend": "第10世代LGA1200の最上位格。5.1GHzの高クロック動作でFPSゲームでの底上げや配信にも強い。",
-    "mercariQuery": "Core i7 10700K CPU 単体",
-    "yahooQuery": "Core i7 10700K CPU 単体",
+    "mercariQuery": "i7 10700K",
+    "yahooQuery": "i7 10700K",
     "shopName": "じゃんぱら / ソフマップ",
-    "shopQuery": "Core i7 10700K CPU"
+    "shopQuery": "i7 10700K"
   },
   {
     "id": "core-i7-9700k",
@@ -92,10 +92,10 @@
     "usedPriceAvg": 15500,
     "diffPercent": "約65% OFF",
     "recommend": "Z390/B360マザーのCore i3/i5から低コストでFPS性能を跳ね上げたい人向け。シングルコア性能が優秀。",
-    "mercariQuery": "Core i7 9700K CPU 単体",
-    "yahooQuery": "Core i7 9700K CPU 単体",
+    "mercariQuery": "i7 9700K",
+    "yahooQuery": "i7 9700K",
     "shopName": "じゃんぱら / ソフマップ",
-    "shopQuery": "Core i7 9700K CPU"
+    "shopQuery": "i7 9700K"
   },
   {
     "id": "core-i7-8700k",
@@ -106,10 +106,10 @@
     "usedPriceAvg": 12000,
     "diffPercent": "約71% OFF",
     "recommend": "約1.2万円で手に入る6コア12スレッドの名機。Z370環境を持っている人が格安でゲーム動作を改善するのにベスト。",
-    "mercariQuery": "Core i7 8700K CPU 単体",
-    "yahooQuery": "Core i7 8700K CPU 単体",
+    "mercariQuery": "i7 8700K",
+    "yahooQuery": "i7 8700K",
     "shopName": "じゃんぱら / イオシス",
-    "shopQuery": "Core i7 8700K CPU"
+    "shopQuery": "i7 8700K"
   },
   {
     "id": "core-i7-7700k",
@@ -120,10 +120,10 @@
     "usedPriceAvg": 8500,
     "diffPercent": "約78% OFF",
     "recommend": "Z170/Z270マザーの最終アップグレード用。1万円切りで旧世代PCを延命させたい人向け。",
-    "mercariQuery": "Core i7 7700K CPU 単体",
-    "yahooQuery": "Core i7 7700K CPU 単体",
+    "mercariQuery": "i7 7700K",
+    "yahooQuery": "i7 7700K",
     "shopName": "じゃんぱら / 工房中古",
-    "shopQuery": "Core i7 7700K CPU"
+    "shopQuery": "i7 7700K"
   },
   {
     "id": "ryzen-7800x3d",
@@ -134,10 +134,10 @@
     "usedPriceAvg": 54000,
     "diffPercent": "約18% OFF",
     "recommend": "ゲーミング最強CPU。大容量3D V-CacheでVALORANT、Apex、タルコフのフレームレートを極限まで引き出します。",
-    "mercariQuery": "Ryzen 7 7800X3D CPU 単体",
-    "yahooQuery": "Ryzen 7 7800X3D CPU 単体",
+    "mercariQuery": "Ryzen 7 7800X3D",
+    "yahooQuery": "Ryzen 7 7800X3D",
     "shopName": "じゃんぱら / ソフマップ",
-    "shopQuery": "Ryzen 7 7800X3D CPU"
+    "shopQuery": "Ryzen 7 7800X3D"
   },
   {
     "id": "ryzen-5800x3d",
@@ -148,10 +148,10 @@
     "usedPriceAvg": 34000,
     "diffPercent": "約32% OFF",
     "recommend": "AM4マザーボード（B450/B550等）の究極の終着点。マザーボードやDDR4メモリをそのまま流用して最強のゲーム性能を狙う人に。",
-    "mercariQuery": "Ryzen 7 5800X3D CPU 単体",
-    "yahooQuery": "Ryzen 7 5800X3D CPU 単体",
+    "mercariQuery": "Ryzen 7 5800X3D",
+    "yahooQuery": "Ryzen 7 5800X3D",
     "shopName": "じゃんぱら / ソフマップ",
-    "shopQuery": "Ryzen 7 5800X3D CPU"
+    "shopQuery": "Ryzen 7 5800X3D"
   },
   {
     "id": "ryzen-5900x",
@@ -162,10 +162,10 @@
     "usedPriceAvg": 31000,
     "diffPercent": "約52% OFF",
     "recommend": "12コア24スレッドの圧倒的マルチパワー。動画編集、3Dレンダリング、重いマルチタスク作業を安く組みたい人に。",
-    "mercariQuery": "Ryzen 9 5900X CPU 単体",
-    "yahooQuery": "Ryzen 9 5900X CPU 単体",
+    "mercariQuery": "Ryzen 9 5900X",
+    "yahooQuery": "Ryzen 9 5900X",
     "shopName": "じゃんぱら / ソフマップ",
-    "shopQuery": "Ryzen 9 5900X CPU"
+    "shopQuery": "Ryzen 9 5900X"
   },
   {
     "id": "ryzen-5700x",
@@ -176,10 +176,10 @@
     "usedPriceAvg": 16500,
     "diffPercent": "約28% OFF",
     "recommend": "TDP 65Wの省電力設計で8コア16スレッド。旧Ryzen 1000〜3000シリーズからの載せ替えコスパNo.1。",
-    "mercariQuery": "Ryzen 7 5700X CPU 単体",
-    "yahooQuery": "Ryzen 7 5700X CPU 単体",
+    "mercariQuery": "Ryzen 7 5700X",
+    "yahooQuery": "Ryzen 7 5700X",
     "shopName": "じゃんぱら / ソフマップ",
-    "shopQuery": "Ryzen 7 5700X CPU"
+    "shopQuery": "Ryzen 7 5700X"
   },
   {
     "id": "ryzen-5600",
@@ -190,10 +190,10 @@
     "usedPriceAvg": 11500,
     "diffPercent": "約28% OFF",
     "recommend": "1万円ちょっとで手に入る格安ゲーミングCPU。フルHDでゲームを快適に動かすならこれで十分。",
-    "mercariQuery": "Ryzen 5 5600 CPU 単体",
-    "yahooQuery": "Ryzen 5 5600 CPU 単体",
+    "mercariQuery": "Ryzen 5 5600",
+    "yahooQuery": "Ryzen 5 5600",
     "shopName": "じゃんぱら / 工房中古",
-    "shopQuery": "Ryzen 5 5600 CPU"
+    "shopQuery": "Ryzen 5 5600"
   },
   {
     "id": "ryzen-3600",
@@ -204,10 +204,10 @@
     "usedPriceAvg": 6800,
     "diffPercent": "約71% OFF",
     "recommend": "6,000円台で買える6コアCPU。とにかく一番安く動作するゲーミング自作PCを組みたい学生・初心者に最適。",
-    "mercariQuery": "Ryzen 5 3600 CPU 単体",
-    "yahooQuery": "Ryzen 5 3600 CPU 単体",
+    "mercariQuery": "Ryzen 5 3600",
+    "yahooQuery": "Ryzen 5 3600",
     "shopName": "じゃんぱら / イオシス",
-    "shopQuery": "Ryzen 5 3600 CPU"
+    "shopQuery": "Ryzen 5 3600"
   },
   {
     "id": "rtx-4070s",
@@ -218,10 +218,10 @@
     "usedPriceAvg": 79000,
     "diffPercent": "約17% OFF",
     "recommend": "WQHD最高画質・高フレームレートやVR、AI生成を妥協なくこなせる現行ミドルハイクラス。",
-    "mercariQuery": "RTX 4070 SUPER グラフィックボード",
-    "yahooQuery": "RTX 4070 SUPER グラフィックボード",
+    "mercariQuery": "RTX 4070 SUPER",
+    "yahooQuery": "RTX 4070 SUPER",
     "shopName": "じゃんぱら / ソフマップ",
-    "shopQuery": "RTX 4070 SUPER ビデオカード"
+    "shopQuery": "RTX 4070 SUPER"
   },
   {
     "id": "rtx-3080",
@@ -232,10 +232,10 @@
     "usedPriceAvg": 54000,
     "diffPercent": "約46% OFF",
     "recommend": "5万円台で買える前世代ハイエンド。WQHD〜4Kでの重量級タイトルやVALORANT 240fps張り付きプレイに。",
-    "mercariQuery": "RTX 3080 グラフィックボード",
-    "yahooQuery": "RTX 3080 グラフィックボード",
+    "mercariQuery": "RTX 3080",
+    "yahooQuery": "RTX 3080",
     "shopName": "じゃんぱら / ソフマップ",
-    "shopQuery": "RTX 3080 ビデオカード"
+    "shopQuery": "RTX 3080"
   },
   {
     "id": "rtx-3070",
@@ -246,10 +246,10 @@
     "usedPriceAvg": 38000,
     "diffPercent": "約49% OFF",
     "recommend": "3万円台でWQHD解像度を快適に動かしたい人におすすめ。RTX 4060新品と同価格帯ながら、描画パワーはこちらが明確に上。",
-    "mercariQuery": "RTX 3070 グラフィックボード",
-    "yahooQuery": "RTX 3070 グラフィックボード",
+    "mercariQuery": "RTX 3070",
+    "yahooQuery": "RTX 3070",
     "shopName": "じゃんぱら / ソフマップ",
-    "shopQuery": "RTX 3070 ビデオカード"
+    "shopQuery": "RTX 3070"
   },
   {
     "id": "rtx-4060ti",
@@ -260,10 +260,10 @@
     "usedPriceAvg": 46000,
     "diffPercent": "約20% OFF",
     "recommend": "DLSS 3（フレーム生成）対応かつ省電力（160W）。最新ゲームを低発熱で滑らかに楽しみたい人に。",
-    "mercariQuery": "RTX 4060Ti グラフィックボード",
-    "yahooQuery": "RTX 4060Ti グラフィックボード",
+    "mercariQuery": "RTX 4060Ti",
+    "yahooQuery": "RTX 4060Ti",
     "shopName": "じゃんぱら / 工房中古",
-    "shopQuery": "RTX 4060Ti ビデオカード"
+    "shopQuery": "RTX 4060Ti"
   },
   {
     "id": "rtx-4060",
@@ -274,10 +274,10 @@
     "usedPriceAvg": 36000,
     "diffPercent": "約16% OFF",
     "recommend": "消費電力わずか115Wで超省エネ。500W前後の既存電源PCでもそのまま載せ替え可能な扱いやすさ抜群のモデル。",
-    "mercariQuery": "RTX 4060 グラフィックボード",
-    "yahooQuery": "RTX 4060 グラフィックボード",
+    "mercariQuery": "RTX 4060",
+    "yahooQuery": "RTX 4060",
     "shopName": "工房中古 / じゃんぱら",
-    "shopQuery": "RTX 4060 ビデオカード"
+    "shopQuery": "RTX 4060"
   },
   {
     "id": "rtx-3060ti",
@@ -288,10 +288,10 @@
     "usedPriceAvg": 31000,
     "diffPercent": "約48% OFF",
     "recommend": "予算3万円前後でフルHD最高画質＆高fpsを出したいというコスパ重視派に一番おすすめ。",
-    "mercariQuery": "RTX 3060Ti グラフィックボード",
-    "yahooQuery": "RTX 3060Ti グラフィックボード",
+    "mercariQuery": "RTX 3060Ti",
+    "yahooQuery": "RTX 3060Ti",
     "shopName": "じゃんぱら / イオシス",
-    "shopQuery": "RTX 3060Ti ビデオカード"
+    "shopQuery": "RTX 3060Ti"
   },
   {
     "id": "rtx-3060-12g",
@@ -302,10 +302,10 @@
     "usedPriceAvg": 28000,
     "diffPercent": "約33% OFF",
     "recommend": "VRAM大容量12GB搭載。AI画像生成（Stable Diffusion）を格安で始めたい人や動画編集・MODゲームに最適。",
-    "mercariQuery": "RTX 3060 12GB グラフィックボード",
-    "yahooQuery": "RTX 3060 12GB グラフィックボード",
+    "mercariQuery": "RTX 3060 12GB",
+    "yahooQuery": "RTX 3060 12GB",
     "shopName": "じゃんぱら / ソフマップ",
-    "shopQuery": "RTX 3060 12GB ビデオカード"
+    "shopQuery": "RTX 3060 12GB"
   },
   {
     "id": "rtx-2080s",
@@ -316,10 +316,10 @@
     "usedPriceAvg": 29800,
     "diffPercent": "約65% OFF",
     "recommend": "3万円以下でRTX 3060 Tiと同等以上のパワーが手に入る隠れコスパ枠。電源容量（650W以上）に余裕がある人に。",
-    "mercariQuery": "RTX 2080 SUPER グラフィックボード",
-    "yahooQuery": "RTX 2080 SUPER グラフィックボード",
+    "mercariQuery": "RTX 2080 SUPER",
+    "yahooQuery": "RTX 2080 SUPER",
     "shopName": "じゃんぱら / ソフマップ",
-    "shopQuery": "RTX 2080 SUPER ビデオカード"
+    "shopQuery": "RTX 2080 SUPER"
   },
   {
     "id": "rtx-2070s",
@@ -330,10 +330,10 @@
     "usedPriceAvg": 23800,
     "diffPercent": "約63% OFF",
     "recommend": "【2万円台前半の王者】フルHDでVALORANTやApexを144fps〜240fpsで動かすなら最も安く仕上がる定番グラボ。",
-    "mercariQuery": "RTX 2070 SUPER グラフィックボード",
-    "yahooQuery": "RTX 2070 SUPER グラフィックボード",
+    "mercariQuery": "RTX 2070 SUPER",
+    "yahooQuery": "RTX 2070 SUPER",
     "shopName": "じゃんぱら / イオシス",
-    "shopQuery": "RTX 2070 SUPER ビデオカード"
+    "shopQuery": "RTX 2070 SUPER"
   },
   {
     "id": "gtx-1660s",
@@ -344,10 +344,10 @@
     "usedPriceAvg": 13500,
     "diffPercent": "約55% OFF",
     "recommend": "1万円台前半で買える格安グラボ。VALORANTやフォートナイト、マインクラフトを普通に快適に遊ぶなら十分動きます。",
-    "mercariQuery": "GTX 1660 SUPER グラフィックボード",
-    "yahooQuery": "GTX 1660 SUPER グラフィックボード",
+    "mercariQuery": "GTX 1660 SUPER",
+    "yahooQuery": "GTX 1660 SUPER",
     "shopName": "じゃんぱら / ソフマップ",
-    "shopQuery": "GTX 1660 SUPER ビデオカード"
+    "shopQuery": "GTX 1660 SUPER"
   },
   {
     "id": "gtx-1080ti",
@@ -358,10 +358,10 @@
     "usedPriceAvg": 18500,
     "diffPercent": "約81% OFF",
     "recommend": "1万円台でVRAM 11GBという破壊的コスパ。レイトレ不要で検証機や格安ゲームPCを作りたい玄人向け。",
-    "mercariQuery": "GTX 1080Ti グラフィックボード",
-    "yahooQuery": "GTX 1080Ti グラフィックボード",
+    "mercariQuery": "GTX 1080Ti",
+    "yahooQuery": "GTX 1080Ti",
     "shopName": "じゃんぱら / ソフマップ",
-    "shopQuery": "GTX 1080Ti ビデオカード"
+    "shopQuery": "GTX 1080Ti"
   },
   {
     "id": "rx-6700xt",
@@ -372,10 +372,10 @@
     "usedPriceAvg": 34000,
     "diffPercent": "約50% OFF",
     "recommend": "3万円台半ばで大容量VRAM 12GBとRTX 3070級のラスタライズ描画性能。WQHDでゲームを安く楽しみたい人に最適。",
-    "mercariQuery": "RX 6700 XT グラフィックボード",
-    "yahooQuery": "RX 6700 XT グラフィックボード",
+    "mercariQuery": "RX 6700 XT",
+    "yahooQuery": "RX 6700 XT",
     "shopName": "じゃんぱら / ソフマップ",
-    "shopQuery": "RX 6700 XT ビデオカード"
+    "shopQuery": "RX 6700 XT"
   },
   {
     "id": "rx-6600",
@@ -386,10 +386,10 @@
     "usedPriceAvg": 18000,
     "diffPercent": "約35% OFF",
     "recommend": "消費電力わずか100W前後でRTX 3060に迫る性能。1万円台でワットパフォーマンスを重視するならこれ。",
-    "mercariQuery": "RX 6600 グラフィックボード",
-    "yahooQuery": "RX 6600 グラフィックボード",
+    "mercariQuery": "RX 6600",
+    "yahooQuery": "RX 6600",
     "shopName": "じゃんぱら / 工房中古",
-    "shopQuery": "RX 6600 ビデオカード"
+    "shopQuery": "RX 6600"
   },
   {
     "id": "b550-board",
@@ -400,8 +400,8 @@
     "usedPriceAvg": 8500,
     "diffPercent": "約39% OFF",
     "recommend": "Ryzen 5000番台で安く自作PCを一式組みたい人に。PCIe 4.0対応で高速M.2 SSDもフル稼働。",
-    "mercariQuery": "B550 マザーボード AM4 単体",
-    "yahooQuery": "B550 マザーボード AM4 単体",
+    "mercariQuery": "B550 マザーボード",
+    "yahooQuery": "B550 マザーボード",
     "shopName": "じゃんぱら / 工房中古",
     "shopQuery": "B550 マザーボード"
   },
@@ -414,8 +414,8 @@
     "usedPriceAvg": 12500,
     "diffPercent": "約55% OFF",
     "recommend": "堅牢な電源回路と複数のPCIe 4.0スロットを備えるAM4最上位。5700Xや5800X3Dで高負荷ゲームを長時間安定動作させたい人に。",
-    "mercariQuery": "X570 マザーボード AM4 単体",
-    "yahooQuery": "X570 マザーボード AM4 単体",
+    "mercariQuery": "X570 マザーボード",
+    "yahooQuery": "X570 マザーボード",
     "shopName": "じゃんぱら / ソフマップ",
     "shopQuery": "X570 マザーボード"
   },
@@ -428,8 +428,8 @@
     "usedPriceAvg": 9800,
     "diffPercent": "約38% OFF",
     "recommend": "Core i5-12400Fや13世代・14世代Intel CPUをコスパ良く載せたい人に最適。DDR4対応版を選べばメモリ流用でさらに安価に。",
-    "mercariQuery": "B660 マザーボード LGA1700 単体",
-    "yahooQuery": "B660 マザーボード LGA1700 単体",
+    "mercariQuery": "B660 マザーボード",
+    "yahooQuery": "B660 マザーボード",
     "shopName": "じゃんぱら / 工房中古",
     "shopQuery": "B660 マザーボード"
   },
@@ -442,8 +442,8 @@
     "usedPriceAvg": 8000,
     "diffPercent": "約63% OFF",
     "recommend": "Core i7-10700K等の第10世代K付きCPUの性能を限界まで引き出したい人向け。メモリOCや多機能拡張を楽しみたい玄人に。",
-    "mercariQuery": "Z490 マザーボード LGA1200 単体",
-    "yahooQuery": "Z490 マザーボード LGA1200 単体",
+    "mercariQuery": "Z490 マザーボード",
+    "yahooQuery": "Z490 マザーボード",
     "shopName": "じゃんぱら / ソフマップ",
     "shopQuery": "Z490 マザーボード"
   },
@@ -456,8 +456,8 @@
     "usedPriceAvg": 4500,
     "diffPercent": "約43% OFF",
     "recommend": "4,000円台で手に入る超格安マザー。OCやPCIe 4.0は不要で、とにかく総額を抑えて動くサブ機を作りたい人に。",
-    "mercariQuery": "A520 マザーボード AM4 単体",
-    "yahooQuery": "A520 マザーボード AM4 単体",
+    "mercariQuery": "A520 マザーボード",
+    "yahooQuery": "A520 マザーボード",
     "shopName": "じゃんぱら / 工房中古",
     "shopQuery": "A520 マザーボード"
   },
@@ -470,8 +470,8 @@
     "usedPriceAvg": 8800,
     "diffPercent": "約20% OFF",
     "recommend": "タルコフやシティーズ、Discord同時起動で16GBが限界な人の鉄板。2枚組デュアルチャネルで安定性抜群。",
-    "mercariQuery": "DDR4 32GB 16GB 2枚 デスクトップ",
-    "yahooQuery": "DDR4 32GB 16GB 2枚組 デスクトップ",
+    "mercariQuery": "DDR4 32GB 16GB 2枚",
+    "yahooQuery": "DDR4 32GB 16GB 2枚",
     "shopName": "じゃんぱら / ソフマップ",
     "shopQuery": "DDR4 3200 16GB 2枚"
   },
@@ -484,8 +484,8 @@
     "usedPriceAvg": 4500,
     "diffPercent": "約22% OFF",
     "recommend": "フルHDゲーミングPCの基本構成。安価な自作PCビルドやサブ機の必要十分なメモリ確保に。",
-    "mercariQuery": "DDR4 16GB 8GB 2枚 デスクトップ",
-    "yahooQuery": "DDR4 16GB 8GB 2枚組 デスクトップ",
+    "mercariQuery": "DDR4 16GB 8GB 2枚",
+    "yahooQuery": "DDR4 16GB 8GB 2枚",
     "shopName": "じゃんぱら / イオシス",
     "shopQuery": "DDR4 3200 8GB 2枚"
   },
@@ -498,8 +498,8 @@
     "usedPriceAvg": 10500,
     "diffPercent": "約22% OFF",
     "recommend": "Ryzen 5000番台と相性抜群の3600MHz。競技FPSで1% Low（最低fps）を底上げしたいこだわり派向け。",
-    "mercariQuery": "DDR4 3600 32GB 16GB 2枚 デスクトップ",
-    "yahooQuery": "DDR4 3600 32GB 16GB 2枚組 デスクトップ",
+    "mercariQuery": "DDR4 3600 32GB",
+    "yahooQuery": "DDR4 3600 32GB",
     "shopName": "じゃんぱら / ソフマップ",
     "shopQuery": "DDR4 3600 16GB 2枚"
   },
@@ -512,8 +512,8 @@
     "usedPriceAvg": 13500,
     "diffPercent": "約18% OFF",
     "recommend": "AM5（Ryzen 7000/9000）や第13/14世代Core向けの最新規格。ヒートシンク付きモデルの中古狙い目が熱い。",
-    "mercariQuery": "DDR5 32GB 16GB 2枚 デスクトップ",
-    "yahooQuery": "DDR5 32GB 16GB 2枚組 デスクトップ",
+    "mercariQuery": "DDR5 32GB 16GB 2枚",
+    "yahooQuery": "DDR5 32GB 16GB 2枚",
     "shopName": "じゃんぱら / 工房中古",
     "shopQuery": "DDR5 5600 16GB 2枚"
   }
