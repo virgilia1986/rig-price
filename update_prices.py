@@ -5,6 +5,10 @@ import re
 import time
 import os
 
+def clean_json_text(text):
+    # 改行やタブ以外の不正な制御文字（\x00-\x1f）を安全に除去
+    return re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f]', '', text)
+
 def get_used_price(query):
     try:
         encoded_query = urllib.parse.quote(f"{query} 中古")
@@ -34,13 +38,18 @@ def main():
         return
 
     try:
-        with open(json_path, 'r', encoding='utf-8') as f:
-            parts = json.load(f)
+        with open(json_path, 'r', encoding='utf-8', errors='ignore') as f:
+            raw_text = f.read()
+        cleaned_text = clean_json_text(raw_text)
+        # strict=Falseで制御文字エラーを完全防止
+        parts = json.loads(cleaned_text, strict=False)
     except Exception as e:
         print(f"Error reading JSON: {e}")
         return
 
+    print(f"Loaded {len(parts)} parts successfully. Starting price check...")
     updated_count = 0
+
     for part in parts:
         query = part.get('shopQuery') or part.get('name')
         new_price = get_used_price(query)
