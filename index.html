@@ -251,11 +251,11 @@
     function renderCards(parts) {
       const grid = document.getElementById('partsGrid');
       grid.innerHTML = parts.map(p => {
-        // 1. メルカリ（アンバサダー直結・購入額の2%報酬）
+        // 1. メルカリ（型番検索・アンバサダーID直結）
         const mercariWord = encodeURIComponent(p.mercariQuery || p.name);
         const mercariUrl = `https://jp.mercari.com/search?keyword=${mercariWord}&afid=${MERCARI_AFFILIATE_ID}`;
 
-        // 2. ヤフオク（istatus=2で中古確定 ＋ バリューコマース経由）
+        // 2. ヤフオク（istatus=2で中古確定）
         const yahooWord = encodeURIComponent(p.yahooQuery || p.name);
         const rawYahooUrl = `https://auctions.yahoo.co.jp/search/search?p=${yahooWord}&istatus=2`;
         let yahooFinalUrl = rawYahooUrl;
@@ -263,10 +263,9 @@
           yahooFinalUrl = `https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=${VC_SID}&pid=${VC_PID}&vc_url=${encodeURIComponent(rawYahooUrl)}`;
         }
 
-        // 3. 楽天中古（公式アフィリエイト直結・二重エンコードで転送崩れを防ぎ報酬100%計上）
-        const rakutenKeyword = (p.shopQuery || p.name) + " 中古";
-        const doubleEncodedKeyword = encodeURIComponent(encodeURIComponent(rakutenKeyword));
-        const rakutenUrl = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F${doubleEncodedKeyword}%2F`;
+        // 3. 楽天中古（楽天市場正規の /ichiba/ ゲートウェイ ＋ 検索パス二重エンコード ＋ text指定）
+        const targetSearchUrl = `https://search.rakuten.co.jp/search/mall/${encodeURIComponent((p.shopQuery || p.name) + " 中古")}/`;
+        const rakutenUrl = `https://hb.afl.rakuten.co.jp/ichiba/${RAKUTEN_AFFILIATE_ID}/?pc=${encodeURIComponent(targetSearchUrl)}&link_type=text`;
 
         return `
           <div class="card" data-category="${p.category}">
