@@ -4,6 +4,7 @@ import urllib.parse
 import re
 import time
 import os
+import sys
 
 DEFAULT_PARTS = [
   {"id": "core-i7-14700k", "category": "CPU-INTEL", "badge": "Intel CPU", "name": "Intel Core i7-14700K (20C/28T)", "newPriceRef": "新品最安: 約¥62,000", "usedPriceAvg": 49800, "diffPercent": "約20% OFF", "recommend": "高クロックと20コア28スレッドの超高スペック。競技FPSゲーム配信と本格動画編集を1台で極めたい人におすすめ。", "mercariQuery": "i7 14700K", "yahooQuery": "Core i7 14700K", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "i7 14700K"},
@@ -39,11 +40,14 @@ DEFAULT_PARTS = [
   {"id": "b660-b760-board", "category": "MB", "badge": "マザーボード", "name": "Intel B660 / B760マザーボード (LGA1700)", "newPriceRef": "新品相場: 約¥16,000", "usedPriceAvg": 9800, "diffPercent": "約38% OFF", "recommend": "Core i5-12400Fや13世代・14世代Intel CPUをコスパ良く載せたい人に最適。DDR4対応版を選べばメモリ流用でさらに安価に。", "mercariQuery": "B660 マザーボード", "yahooQuery": "B660 マザーボード", "shopName": "じゃんぱら / 工房中古", "shopQuery": "B660 マザーボード"},
   {"id": "z490-board", "category": "MB", "badge": "マザーボード", "name": "Intel Z490マザーボード (LGA1200)", "newPriceRef": "新品当時: 約¥22,000〜", "usedPriceAvg": 8000, "diffPercent": "約63% OFF", "recommend": "Core i7-10700K等の第10世代K付きCPUの性能を限界まで引き出したい人向け。メモリOCや多機能拡張を楽しみたい玄人に。", "mercariQuery": "Z490 マザーボード", "yahooQuery": "Z490 マザーボード", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "Z490 マザーボード"},
   {"id": "a520-board", "category": "MB", "badge": "マザーボード", "name": "AMD A520マザーボード (AM4)", "newPriceRef": "新品相場: 約¥8,000", "usedPriceAvg": 4500, "diffPercent": "約43% OFF", "recommend": "4,000円台で手に入る超格安マザー。OCやPCIe 4.0は不要で、とにかく総額を抑えて動くサブ機を作りたい人に。", "mercariQuery": "A520 マザーボード", "yahooQuery": "A520 マザーボード", "shopName": "じゃんぱら / 工房中古", "shopQuery": "A520 マザーボード"},
-  {"id": "ddr4-32gb", "category": "RAM", "badge": "メモリ", "name": "DDR4-3200 32GB (16GB×2)", "newPriceRef": "新品最安: 約¥9,000", "usedPriceAvg": 5800, "diffPercent": "約35% OFF", "recommend": "タルコフやシティーズ、Discord起動中のゲームで「メモリ16GBじゃ足りない」と感じている人の即効増設に。", "mercariQuery": "DDR4 32GB 16GB2枚", "yahooQuery": "DDR4 32GB", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "DDR4 32GB"},
-  {"id": "ddr4-16gb", "category": "RAM", "badge": "メモリ", "name": "DDR4-3200 16GB (8GB×2)", "newPriceRef": "新品最安: 約¥4,800", "usedPriceAvg": 2800, "diffPercent": "約41% OFF", "recommend": "2,000円台で買える格安メモリ。フルHDゲーミングPCの初期導入やサブPCの必要十分な容量確保に最適。", "mercariQuery": "DDR4 16GB 8GB2枚", "yahooQuery": "DDR4 16GB", "shopName": "じゃんぱら / イオシス", "shopQuery": "DDR4 16GB"},
-  {"id": "ddr4-3600-32gb", "category": "RAM", "badge": "メモリ", "name": "DDR4-3600 32GB (16GB×2) 高速モデル", "newPriceRef": "新品相場: 約¥12,000", "usedPriceAvg": 7200, "diffPercent": "約40% OFF", "recommend": "Ryzen 5000シリーズで最高のゲームレスポンスを発揮する3600MHz仕様。競技FPSで最低フレームレートを底上げしたい人に。", "mercariQuery": "DDR4 3600 32GB", "yahooQuery": "DDR4 3600 32GB", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "DDR4 3600 32GB"},
-  {"id": "ddr5-32gb", "category": "RAM", "badge": "メモリ", "name": "DDR5-5600/6000 32GB (16GB×2)", "newPriceRef": "新品最安: 約¥15,000", "usedPriceAvg": 10800, "diffPercent": "約28% OFF", "recommend": "Ryzen 7000/9000番台や第13/14世代Core向けの最新規格。1万円前後の良質な中古出品は狙い目です。", "mercariQuery": "DDR5 32GB 16GB2枚", "yahooQuery": "DDR5 32GB", "shopName": "じゃんぱら / 工房中古", "shopQuery": "DDR5 32GB"}
+  {"id": "ddr4-32gb", "category": "RAM", "badge": "メモリ", "name": "DDR4-3200 32GB (16GB×2枚組)", "newPriceRef": "新品相場: 約¥11,000", "usedPriceAvg": 8800, "diffPercent": "約20% OFF", "recommend": "タルコフやシティーズ、Discord同時起動で16GBが限界な人の鉄板。2枚組デュアルチャネルで安定性抜群。", "mercariQuery": "DDR4 32GB 16GB 2枚", "yahooQuery": "DDR4 32GB 16GB 2枚 デスクトップ", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "DDR4 3200 16GB 2枚"},
+  {"id": "ddr4-16gb", "category": "RAM", "badge": "メモリ", "name": "DDR4-3200 16GB (8GB×2枚組)", "newPriceRef": "新品相場: 約¥5,800", "usedPriceAvg": 4500, "diffPercent": "約22% OFF", "recommend": "フルHDゲーミングPCの基本構成。安価な自作PCビルドやサブ機の必要十分なメモリ確保に。", "mercariQuery": "DDR4 16GB 8GB 2枚", "yahooQuery": "DDR4 16GB 8GB 2枚 デスクトップ", "shopName": "じゃんぱら / イオシス", "shopQuery": "DDR4 3200 8GB 2枚"},
+  {"id": "ddr4-3600-32gb", "category": "RAM", "badge": "メモリ", "name": "DDR4-3600 32GB (16GB×2枚組) 高速選別", "newPriceRef": "新品相場: 約¥13,500", "usedPriceAvg": 10500, "diffPercent": "約22% OFF", "recommend": "Ryzen 5000番台と相性抜群の3600MHz。競技FPSで1% Low（最低fps）を底上げしたいこだわり派向け。", "mercariQuery": "DDR4 3600 32GB 16GB 2枚", "yahooQuery": "DDR4 3600 32GB 16GB 2枚", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "DDR4 3600 16GB 2枚"},
+  {"id": "ddr5-32gb", "category": "RAM", "badge": "メモリ", "name": "DDR5-5600/6000 32GB (16GB×2枚組)", "newPriceRef": "新品相場: 約¥16,500", "usedPriceAvg": 13500, "diffPercent": "約18% OFF", "recommend": "AM5（Ryzen 7000/9000）や第13/14世代Core向けの最新規格。ヒートシンク付きモデルの中古狙い目が熱い。", "mercariQuery": "DDR5 32GB 16GB 2枚", "yahooQuery": "DDR5 32GB 16GB 2枚 デスクトップ", "shopName": "じゃんぱら / 工房中古", "shopQuery": "DDR5 5600 16GB 2枚"}
 ]
+
+def clean_json_string(s):
+    return re.sub(r'[\x00-\x1f\x7f-\x9f]', '', s)
 
 def get_used_price(query):
     try:
@@ -63,28 +67,27 @@ def get_used_price(query):
             prices.sort()
             return prices[min(2, len(prices) - 1)]
     except Exception as e:
-        print(f"Fetch skip ({query}): {e}")
+        print(f"Fetch skip ({query}): {e}", flush=True)
     return None
 
 def main():
     json_path = 'parts.json'
     parts = []
 
-    # parts.jsonの自動検知と安全修復
     if os.path.exists(json_path):
         try:
             with open(json_path, 'r', encoding='utf-8', errors='ignore') as f:
-                parts = json.load(f)
+                content = clean_json_string(f.read())
+                parts = json.loads(content)
             if not isinstance(parts, list) or len(parts) == 0:
                 parts = DEFAULT_PARTS
         except Exception:
-            print("Notice: parts.json is corrupted. Auto-recovering using built-in safe dataset...")
+            print("Notice: parts.json corrupted. Auto-recovering using built-in safe dataset...", flush=True)
             parts = DEFAULT_PARTS
     else:
-        print("Notice: parts.json not found. Initializing safe dataset...")
         parts = DEFAULT_PARTS
 
-    print(f"Loaded {len(parts)} items successfully. Scanning market prices...")
+    print(f"Loaded {len(parts)} items successfully. Scanning market prices...", flush=True)
     updated = 0
 
     for item in parts:
@@ -94,15 +97,14 @@ def main():
 
         if new_p and abs(new_p - item.get('usedPriceAvg', 0)) >= 500:
             old_p = item.get('usedPriceAvg', 0)
-            print(f"Update: {item.get('name')} (¥{old_p:,} -> ¥{new_p:,})")
+            print(f"Update: {item.get('name')} (¥{old_p:,} -> ¥{new_p:,})", flush=True)
             item['usedPriceAvg'] = new_p
             updated += 1
 
-    # 確実に綺麗なJSONとして再生成して保存
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(parts, f, ensure_ascii=False, indent=2)
 
-    print(f"Completed! {updated} prices updated and parts.json regenerated perfectly.")
+    print(f"Completed! {updated} prices updated and parts.json regenerated perfectly.", flush=True)
 
 if __name__ == '__main__':
     main()
