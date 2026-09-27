@@ -3,1038 +3,293 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RigPrice Used - 中古PCパーツ相場＆フリマ最安値チェッカー</title>
+  <title>RigPrice Used | 自作PC・フリマ相場比較 & リアルタイム最安ナビ</title>
+  <meta name="description" content="中古PCパーツ（CPU、GPU、マザーボード、メモリ）のフリマ相場・最安値を一発比較。メルカリ、Yahoo!ショッピング中古、楽天中古から賢くお得にパーツを探せます。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-main: #0a0f1d;
-      --bg-card: #131c31;
-      --bg-sub: #1b2744;
+      --bg: #0b0f19;
+      --card-bg: #151c2e;
+      --border: #232f48;
       --accent: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.25);
-      --success: #10b981;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-      --text: #f1f5f9;
+      --text: #f8fafc;
       --text-muted: #94a3b8;
-      --border: #243456;
     }
-    * { box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", sans-serif;
-      background-color: var(--bg-main);
-      color: var(--text);
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
       line-height: 1.5;
+      padding-bottom: 60px;
     }
     header {
-      background: rgba(19, 28, 49, 0.9);
-      backdrop-filter: blur(12px);
+      padding: 3rem 1rem 2rem;
+      text-align: center;
+      background: linear-gradient(180deg, #10172a 0%, var(--bg) 100%);
       border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 16px 24px;
     }
-    .header-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.35rem;
+    header h1 {
+      font-size: 2.2rem;
       font-weight: 800;
-      letter-spacing: -0.5px;
-      color: #fff;
+      background: linear-gradient(90deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
     }
-    .logo span { color: var(--warning); }
-    .status-badge {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.8rem;
-      background: var(--bg-sub);
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
+    header p {
+      font-size: 0.95rem;
       color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
     }
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--success);
-      border-radius: 50%;
-      box-shadow: 0 0 8px var(--success);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
     .container {
-      max-width: 1100px;
-      margin: 24px auto;
-      padding: 0 20px 60px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
     }
-
-    .used-hero {
-      background: linear-gradient(135deg, #1c1917, #292524);
-      border: 1px solid #78716c;
-      border-radius: 14px;
-      padding: 20px 24px;
-      margin-bottom: 24px;
+    .filter-bar {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      justify-content: center;
     }
-    .used-hero h3 {
-      margin: 0 0 6px 0;
-      color: #fde047;
-      font-size: 1.1rem;
-    }
-    .used-hero p {
-      margin: 0;
-      font-size: 0.85rem;
-      color: #d6d3d1;
-    }
-    .hero-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-    .hero-tag {
-      background: rgba(255, 255, 255, 0.1);
-      font-size: 0.75rem;
-      padding: 4px 8px;
-      border-radius: 6px;
-      color: #fafaf9;
-    }
-
-    .controls {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-    .category-nav {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 6px;
-      scrollbar-width: thin;
-    }
-    .cat-btn {
-      background: var(--bg-card);
+    .filter-btn {
+      background: var(--card-bg);
       border: 1px solid var(--border);
       color: var(--text-muted);
-      padding: 9px 16px;
-      border-radius: 10px;
-      font-weight: 700;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
       font-size: 0.85rem;
+      font-weight: 600;
       cursor: pointer;
-      white-space: nowrap;
       transition: all 0.2s;
     }
-    .cat-btn:hover {
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent);
+      color: #0b0f19;
       border-color: var(--accent);
-      color: #fff;
     }
-    .cat-btn.active {
-      background: var(--warning);
-      color: #000;
-      border-color: var(--warning);
-      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
-    }
-    .search-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .search-box {
-      flex: 1;
-      min-width: 260px;
-    }
-    .search-box input {
-      width: 100%;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 16px;
-      color: #fff;
-      font-size: 0.95rem;
-      outline: none;
-    }
-    .search-box input:focus { border-color: var(--accent); }
-    .sort-select {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 16px;
-      color: #fff;
-      font-size: 0.9rem;
-      outline: none;
-      cursor: pointer;
-    }
-
-    .parts-grid {
+    .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
     }
-    .part-card {
-      background: var(--bg-card);
+    .card {
+      background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 20px;
+      padding: 1.25rem;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       transition: transform 0.2s, border-color 0.2s;
     }
-    .part-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--warning);
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: #38bdf8;
     }
-    .card-top {
+    .card-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 12px;
+      margin-bottom: 0.75rem;
     }
-    .tag {
-      font-size: 0.72rem;
+    .badge {
+      font-size: 0.75rem;
       font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 6px;
-      background: var(--bg-sub);
-      color: var(--warning);
-      border: 1px solid var(--border);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      background: #1e293b;
+      color: #38bdf8;
     }
-    .part-name {
+    .card-title {
       font-size: 1.15rem;
-      font-weight: 800;
-      margin: 0 0 4px 0;
-      color: #fff;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      color: #f8fafc;
     }
-    .new-reference {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-bottom: 12px;
+    .card-price-ref {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-bottom: 0.25rem;
     }
-    .new-reference s { color: #94a3b8; }
-
-    .recommend-box {
-      background: rgba(56, 189, 248, 0.08);
-      border: 1px solid rgba(56, 189, 248, 0.25);
+    .price-box {
+      background: #0b0f19;
+      border: 1px solid #1e293b;
       border-radius: 8px;
-      padding: 10px 12px;
-      margin-bottom: 14px;
-      font-size: 0.8rem;
-      color: #e0f2fe;
-      line-height: 1.45;
-    }
-    .recommend-title {
-      font-weight: 800;
-      color: var(--accent);
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .used-price-box {
-      background: var(--bg-sub);
-      border-radius: 10px;
-      padding: 12px 16px;
-      margin-bottom: 16px;
-      border-left: 4px solid var(--warning);
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.75rem;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
     }
-    .used-label {
-      font-size: 0.75rem;
+    .price-label {
+      font-size: 0.8rem;
       color: var(--text-muted);
-      text-transform: uppercase;
+    }
+    .price-val {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+    .diff-badge {
+      font-size: 0.8rem;
       font-weight: 700;
+      color: #34d399;
+      background: rgba(52, 211, 153, 0.1);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
     }
-    .used-sub {
-      font-size: 0.75rem;
-      color: var(--success);
-      font-weight: bold;
-      display: block;
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      line-height: 1.5;
+      flex-grow: 1;
     }
-    .used-price {
-      font-size: 1.55rem;
-      font-weight: 900;
-      color: var(--warning);
-      letter-spacing: -0.5px;
+    .btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
     }
-
-    .market-links {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 14px;
+    .btn-group .btn-single {
+      grid-column: span 2;
     }
-    .market-btn {
-      display: flex;
-      justify-content: space-between;
+    .btn {
+      display: inline-flex;
       align-items: center;
-      padding: 10px 14px;
-      border-radius: 8px;
+      justify-content: center;
       text-decoration: none;
-      color: #fff;
       font-size: 0.85rem;
       font-weight: 700;
+      padding: 0.65rem;
+      border-radius: 8px;
       transition: opacity 0.2s;
+      color: #ffffff;
+      text-align: center;
     }
-    .market-btn:hover { opacity: 0.88; }
+    .btn:hover {
+      opacity: 0.9;
+    }
     .btn-mercari {
-      background: linear-gradient(135deg, #ef4444, #dc2626);
+      background: linear-gradient(135deg, #ff333f 0%, #e11d48 100%);
     }
     .btn-yahoo {
-      background: linear-gradient(135deg, #ff0033, #d9002c);
+      background: #f97316;
     }
-    .btn-shop {
-      background: var(--bg-sub);
+    .btn-rakuten {
+      background: #bf0000;
+    }
+    .notice {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: var(--card-bg);
       border: 1px solid var(--border);
-      color: var(--text);
-    }
-    .btn-shop:hover { border-color: var(--accent); }
-    .market-pill {
-      font-size: 0.65rem;
-      padding: 2px 6px;
-      border-radius: 4px;
-      background: rgba(0,0,0,0.25);
+      border-radius: 8px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <div class="logo">
-      <span>♻️</span> RigPrice Used
-      <span style="font-size:0.8rem; font-weight:normal; color:var(--text-muted); margin-left:6px;">自作PCパーツ 中古・フリマ相場チェッカー</span>
-    </div>
-    <div class="status-badge">
-      <span class="status-dot"></span>
-      自動相場監視システム稼働中
-    </div>
-  </div>
-</header>
+  <header>
+    <h1>RigPrice Used</h1>
+    <p>中古PCパーツ・フリマ相場比較ナビ。メルカリ・Yahoo!・楽天の中古価格をまとめてチェック。</p>
+  </header>
 
-<div class="container">
+  <div class="container">
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterCards('ALL', this)">すべて</button>
+      <button class="filter-btn" onclick="filterCards('CPU-INTEL', this)">Intel CPU</button>
+      <button class="filter-btn" onclick="filterCards('CPU-AMD', this)">AMD CPU</button>
+      <button class="filter-btn" onclick="filterCards('GPU-NVIDIA', this)">NVIDIA GPU</button>
+      <button class="filter-btn" onclick="filterCards('GPU-AMD', this)">AMD GPU</button>
+      <button class="filter-btn" onclick="filterCards('MB', this)">マザーボード</button>
+      <button class="filter-btn" onclick="filterCards('RAM', this)">メモリ</button>
+    </div>
 
-  <div class="used-hero">
-    <div>
-      <h3>💡 「新品は高すぎる」人のための中古パーツ相場ガイド</h3>
-      <p>型落ち・前世代の人気パーツは中古なら30〜60%OFF！最新の市場価格を自動集計して表示しています。</p>
-      <div class="hero-tags">
-        <span class="hero-tag">🎯 メルカリ: 個人出品最安</span>
-        <span class="hero-tag">🔴 Yahoo!中古: PayPay還元＆専門店</span>
-        <span class="hero-tag">🛡️ 楽天中古: じゃんぱら・工房・ソフマップ保証</span>
-      </div>
+    <div class="cards-grid" id="partsGrid"></div>
+
+    <div class="notice">
+      <p>※表示されている中古相場価格は大手フリマ・中古専門店の直近の平均価格（自動巡回）です。在庫状況や商品の状態によって実際の出品価格とは異なる場合があります。</p>
+      <p>※当サイトの各リンクはメルカリアンバサダーおよび各モールのアフィリエイトプログラムを利用しています。</p>
     </div>
   </div>
 
-  <div class="controls">
-    <div class="category-nav">
-      <button class="cat-btn active" onclick="filterCategory('ALL')">すべて表示</button>
-      <button class="cat-btn" onclick="filterCategory('CPU-INTEL')">Intel CPU</button>
-      <button class="cat-btn" onclick="filterCategory('CPU-AMD')">AMD CPU</button>
-      <button class="cat-btn" onclick="filterCategory('GPU-NVIDIA')">NVIDIA GPU</button>
-      <button class="cat-btn" onclick="filterCategory('GPU-AMD')">AMD GPU</button>
-      <button class="cat-btn" onclick="filterCategory('MB')">マザーボード</button>
-      <button class="cat-btn" onclick="filterCategory('RAM')">メモリ</button>
-    </div>
+  <script>
+    let allParts = [];
 
-    <div class="search-row">
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="型番や用途で検索 (例: 14700K, 10700K, 5700X, 2070, VALORANT)..." oninput="renderParts()">
-      </div>
-      <select class="sort-select" id="sortSelect" onchange="renderParts()">
-        <option value="popular">人気順</option>
-        <option value="price-asc">中古相場が安い順</option>
-        <option value="price-desc">中古相場が高い順</option>
-      </select>
-    </div>
-  </div>
+    // アフィリエイト設定
+    const MERCARI_AFFILIATE_ID = "3331168449";
+    const RAKUTEN_AFFILIATE_ID = "5091a1e4.767a4d53.5091a1e5.9fa5c735";
 
-  <div class="parts-grid" id="partsGrid"></div>
-
-</div>
-
-<script>
-  // 3大モール アフィリエイト設定
-  const MERCARI_AFID = '0587120265';
-  const RAKUTEN_AFID = '57ef0d8f.f3c52344.57ef0d90.d175d532';
-
-  let defaultParts = [
-    // ==========================================
-    // Intel CPU
-    // ==========================================
-    {
-      id: 'core-i7-14700k',
-      category: 'CPU-INTEL',
-      badge: 'Intel CPU',
-      name: 'Intel Core i7-14700K (20C/28T)',
-      newPriceRef: '新品最安: 約¥62,000',
-      usedPriceAvg: 49800,
-      diffPercent: '約20% OFF',
-      recommend: '高クロックと20コア28スレッドの超高スペック。競技FPSゲーム配信と本格動画編集を1台で極めたい人におすすめ。',
-      mercariQuery: 'i7 14700K',
-      yahooQuery: 'Core i7 14700K',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'i7 14700K'
-    },
-    {
-      id: 'core-i9-13900k',
-      category: 'CPU-INTEL',
-      badge: 'Intel CPU',
-      name: 'Intel Core i9-13900K (24C/32T)',
-      newPriceRef: '新品当時: 約¥85,000〜',
-      usedPriceAvg: 56000,
-      diffPercent: '約34% OFF',
-      recommend: '第13世代のフラッグシップ。圧倒的なマルチスレッド処理性能で、重い作業やハイエンドグラボとの組み合わせに。',
-      mercariQuery: 'i9 13900K',
-      yahooQuery: 'Core i9 13900K',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'i9 13900K'
-    },
-    {
-      id: 'core-i5-13400f',
-      category: 'CPU-INTEL',
-      badge: 'Intel CPU',
-      name: 'Intel Core i5-13400F (10C/16T)',
-      newPriceRef: '新品最安: 約¥26,000',
-      usedPriceAvg: 18500,
-      diffPercent: '約29% OFF',
-      recommend: 'Eコア搭載で普段のマルチタスクも超軽快。LGA1700環境を2万円以下で組みたいときの優等生。',
-      mercariQuery: 'i5 13400F',
-      yahooQuery: 'Core i5 13400F',
-      shopName: 'じゃんぱら / 工房中古',
-      shopQuery: 'i5 13400F'
-    },
-    {
-      id: 'core-i5-12400f',
-      category: 'CPU-INTEL',
-      badge: 'Intel CPU',
-      name: 'Intel Core i5-12400F (6C/12T)',
-      newPriceRef: '新品最安: 約¥19,000',
-      usedPriceAvg: 12800,
-      diffPercent: '約32% OFF',
-      recommend: '1万円台前半で買える現役級の超定番。低発熱で安価なクーラーでも冷え、RTX 3060〜4060の性能を100%引き出せます。',
-      mercariQuery: 'i5 12400F',
-      yahooQuery: 'Core i5 12400F',
-      shopName: 'じゃんぱら / 工房中古',
-      shopQuery: 'i5 12400F'
-    },
-    {
-      id: 'core-i7-11700',
-      category: 'CPU-INTEL',
-      badge: 'Intel CPU',
-      name: 'Intel Core i7-11700 (8C/16T)',
-      newPriceRef: '新品当時: 約¥45,000',
-      usedPriceAvg: 18000,
-      diffPercent: '約60% OFF',
-      recommend: 'B560/Z590等のLGA1200マザーでPCIe 4.0 SSDを使いたい人のアップグレード先に最適。安定の8コア16スレッド。',
-      mercariQuery: 'i7 11700',
-      yahooQuery: 'Core i7 11700',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'i7 11700'
-    },
-    {
-      id: 'core-i7-10700k',
-      category: 'CPU-INTEL',
-      badge: 'Intel CPU',
-      name: 'Intel Core i7-10700K (8C/16T)',
-      newPriceRef: '新品当時: 約¥48,000',
-      usedPriceAvg: 19800,
-      diffPercent: '約59% OFF',
-      recommend: '第10世代LGA1200の最上位格。5.1GHzの高クロック動作でFPSゲームでの底上げや配信にも強い。',
-      mercariQuery: 'i7 10700K',
-      yahooQuery: 'Core i7 10700K',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'i7 10700K'
-    },
-    {
-      id: 'core-i7-9700k',
-      category: 'CPU-INTEL',
-      badge: 'Intel CPU',
-      name: 'Intel Core i7-9700K (8C/8T)',
-      newPriceRef: '新品当時: 約¥45,000',
-      usedPriceAvg: 15500,
-      diffPercent: '約65% OFF',
-      recommend: 'Z390/B360マザーのCore i3/i5から低コストでFPS性能を跳ね上げたい人向け。シングルコア性能が優秀。',
-      mercariQuery: 'i7 9700K',
-      yahooQuery: 'Core i7 9700K',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'i7 9700K'
-    },
-    {
-      id: 'core-i7-8700k',
-      category: 'CPU-INTEL',
-      badge: 'Intel CPU',
-      name: 'Intel Core i7-8700K (6C/12T)',
-      newPriceRef: '新品当時: 約¥42,000',
-      usedPriceAvg: 12000,
-      diffPercent: '約71% OFF',
-      recommend: '約1.2万円で手に入る6コア12スレッドの名機。Z370環境を持っている人が格安でゲーム動作を改善するのにベスト。',
-      mercariQuery: 'i7 8700K',
-      yahooQuery: 'Core i7 8700K',
-      shopName: 'じゃんぱら / イオシス',
-      shopQuery: 'i7 8700K'
-    },
-    {
-      id: 'core-i7-7700k',
-      category: 'CPU-INTEL',
-      badge: 'Intel CPU',
-      name: 'Intel Core i7-7700K (4C/8T)',
-      newPriceRef: '新品当時: 約¥40,000',
-      usedPriceAvg: 8500,
-      diffPercent: '約78% OFF',
-      recommend: 'Z170/Z270マザーの最終アップグレード用。1万円切りで旧世代PCを延命させたい人向け。',
-      mercariQuery: 'i7 7700K',
-      yahooQuery: 'Core i7 7700K',
-      shopName: 'じゃんぱら / 工房中古',
-      shopQuery: 'i7 7700K'
-    },
-
-    // ==========================================
-    // AMD CPU
-    // ==========================================
-    {
-      id: 'ryzen-7800x3d',
-      category: 'CPU-AMD',
-      badge: 'AMD CPU',
-      name: 'AMD Ryzen 7 7800X3D (8C/16T)',
-      newPriceRef: '新品最安: 約¥66,000',
-      usedPriceAvg: 54000,
-      diffPercent: '約18% OFF',
-      recommend: 'ゲーミング最強CPU。大容量3D V-CacheでVALORANT、Apex、タルコフのフレームレートを極限まで引き出します。',
-      mercariQuery: 'Ryzen 7 7800X3D',
-      yahooQuery: 'Ryzen 7 7800X3D',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'Ryzen 7 7800X3D'
-    },
-    {
-      id: 'ryzen-5800x3d',
-      category: 'CPU-AMD',
-      badge: 'AMD CPU',
-      name: 'AMD Ryzen 7 5800X3D (8C/16T)',
-      newPriceRef: '新品当時: 約¥50,000',
-      usedPriceAvg: 34000,
-      diffPercent: '約32% OFF',
-      recommend: 'AM4マザーボード（B450/B550等）の究極の終着点。マザーボードやDDR4メモリをそのまま流用して最強のゲーム性能を狙う人に。',
-      mercariQuery: 'Ryzen 7 5800X3D',
-      yahooQuery: 'Ryzen 7 5800X3D',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'Ryzen 7 5800X3D'
-    },
-    {
-      id: 'ryzen-5900x',
-      category: 'CPU-AMD',
-      badge: 'AMD CPU',
-      name: 'AMD Ryzen 9 5900X (12C/24T)',
-      newPriceRef: '新品当時: 約¥65,000〜',
-      usedPriceAvg: 31000,
-      diffPercent: '約52% OFF',
-      recommend: '12コア24スレッドの圧倒的マルチパワー。動画編集、3Dレンダリング、重いマルチタスク作業を安く組みたい人に。',
-      mercariQuery: 'Ryzen 9 5900X',
-      yahooQuery: 'Ryzen 9 5900X',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'Ryzen 9 5900X'
-    },
-    {
-      id: 'ryzen-5700x',
-      category: 'CPU-AMD',
-      badge: 'AMD CPU',
-      name: 'AMD Ryzen 7 5700X (8C/16T)',
-      newPriceRef: '新品最安: 約¥23,000',
-      usedPriceAvg: 16500,
-      diffPercent: '約28% OFF',
-      recommend: 'TDP 65Wの省電力設計で8コア16スレッド。旧Ryzen 1000〜3000シリーズからの載せ替えコスパNo.1。',
-      mercariQuery: 'Ryzen 7 5700X',
-      yahooQuery: 'Ryzen 7 5700X',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'Ryzen 7 5700X'
-    },
-    {
-      id: 'ryzen-5600',
-      category: 'CPU-AMD',
-      badge: 'AMD CPU',
-      name: 'AMD Ryzen 5 5600 (6C/12T)',
-      newPriceRef: '新品最安: 約¥16,000',
-      usedPriceAvg: 11500,
-      diffPercent: '約28% OFF',
-      recommend: '1万円ちょっとで手に入る格安ゲーミングCPU。フルHDでゲームを快適に動かすならこれで十分。',
-      mercariQuery: 'Ryzen 5 5600',
-      yahooQuery: 'Ryzen 5 5600',
-      shopName: 'じゃんぱら / 工房中古',
-      shopQuery: 'Ryzen 5 5600'
-    },
-    {
-      id: 'ryzen-3600',
-      category: 'CPU-AMD',
-      badge: 'AMD CPU',
-      name: 'AMD Ryzen 5 3600 (6C/12T)',
-      newPriceRef: '新品当時: 約¥24,000',
-      usedPriceAvg: 6800,
-      diffPercent: '約71% OFF',
-      recommend: '6,000円台で買える6コアCPU。とにかく一番安く動作するゲーミング自作PCを組みたい学生・初心者に最適。',
-      mercariQuery: 'Ryzen 5 3600',
-      yahooQuery: 'Ryzen 5 3600',
-      shopName: 'じゃんぱら / イオシス',
-      shopQuery: 'Ryzen 5 3600'
-    },
-
-    // ==========================================
-    // NVIDIA GPU (GeForce)
-    // ==========================================
-    {
-      id: 'rtx-4070s',
-      category: 'GPU-NVIDIA',
-      badge: 'NVIDIA GPU',
-      name: 'GeForce RTX 4070 SUPER 12GB',
-      newPriceRef: '新品最安: 約¥95,000',
-      usedPriceAvg: 79000,
-      diffPercent: '約17% OFF',
-      recommend: 'WQHD最高画質・高フレームレートやVR、AI生成を妥協なくこなせる現行ミドルハイクラス。',
-      mercariQuery: 'RTX 4070 SUPER',
-      yahooQuery: 'RTX 4070 SUPER',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'RTX 4070 SUPER'
-    },
-    {
-      id: 'rtx-3080',
-      category: 'GPU-NVIDIA',
-      badge: 'NVIDIA GPU',
-      name: 'GeForce RTX 3080 10GB',
-      newPriceRef: '新品当時: 約¥100,000〜',
-      usedPriceAvg: 54000,
-      diffPercent: '約46% OFF',
-      recommend: '5万円台で買える前世代ハイエンド。WQHD〜4Kでの重量級タイトルやVALORANT 240fps張り付きプレイに。',
-      mercariQuery: 'RTX 3080',
-      yahooQuery: 'RTX 3080',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'RTX 3080'
-    },
-    {
-      id: 'rtx-3070',
-      category: 'GPU-NVIDIA',
-      badge: 'NVIDIA GPU',
-      name: 'GeForce RTX 3070 8GB',
-      newPriceRef: '新品当時: 約¥75,000〜',
-      usedPriceAvg: 38000,
-      diffPercent: '約49% OFF',
-      recommend: '3万円台でWQHD解像度を快適に動かしたい人におすすめ。RTX 4060新品と同価格帯ながら、描画パワーはこちらが明確に上。',
-      mercariQuery: 'RTX 3070',
-      yahooQuery: 'RTX 3070',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'RTX 3070'
-    },
-    {
-      id: 'rtx-4060ti',
-      category: 'GPU-NVIDIA',
-      badge: 'NVIDIA GPU',
-      name: 'GeForce RTX 4060 Ti 8GB',
-      newPriceRef: '新品最安: 約¥58,000',
-      usedPriceAvg: 46000,
-      diffPercent: '約20% OFF',
-      recommend: 'DLSS 3（フレーム生成）対応かつ省電力（160W）。最新ゲームを低発熱で滑らかに楽しみたい人に。',
-      mercariQuery: 'RTX 4060Ti',
-      yahooQuery: 'RTX 4060Ti',
-      shopName: 'じゃんぱら / 工房中古',
-      shopQuery: 'RTX 4060Ti'
-    },
-    {
-      id: 'rtx-4060',
-      category: 'GPU-NVIDIA',
-      badge: 'NVIDIA GPU',
-      name: 'GeForce RTX 4060 8GB',
-      newPriceRef: '新品最安: 約¥43,000',
-      usedPriceAvg: 36000,
-      diffPercent: '約16% OFF',
-      recommend: '消費電力わずか115Wで超省エネ。500W前後の既存電源PCでもそのまま載せ替え可能な扱いやすさ抜群のモデル。',
-      mercariQuery: 'RTX 4060',
-      yahooQuery: 'RTX 4060',
-      shopName: '工房中古 / じゃんぱら',
-      shopQuery: 'RTX 4060'
-    },
-    {
-      id: 'rtx-3060ti',
-      category: 'GPU-NVIDIA',
-      badge: 'NVIDIA GPU',
-      name: 'GeForce RTX 3060 Ti 8GB',
-      newPriceRef: '新品当時: 約¥60,000〜',
-      usedPriceAvg: 31000,
-      diffPercent: '約48% OFF',
-      recommend: '予算3万円前後でフルHD最高画質＆高fpsを出したいというコスパ重視派に一番おすすめ。',
-      mercariQuery: 'RTX 3060Ti',
-      yahooQuery: 'RTX 3060Ti',
-      shopName: 'じゃんぱら / イオシス',
-      shopQuery: 'RTX 3060Ti'
-    },
-    {
-      id: 'rtx-3060-12g',
-      category: 'GPU-NVIDIA',
-      badge: 'NVIDIA GPU',
-      name: 'GeForce RTX 3060 12GB',
-      newPriceRef: '新品最安: 約¥42,000',
-      usedPriceAvg: 28000,
-      diffPercent: '約33% OFF',
-      recommend: 'VRAM大容量12GB搭載。AI画像生成（Stable Diffusion）を格安で始めたい人や動画編集・MODゲームに最適。',
-      mercariQuery: 'RTX 3060 12GB',
-      yahooQuery: 'RTX 3060 12GB',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'RTX 3060 12GB'
-    },
-    {
-      id: 'rtx-2080s',
-      category: 'GPU-NVIDIA',
-      badge: 'NVIDIA GPU',
-      name: 'GeForce RTX 2080 SUPER 8GB',
-      newPriceRef: '新品当時: 約¥85,000〜',
-      usedPriceAvg: 29800,
-      diffPercent: '約65% OFF',
-      recommend: '3万円以下でRTX 3060 Tiと同等以上のパワーが手に入る隠れコスパ枠。電源容量（650W以上）に余裕がある人に。',
-      mercariQuery: 'RTX 2080 SUPER',
-      yahooQuery: 'RTX 2080 SUPER',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'RTX 2080 SUPER'
-    },
-    {
-      id: 'rtx-2070s',
-      category: 'GPU-NVIDIA',
-      badge: 'NVIDIA GPU',
-      name: 'GeForce RTX 2070 SUPER 8GB',
-      newPriceRef: '新品当時: 約¥65,000〜',
-      usedPriceAvg: 23800,
-      diffPercent: '約63% OFF',
-      recommend: '【2万円台前半の王者】フルHDでVALORANTやApexを144fps〜240fpsで動かすなら最も安く仕上がる定番グラボ。',
-      mercariQuery: 'RTX 2070 SUPER',
-      yahooQuery: 'RTX 2070 SUPER',
-      shopName: 'じゃんぱら / イオシス',
-      shopQuery: 'RTX 2070 SUPER'
-    },
-    {
-      id: 'gtx-1660s',
-      category: 'GPU-NVIDIA',
-      badge: 'NVIDIA GPU',
-      name: 'GeForce GTX 1660 SUPER 6GB',
-      newPriceRef: '新品当時: 約¥30,000〜',
-      usedPriceAvg: 13500,
-      diffPercent: '約55% OFF',
-      recommend: '1万円台前半で買える格安グラボ。VALORANTやフォートナイト、マインクラフトを普通に快適に遊ぶなら十分動きます。',
-      mercariQuery: 'GTX 1660 SUPER',
-      yahooQuery: 'GTX 1660 SUPER',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'GTX 1660 SUPER'
-    },
-    {
-      id: 'gtx-1080ti',
-      category: 'GPU-NVIDIA',
-      badge: 'NVIDIA GPU',
-      name: 'GeForce GTX 1080 Ti 11GB',
-      newPriceRef: '新品当時: 約¥100,000〜',
-      usedPriceAvg: 18500,
-      diffPercent: '約81% OFF',
-      recommend: '1万円台でVRAM 11GBという破壊的コスパ。レイトレ不要で検証機や格安ゲームPCを作りたい玄人向け。',
-      mercariQuery: 'GTX 1080Ti',
-      yahooQuery: 'GTX 1080Ti',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'GTX 1080Ti'
-    },
-
-    // ==========================================
-    // AMD GPU (Radeon)
-    // ==========================================
-    {
-      id: 'rx-6700xt',
-      category: 'GPU-AMD',
-      badge: 'AMD GPU',
-      name: 'Radeon RX 6700 XT 12GB',
-      newPriceRef: '新品当時: 約¥68,000〜',
-      usedPriceAvg: 34000,
-      diffPercent: '約50% OFF',
-      recommend: '3万円台半ばで大容量VRAM 12GBとRTX 3070級のラスタライズ描画性能。WQHDでゲームを安く楽しみたい人に最適。',
-      mercariQuery: 'RX 6700 XT',
-      yahooQuery: 'RX 6700 XT',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'RX 6700 XT'
-    },
-    {
-      id: 'rx-6600',
-      category: 'GPU-AMD',
-      badge: 'AMD GPU',
-      name: 'Radeon RX 6600 8GB',
-      newPriceRef: '新品最安: 約¥28,000',
-      usedPriceAvg: 18000,
-      diffPercent: '約35% OFF',
-      recommend: '消費電力わずか100W前後でRTX 3060に迫る性能。1万円台でワットパフォーマンスを重視するならこれ。',
-      mercariQuery: 'RX 6600 8GB',
-      yahooQuery: 'RX 6600',
-      shopName: 'じゃんぱら / 工房中古',
-      shopQuery: 'RX 6600'
-    },
-
-    // ==========================================
-    // マザーボード
-    // ==========================================
-    {
-      id: 'b550-board',
-      category: 'MB',
-      badge: 'マザーボード',
-      name: 'AMD B550マザーボード (AM4)',
-      newPriceRef: '新品相場: 約¥14,000',
-      usedPriceAvg: 8500,
-      diffPercent: '約39% OFF',
-      recommend: 'Ryzen 5000番台で安く自作PCを一式組みたい人に。PCIe 4.0対応で高速M.2 SSDもフル稼働。',
-      mercariQuery: 'B550 マザーボード',
-      yahooQuery: 'B550 マザーボード',
-      shopName: 'じゃんぱら / 工房中古',
-      shopQuery: 'B550 マザーボード'
-    },
-    {
-      id: 'x570-board',
-      category: 'MB',
-      badge: 'マザーボード',
-      name: 'AMD X570マザーボード (AM4)',
-      newPriceRef: '新品当時: 約¥28,000〜',
-      usedPriceAvg: 12500,
-      diffPercent: '約55% OFF',
-      recommend: '堅牢な電源回路と複数のPCIe 4.0スロットを備えるAM4最上位。5700Xや5800X3Dで高負荷ゲームを長時間安定動作させたい人に。',
-      mercariQuery: 'X570 マザーボード',
-      yahooQuery: 'X570 マザーボード',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'X570 マザーボード'
-    },
-    {
-      id: 'b660-b760-board',
-      category: 'MB',
-      badge: 'マザーボード',
-      name: 'Intel B660 / B760マザーボード (LGA1700)',
-      newPriceRef: '新品相場: 約¥16,000',
-      usedPriceAvg: 9800,
-      diffPercent: '約38% OFF',
-      recommend: 'Core i5-12400Fや13世代・14世代Intel CPUをコスパ良く載せたい人に最適。DDR4対応版を選べばメモリ流用でさらに安価に。',
-      mercariQuery: 'B660 マザーボード',
-      yahooQuery: 'B660 マザーボード',
-      shopName: 'じゃんぱら / 工房中古',
-      shopQuery: 'B660 マザーボード'
-    },
-    {
-      id: 'z490-board',
-      category: 'MB',
-      badge: 'マザーボード',
-      name: 'Intel Z490マザーボード (LGA1200)',
-      newPriceRef: '新品当時: 約¥22,000〜',
-      usedPriceAvg: 8000,
-      diffPercent: '約63% OFF',
-      recommend: 'Core i7-10700K等の第10世代K付きCPUの性能を限界まで引き出したい人向け。メモリOCや多機能拡張を楽しみたい玄人に。',
-      mercariQuery: 'Z490 マザーボード',
-      yahooQuery: 'Z490 マザーボード',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'Z490 マザーボード'
-    },
-    {
-      id: 'a520-board',
-      category: 'MB',
-      badge: 'マザーボード',
-      name: 'AMD A520マザーボード (AM4)',
-      newPriceRef: '新品相場: 約¥8,000',
-      usedPriceAvg: 4500,
-      diffPercent: '約43% OFF',
-      recommend: '4,000円台で手に入る超格安マザー。OCやPCIe 4.0は不要で、とにかく総額を抑えて動くサブ機を作りたい人に。',
-      mercariQuery: 'A520 マザーボード',
-      yahooQuery: 'A520 マザーボード',
-      shopName: 'じゃんぱら / 工房中古',
-      shopQuery: 'A520 マザーボード'
-    },
-
-    // ==========================================
-    // メモリ
-    // ==========================================
-    {
-      id: 'ddr4-32gb',
-      category: 'RAM',
-      badge: 'メモリ',
-      name: 'DDR4-3200 32GB (16GB×2)',
-      newPriceRef: '新品最安: 約¥9,000',
-      usedPriceAvg: 5800,
-      diffPercent: '約35% OFF',
-      recommend: 'タルコフやシティーズ、Discord起動中のゲームで「メモリ16GBじゃ足りない」と感じている人の即効増設に。',
-      mercariQuery: 'DDR4 32GB 16GB2枚',
-      yahooQuery: 'DDR4 32GB',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'DDR4 32GB'
-    },
-    {
-      id: 'ddr4-16gb',
-      category: 'RAM',
-      badge: 'メモリ',
-      name: 'DDR4-3200 16GB (8GB×2)',
-      newPriceRef: '新品最安: 約¥4,800',
-      usedPriceAvg: 2800,
-      diffPercent: '約41% OFF',
-      recommend: '2,000円台で買える格安メモリ。フルHDゲーミングPCの初期導入やサブPCの必要十分な容量確保に最適。',
-      mercariQuery: 'DDR4 16GB 8GB2枚',
-      yahooQuery: 'DDR4 16GB',
-      shopName: 'じゃんぱら / イオシス',
-      shopQuery: 'DDR4 16GB'
-    },
-    {
-      id: 'ddr4-3600-32gb',
-      category: 'RAM',
-      badge: 'メモリ',
-      name: 'DDR4-3600 32GB (16GB×2) 高速モデル',
-      newPriceRef: '新品相場: 約¥12,000',
-      usedPriceAvg: 7200,
-      diffPercent: '約40% OFF',
-      recommend: 'Ryzen 5000シリーズで最高のゲームレスポンスを発揮する3600MHz仕様。競技FPSで最低フレームレートを底上げしたい人に。',
-      mercariQuery: 'DDR4 3600 32GB',
-      yahooQuery: 'DDR4 3600 32GB',
-      shopName: 'じゃんぱら / ソフマップ',
-      shopQuery: 'DDR4 3600 32GB'
-    },
-    {
-      id: 'ddr5-32gb',
-      category: 'RAM',
-      badge: 'メモリ',
-      name: 'DDR5-5600/6000 32GB (16GB×2)',
-      newPriceRef: '新品最安: 約¥15,000',
-      usedPriceAvg: 10800,
-      diffPercent: '約28% OFF',
-      recommend: 'Ryzen 7000/9000番台や第13/14世代Core向けの最新規格。1万円前後の良質な中古出品は狙い目です。',
-      mercariQuery: 'DDR5 32GB 16GB2枚',
-      yahooQuery: 'DDR5 32GB',
-      shopName: 'じゃんぱら / 工房中古',
-      shopQuery: 'DDR5 32GB'
-    }
-  ];
-
-  let usedParts = [...defaultParts];
-  let currentCategory = 'ALL';
-
-  async function loadPartsData() {
-    try {
-      const res = await fetch('parts.json?v=' + Date.now());
-      if (res.ok) {
-        const data = await res.json();
-        if (Array.isArray(data) && data.length > 0) {
-          usedParts = data;
-          renderParts();
-        }
+    async function loadParts() {
+      try {
+        const res = await fetch('parts.json?t=' + Date.now());
+        allParts = await res.json();
+        renderCards(allParts);
+      } catch (err) {
+        document.getElementById('partsGrid').innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #94a3b8;">データ読み込み中...</p>';
       }
-    } catch (e) {
-      console.log('Using default parts list');
     }
-  }
 
-  function filterCategory(cat) {
-    currentCategory = cat;
-    const btns = document.querySelectorAll('.cat-btn');
-    btns.forEach(btn => {
-      if (cat === 'ALL') {
-        btn.classList.toggle('active', btn.textContent === 'すべて表示');
-      } else {
-        btn.classList.toggle('active', btn.getAttribute('onclick').includes(cat));
-      }
-    });
-    renderParts();
-  }
+    function renderCards(parts) {
+      const grid = document.getElementById('partsGrid');
+      grid.innerHTML = parts.map(p => {
+        const mercariEncoded = encodeURIComponent(p.mercariQuery || p.name);
+        const yahooEncoded = encodeURIComponent((p.yahooQuery || p.name) + " 中古");
+        const rakutenEncoded = encodeURIComponent(p.shopQuery || p.name);
 
-  function renderParts() {
-    const grid = document.getElementById('partsGrid');
-    const query = document.getElementById('searchInput').value.toLowerCase().trim();
-    const sort = document.getElementById('sortSelect').value;
+        const mercariUrl = `https://jp.mercari.com/search?keyword=${mercariEncoded}&afid=${MERCARI_AFFILIATE_ID}`;
+        const yahooUrl = `https://shopping.yahoo.co.jp/search?p=${yahooEncoded}&used=2`;
+        const rakutenRawUrl = `https://search.rakuten.co.jp/search/mall/${rakutenEncoded}/?f=1`;
+        const rakutenUrl = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=${encodeURIComponent(rakutenRawUrl)}`;
 
-    let list = usedParts.filter(item => {
-      const matchCat = (currentCategory === 'ALL' || item.category === currentCategory);
-      const matchQuery = !query || item.name.toLowerCase().includes(query) || (item.recommend && item.recommend.toLowerCase().includes(query));
-      return matchCat && matchQuery;
-    });
-
-    list.sort((a, b) => {
-      if (sort === 'price-asc') return a.usedPriceAvg - b.usedPriceAvg;
-      if (sort === 'price-desc') return b.usedPriceAvg - a.usedPriceAvg;
-      return 0;
-    });
-
-    grid.innerHTML = '';
-
-    list.forEach(item => {
-      // 1. メルカリ
-      const mercariKeyword = encodeURIComponent(item.mercariQuery);
-      const mercariUrl = `https://jp.mercari.com/search?afid=${MERCARI_AFID}&keyword=${mercariKeyword}&status=on_sale`;
-      
-      // 2. Yahoo!ショッピング（各パーツごとの確実な中古検索結果画面）
-      const queryParam = encodeURIComponent(item.yahooQuery + ' 中古');
-      const yahooShopUrl = `https://shopping.yahoo.co.jp/search?p=${queryParam}`;
-      
-      // 3. 楽天中古・じゃんぱら等
-      const rakutenSearchRaw = `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(item.shopQuery)}+中古/?f=1`;
-      const rakutenShopUrl = `https://hb.afl.rakuten.co.jp/ichiba/${RAKUTEN_AFID}/?pc=${encodeURIComponent(rakutenSearchRaw)}`;
-
-      const card = document.createElement('div');
-      card.className = 'part-card';
-      card.innerHTML = `
-        <div>
-          <div class="card-top">
-            <span class="tag">${item.badge || item.category}</span>
-          </div>
-          <h2 class="part-name">${item.name}</h2>
-          <div class="new-reference">参考: <s>${item.newPriceRef}</s></div>
-
-          <div class="recommend-box">
-            <div class="recommend-title">💡 こんな人におすすめ</div>
-            <div>${item.recommend}</div>
-          </div>
-
-          <div class="used-price-box">
-            <div>
-              <span class="used-label">中古相場目安</span>
-              <span class="used-sub">新品比 ${item.diffPercent}</span>
+        return `
+          <div class="card" data-category="${p.category}">
+            <div class="card-header">
+              <span class="badge">${p.badge}</span>
+              <span class="diff-badge">${p.diffPercent || 'お得'}</span>
             </div>
-            <div class="used-price">¥${item.usedPriceAvg.toLocaleString()}〜</div>
+            <div class="card-title">${p.name}</div>
+            <div class="card-price-ref">${p.newPriceRef}</div>
+            <div class="price-box">
+              <span class="price-label">中古相場目安</span>
+              <span class="price-val">¥${Number(p.usedPriceAvg).toLocaleString()}</span>
+            </div>
+            <div class="card-desc">${p.recommend}</div>
+            <div class="btn-group">
+              <a href="${mercariUrl}" target="_blank" rel="noopener" class="btn btn-mercari btn-single">メルカリで探す</a>
+              <a href="${yahooUrl}" target="_blank" rel="noopener" class="btn btn-yahoo">Yahoo!中古</a>
+              <a href="${rakutenUrl}" target="_blank" rel="noopener" class="btn btn-rakuten">楽天中古</a>
+            </div>
           </div>
+        `;
+      }).join('');
+    }
 
-          <div class="market-links">
-            <a href="${mercariUrl}" target="_blank" rel="noopener noreferrer" class="market-btn btn-mercari">
-              <span>メルカリで現在出品を見る</span>
-              <span class="market-pill">即購入 (2%還元)</span>
-            </a>
-            <a href="${yahooShopUrl}" target="_blank" rel="noopener noreferrer" class="market-btn btn-yahoo">
-              <span>Yahoo!ショッピング中古を探す</span>
-              <span class="market-pill">PayPay還元・中古</span>
-            </a>
-            <a href="${rakutenShopUrl}" target="_blank" rel="noopener noreferrer" class="market-btn btn-shop">
-              <span>${item.shopName}（保証付き）</span>
-              <span class="market-pill">楽天・店舗保証 (2〜4%還元)</span>
-            </a>
-          </div>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
-  }
+    function filterCards(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
 
-  renderParts();
-  loadPartsData();
-</script>
+      if (category === 'ALL') {
+        renderCards(allParts);
+      } else {
+        const filtered = allParts.filter(p => p.category === category);
+        renderCards(filtered);
+      }
+    }
 
+    loadParts();
+  </script>
 </body>
 </html>
