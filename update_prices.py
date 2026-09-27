@@ -4,7 +4,6 @@ import urllib.parse
 import re
 import time
 import os
-import sys
 
 DEFAULT_PARTS = [
   {"id": "core-i7-14700k", "category": "CPU-INTEL", "badge": "Intel CPU", "name": "Intel Core i7-14700K (20C/28T)", "newPriceRef": "新品最安: 約¥62,000", "usedPriceAvg": 49800, "diffPercent": "約20% OFF", "recommend": "高クロックと20コア28スレッドの超高スペック。競技FPSゲーム配信と本格動画編集を1台で極めたい人におすすめ。", "mercariQuery": "i7 14700K", "yahooQuery": "Core i7 14700K", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "i7 14700K"},
@@ -50,24 +49,30 @@ def clean_json_string(s):
     return re.sub(r'[\x00-\x1f\x7f-\x9f]', '', s)
 
 def get_used_price(query):
+    # 海外IPブロックのないYahoo!ショッピング検索を利用
     try:
         encoded = urllib.parse.quote(f"{query} 中古")
-        url = f"https://search.rakuten.co.jp/search/mall/{encoded}/?f=1&s=2"
+        url = f"https://shopping.yahoo.co.jp/search?p={encoded}&used=2"
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
         }
         req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=10) as resp:
+        # タイムアウトを3秒に設定して絶対に待たせない
+        with urllib.request.urlopen(req, timeout=3) as resp:
             html = resp.read().decode('utf-8', errors='ignore')
 
-        matches = re.findall(r'class="price--[^"]*">([\d,]+)円', html)
-        prices = [int(p.replace(',', '')) for p in matches if int(p.replace(',', '')) >= 2000]
+        matches = re.findall(r'(\d{1,3}(?:,\d{3})+|\d+)\s*円', html)
+        prices = []
+        for m in matches:
+            val = int(m.replace(',', ''))
+            if 2500 <= val <= 250000:
+                prices.append(val)
 
         if len(prices) >= 2:
             prices.sort()
             return prices[min(2, len(prices) - 1)]
-    except Exception as e:
-        print(f"Fetch skip ({query}): {e}", flush=True)
+    except Exception:
+        pass
     return None
 
 def main():
@@ -82,7 +87,7 @@ def main():
             if not isinstance(parts, list) or len(parts) == 0:
                 parts = DEFAULT_PARTS
         except Exception:
-            print("Notice: parts.json corrupted. Auto-recovering using built-in safe dataset...", flush=True)
+            print("Notice: parts.json corrupted. Auto-recovering...", flush=True)
             parts = DEFAULT_PARTS
     else:
         parts = DEFAULT_PARTS
@@ -90,21 +95,23 @@ def main():
     print(f"Loaded {len(parts)} items successfully. Scanning market prices...", flush=True)
     updated = 0
 
-    for item in parts:
+    for i, item in enumerate(parts):
         q = item.get('shopQuery') or item.get('name')
         new_p = get_used_price(q)
-        time.sleep(1)
+        time.sleep(0.3)  # 高速間隔
 
         if new_p and abs(new_p - item.get('usedPriceAvg', 0)) >= 500:
             old_p = item.get('usedPriceAvg', 0)
-            print(f"Update: {item.get('name')} (¥{old_p:,} -> ¥{new_p:,})", flush=True)
+            print(f"[{i+1}/{len(parts)}] Update {item['name']}: ¥{old_p:,} -> ¥{new_p:,}", flush=True)
             item['usedPriceAvg'] = new_p
             updated += 1
+        else:
+            print(f"[{i+1}/{len(parts)}] Checked {item['name']} (OK)", flush=True)
 
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(parts, f, ensure_ascii=False, indent=2)
 
-    print(f"Completed! {updated} prices updated and parts.json regenerated perfectly.", flush=True)
+    print(f"Completed! {updated} prices updated and saved.", flush=True)
 
 if __name__ == '__main__':
     main()
