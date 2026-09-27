@@ -245,18 +245,17 @@
     function renderCards(parts) {
       const grid = document.getElementById('partsGrid');
       grid.innerHTML = parts.map(p => {
-        // メルカリ（PCパーツ単体絞り込み）
+        // 1. メルカリ: 販売中（status=on_sale）かつ中古（item_condition_id=2,3,4,5）で完全中古絞り込み
         const mercariEncoded = encodeURIComponent(p.mercariQuery || p.name);
-        const mercariUrl = `https://jp.mercari.com/search?keyword=${mercariEncoded}&afid=${MERCARI_AFFILIATE_ID}`;
+        const mercariUrl = `https://jp.mercari.com/search?keyword=${mercariEncoded}&status=on_sale&item_condition_id=2,3,4,5&afid=${MERCARI_AFFILIATE_ID}`;
 
-        // Yahoo!ショッピング（中古絞り込み used=2）
+        // 2. Yahoo!ショッピング: used=2（中古品のみ）で完全中古絞り込み
         const yahooEncoded = encodeURIComponent(p.yahooQuery || p.name);
         const yahooUrl = `https://shopping.yahoo.co.jp/search?p=${yahooEncoded}&used=2`;
 
-        // 楽天市場（中古品のみ f=1 で単体パーツ検索）
-        const rakutenWord = encodeURIComponent((p.shopQuery || p.name) + " 中古");
-        const destinationRakuten = `https://search.rakuten.co.jp/search/mall/${rakutenWord}/?f=1`;
-        const rakutenUrl = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=${encodeURIComponent(destinationRakuten)}`;
+        // 3. 楽天市場: used=1（中古品のみ）を直結。リダイレクト転送で壊れない確実な直接検索URL
+        const rakutenWord = encodeURIComponent(p.shopQuery || p.name);
+        const rakutenUrl = `https://search.rakuten.co.jp/search/mall/${rakutenWord}/?used=1&scid=af_pc_etc&sc2id=af_101_0_0`;
 
         return `
           <div class="card" data-category="${p.category}">
