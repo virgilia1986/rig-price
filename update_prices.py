@@ -10,7 +10,7 @@ TEMP_FILE = "parts_temp.json"
 REQUEST_INTERVAL = 1
 REQUEST_TIMEOUT = 10
 MIN_PRICE = 2500
-MAX_PRICE = 350000  - # ハイエンドセットや複数パーツに対応するため上限を少し引き上げ
+MAX_PRICE = 350000
 
 # 価格計算から除外したいノイズワード（ジャンク、付属品、箱のみ等を弾く）
 EXCLUDE_WORDS = [
@@ -77,7 +77,6 @@ def fetch_price(query):
         title = item.get("name", "")
         price = item.get("price")
         
-        # ノイズワードが含まれている場合はスキップ
         if any(word in title for word in EXCLUDE_WORDS):
             continue
             
