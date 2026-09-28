@@ -20,9 +20,11 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install beautifulsoup4 curl_cffi
+        run: pip install requests
 
       - name: Run script
+        env:
+          YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
         run: python update_prices.py
 
       - name: Commit and push if changed
