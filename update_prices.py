@@ -10,7 +10,15 @@ TEMP_FILE = "parts_temp.json"
 REQUEST_INTERVAL = 1
 REQUEST_TIMEOUT = 10
 MIN_PRICE = 2500
-MAX_PRICE = 250000
+MAX_PRICE = 350000  - # ハイエンドセットや複数パーツに対応するため上限を少し引き上げ
+
+# 価格計算から除外したいノイズワード（ジャンク、付属品、箱のみ等を弾く）
+EXCLUDE_WORDS = [
+    "ジャンク", "部品取り", "通電不可", "動作未確認", "不動",
+    "クーラー", "ファン", "ヒートシンク", "グリス",
+    "箱のみ", "空箱", "パッケージ", "外箱",
+    "シール", "ステッカー", "マニュアル", "説明書"
+]
 
 YAHOO_CLIENT_ID = os.environ.get("YAHOO_CLIENT_ID")
 
@@ -23,7 +31,6 @@ def load_data():
     except json.JSONDecodeError as e:
         raise ValueError(f"{JSON_FILE} が破損しています。詳細: {e}")
     
-    # 新仕様（辞書型）と旧仕様（リスト型）の両方に対応
     if isinstance(data, dict) and "parts" in data:
         return data["parts"]
     elif isinstance(data, list) and len(data) > 0:
@@ -67,25 +74,29 @@ def fetch_price(query):
     prices = []
     
     for item in hits:
+        title = item.get("name", "")
         price = item.get("price")
+        
+        # ノイズワードが含まれている場合はスキップ
+        if any(word in title for word in EXCLUDE_WORDS):
+            continue
+            
         if price and MIN_PRICE <= price <= MAX_PRICE:
             prices.append(price)
 
     if not prices:
-        raise ValueError("該当する中古商品の価格データを取得できませんでした。")
+        raise ValueError("有効な中古商品の価格データを取得できませんでした（ノイズ除外後）。")
 
     filtered_prices = remove_outliers(prices)
     median_price = int(statistics.median(filtered_prices))
     
-    print(f"  取得件数: {len(prices)}件 / 外れ値除去後: {len(filtered_prices)}件 / 中央値: ¥{median_price:,}", flush=True)
+    print(f"  有効件数: {len(prices)}件 / 外れ値除去後: {len(filtered_prices)}件 / 中央値: ¥{median_price:,}", flush=True)
     return median_price
 
 def save_data(parts):
-    # JST（日本時間）で現在時刻を取得
     jst = timezone(timedelta(hours=9), 'JST')
     now_str = datetime.now(jst).strftime("%Y/%m/%d %H:%M")
     
-    # 最終更新日時とパーツデータを一緒に保存
     output_data = {
         "lastUpdated": now_str,
         "parts": parts
@@ -155,7 +166,6 @@ def main():
     print(f"更新成功 : {updated_count}件", flush=True)
     print(f"取得失敗 : {failed_count}件", flush=True)
     print(f"スキップ : {skipped_count}件", flush=True)
-    print("parts.jsonを保存しました。")
     print("========================================")
 
 if __name__ == "__main__":
