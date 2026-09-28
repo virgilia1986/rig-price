@@ -1,117 +1,144 @@
 import json
-import urllib.request
-import urllib.parse
-import re
-import time
 import os
+import re
+import statistics
+import time
+import requests
+from bs4 import BeautifulSoup
 
+JSON_FILE = "parts.json"
+TEMP_FILE = "parts_temp.json"
+
+# 【指摘5】パーツ構成の初期値 (万が一のJSON破損時にここから復旧する)
 DEFAULT_PARTS = [
-  {"id": "core-i7-14700k", "category": "CPU-INTEL", "badge": "Intel CPU", "name": "Intel Core i7-14700K (20C/28T)", "newPriceRef": "新品最安: 約¥62,000", "usedPriceAvg": 49800, "diffPercent": "約20% OFF", "recommend": "高クロックと20コア28スレッドの超高スペック。競技FPSゲーム配信と本格動画編集を1台で極めたい人におすすめ。", "mercariQuery": "i7 14700K", "yahooQuery": "Core i7 14700K", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "i7 14700K"},
-  {"id": "core-i9-13900k", "category": "CPU-INTEL", "badge": "Intel CPU", "name": "Intel Core i9-13900K (24C/32T)", "newPriceRef": "新品当時: 約¥85,000〜", "usedPriceAvg": 56000, "diffPercent": "約34% OFF", "recommend": "第13世代のフラッグシップ。圧倒的なマルチスレッド処理性能で、重い作業やハイエンドグラボとの組み合わせに。", "mercariQuery": "i9 13900K", "yahooQuery": "Core i9 13900K", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "i9 13900K"},
-  {"id": "core-i5-13400f", "category": "CPU-INTEL", "badge": "Intel CPU", "name": "Intel Core i5-13400F (10C/16T)", "newPriceRef": "新品最安: 約¥26,000", "usedPriceAvg": 18500, "diffPercent": "約29% OFF", "recommend": "Eコア搭載で普段のマルチタスクも超軽快。LGA1700環境を2万円以下で組みたいときの優等生。", "mercariQuery": "i5 13400F", "yahooQuery": "Core i5 13400F", "shopName": "じゃんぱら / 工房中古", "shopQuery": "i5 13400F"},
-  {"id": "core-i5-12400f", "category": "CPU-INTEL", "badge": "Intel CPU", "name": "Intel Core i5-12400F (6C/12T)", "newPriceRef": "新品最安: 約¥19,000", "usedPriceAvg": 12800, "diffPercent": "約32% OFF", "recommend": "1万円台前半で買える現役級の超定番。低発熱で安価なクーラーでも冷え、RTX 3060〜4060の性能を100%引き出せます。", "mercariQuery": "i5 12400F", "yahooQuery": "Core i5 12400F", "shopName": "じゃんぱら / 工房中古", "shopQuery": "i5 12400F"},
-  {"id": "core-i7-11700", "category": "CPU-INTEL", "badge": "Intel CPU", "name": "Intel Core i7-11700 (8C/16T)", "newPriceRef": "新品当時: 約¥45,000", "usedPriceAvg": 18000, "diffPercent": "約60% OFF", "recommend": "B560/Z590等のLGA1200マザーでPCIe 4.0 SSDを使いたい人のアップグレード先に最適。安定の8コア16スレッド。", "mercariQuery": "i7 11700", "yahooQuery": "Core i7 11700", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "i7 11700"},
-  {"id": "core-i7-10700k", "category": "CPU-INTEL", "badge": "Intel CPU", "name": "Intel Core i7-10700K (8C/16T)", "newPriceRef": "新品当時: 約¥48,000", "usedPriceAvg": 19800, "diffPercent": "約59% OFF", "recommend": "第10世代LGA1200の最上位格。5.1GHzの高クロック動作でFPSゲームでの底上げや配信にも強い。", "mercariQuery": "i7 10700K", "yahooQuery": "Core i7 10700K", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "i7 10700K"},
-  {"id": "core-i7-9700k", "category": "CPU-INTEL", "badge": "Intel CPU", "name": "Intel Core i7-9700K (8C/8T)", "newPriceRef": "新品当時: 約¥45,000", "usedPriceAvg": 15500, "diffPercent": "約65% OFF", "recommend": "Z390/B360マザーのCore i3/i5から低コストでFPS性能を跳ね上げたい人向け。シングルコア性能が優秀。", "mercariQuery": "i7 9700K", "yahooQuery": "Core i7 9700K", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "i7 9700K"},
-  {"id": "core-i7-8700k", "category": "CPU-INTEL", "badge": "Intel CPU", "name": "Intel Core i7-8700K (6C/12T)", "newPriceRef": "新品当時: 約¥42,000", "usedPriceAvg": 12000, "diffPercent": "約71% OFF", "recommend": "約1.2万円で手に入る6コア12スレッドの名機。Z370環境を持っている人が格安でゲーム動作を改善するのにベスト。", "mercariQuery": "i7 8700K", "yahooQuery": "Core i7 8700K", "shopName": "じゃんぱら / イオシス", "shopQuery": "i7 8700K"},
-  {"id": "core-i7-7700k", "category": "CPU-INTEL", "badge": "Intel CPU", "name": "Intel Core i7-7700K (4C/8T)", "newPriceRef": "新品当時: 約¥40,000", "usedPriceAvg": 8500, "diffPercent": "約78% OFF", "recommend": "Z170/Z270マザーの最終アップグレード用。1万円切りで旧世代PCを延命させたい人向け。", "mercariQuery": "i7 7700K", "yahooQuery": "Core i7 7700K", "shopName": "じゃんぱら / 工房中古", "shopQuery": "i7 7700K"},
-  {"id": "ryzen-7800x3d", "category": "CPU-AMD", "badge": "AMD CPU", "name": "AMD Ryzen 7 7800X3D (8C/16T)", "newPriceRef": "新品最安: 約¥66,000", "usedPriceAvg": 54000, "diffPercent": "約18% OFF", "recommend": "ゲーミング最強CPU。大容量3D V-CacheでVALORANT、Apex、タルコフのフレームレートを極限まで引き出します。", "mercariQuery": "Ryzen 7 7800X3D", "yahooQuery": "Ryzen 7 7800X3D", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "Ryzen 7 7800X3D"},
-  {"id": "ryzen-5800x3d", "category": "CPU-AMD", "badge": "AMD CPU", "name": "AMD Ryzen 7 5800X3D (8C/16T)", "newPriceRef": "新品当時: 約¥50,000", "usedPriceAvg": 34000, "diffPercent": "約32% OFF", "recommend": "AM4マザーボード（B450/B550等）の究極の終着点。マザーボードやDDR4メモリをそのまま流用して最強のゲーム性能を狙う人に。", "mercariQuery": "Ryzen 7 5800X3D", "yahooQuery": "Ryzen 7 5800X3D", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "Ryzen 7 5800X3D"},
-  {"id": "ryzen-5900x", "category": "CPU-AMD", "badge": "AMD CPU", "name": "AMD Ryzen 9 5900X (12C/24T)", "newPriceRef": "新品当時: 約¥65,000〜", "usedPriceAvg": 31000, "diffPercent": "約52% OFF", "recommend": "12コア24スレッドの圧倒的マルチパワー。動画編集、3Dレンダリング、重いマルチタスク作業を安く組みたい人に。", "mercariQuery": "Ryzen 9 5900X", "yahooQuery": "Ryzen 9 5900X", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "Ryzen 9 5900X"},
-  {"id": "ryzen-5700x", "category": "CPU-AMD", "badge": "AMD CPU", "name": "AMD Ryzen 7 5700X (8C/16T)", "newPriceRef": "新品最安: 約¥23,000", "usedPriceAvg": 16500, "diffPercent": "約28% OFF", "recommend": "TDP 65Wの省電力設計で8コア16スレッド。旧Ryzen 1000〜3000シリーズからの載せ替えコスパNo.1。", "mercariQuery": "Ryzen 7 5700X", "yahooQuery": "Ryzen 7 5700X", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "Ryzen 7 5700X"},
-  {"id": "ryzen-5600", "category": "CPU-AMD", "badge": "AMD CPU", "name": "AMD Ryzen 5 5600 (6C/12T)", "newPriceRef": "新品最安: 約¥16,000", "usedPriceAvg": 11500, "diffPercent": "約28% OFF", "recommend": "1万円ちょっとで手に入る格安ゲーミングCPU。フルHDでゲームを快適に動かすならこれで十分。", "mercariQuery": "Ryzen 5 5600", "yahooQuery": "Ryzen 5 5600", "shopName": "じゃんぱら / 工房中古", "shopQuery": "Ryzen 5 5600"},
-  {"id": "ryzen-3600", "category": "CPU-AMD", "badge": "AMD CPU", "name": "AMD Ryzen 5 3600 (6C/12T)", "newPriceRef": "新品当時: 約¥24,000", "usedPriceAvg": 6800, "diffPercent": "約71% OFF", "recommend": "6,000円台で買える6コアCPU。とにかく一番安く動作するゲーミング自作PCを組みたい学生・初心者に最適。", "mercariQuery": "Ryzen 5 3600", "yahooQuery": "Ryzen 5 3600", "shopName": "じゃんぱら / イオシス", "shopQuery": "Ryzen 5 3600"},
-  {"id": "rtx-4070s", "category": "GPU-NVIDIA", "badge": "NVIDIA GPU", "name": "GeForce RTX 4070 SUPER 12GB", "newPriceRef": "新品最安: 約¥95,000", "usedPriceAvg": 79000, "diffPercent": "約17% OFF", "recommend": "WQHD最高画質・高フレームレートやVR、AI生成を妥協なくこなせる現行ミドルハイクラス。", "mercariQuery": "RTX 4070 SUPER", "yahooQuery": "RTX 4070 SUPER", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "RTX 4070 SUPER"},
-  {"id": "rtx-3080", "category": "GPU-NVIDIA", "badge": "NVIDIA GPU", "name": "GeForce RTX 3080 10GB", "newPriceRef": "新品当時: 約¥100,000〜", "usedPriceAvg": 54000, "diffPercent": "約46% OFF", "recommend": "5万円台で買える前世代ハイエンド。WQHD〜4Kでの重量級タイトルやVALORANT 240fps張り付きプレイに。", "mercariQuery": "RTX 3080", "yahooQuery": "RTX 3080", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "RTX 3080"},
-  {"id": "rtx-3070", "category": "GPU-NVIDIA", "badge": "NVIDIA GPU", "name": "GeForce RTX 3070 8GB", "newPriceRef": "新品当時: 約¥75,000〜", "usedPriceAvg": 38000, "diffPercent": "約49% OFF", "recommend": "3万円台でWQHD解像度を快適に動かしたい人におすすめ。RTX 4060新品と同価格帯ながら、描画パワーはこちらが明確に上。", "mercariQuery": "RTX 3070", "yahooQuery": "RTX 3070", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "RTX 3070"},
-  {"id": "rtx-4060ti", "category": "GPU-NVIDIA", "badge": "NVIDIA GPU", "name": "GeForce RTX 4060 Ti 8GB", "newPriceRef": "新品最安: 約¥58,000", "usedPriceAvg": 46000, "diffPercent": "約20% OFF", "recommend": "DLSS 3（フレーム生成）対応かつ省電力（160W）。最新ゲームを低発熱で滑らかに楽しみたい人に。", "mercariQuery": "RTX 4060Ti", "yahooQuery": "RTX 4060Ti", "shopName": "じゃんぱら / 工房中古", "shopQuery": "RTX 4060Ti"},
-  {"id": "rtx-4060", "category": "GPU-NVIDIA", "badge": "NVIDIA GPU", "name": "GeForce RTX 4060 8GB", "newPriceRef": "新品最安: 約¥43,000", "usedPriceAvg": 36000, "diffPercent": "約16% OFF", "recommend": "消費電力わずか115Wで超省エネ。500W前後の既存電源PCでもそのまま載せ替え可能な扱いやすさ抜群のモデル。", "mercariQuery": "RTX 4060", "yahooQuery": "RTX 4060", "shopName": "工房中古 / じゃんぱら", "shopQuery": "RTX 4060"},
-  {"id": "rtx-3060ti", "category": "GPU-NVIDIA", "badge": "NVIDIA GPU", "name": "GeForce RTX 3060 Ti 8GB", "newPriceRef": "新品当時: 約¥60,000〜", "usedPriceAvg": 31000, "diffPercent": "約48% OFF", "recommend": "予算3万円前後でフルHD最高画質＆高fpsを出したいというコスパ重視派に一番おすすめ。", "mercariQuery": "RTX 3060Ti", "yahooQuery": "RTX 3060Ti", "shopName": "じゃんぱら / イオシス", "shopQuery": "RTX 3060Ti"},
-  {"id": "rtx-3060-12g", "category": "GPU-NVIDIA", "badge": "NVIDIA GPU", "name": "GeForce RTX 3060 12GB", "newPriceRef": "新品最安: 約¥42,000", "usedPriceAvg": 28000, "diffPercent": "約33% OFF", "recommend": "VRAM大容量12GB搭載。AI画像生成（Stable Diffusion）を格安で始めたい人や動画編集・MODゲームに最適。", "mercariQuery": "RTX 3060 12GB", "yahooQuery": "RTX 3060 12GB", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "RTX 3060 12GB"},
-  {"id": "rtx-2080s", "category": "GPU-NVIDIA", "badge": "NVIDIA GPU", "name": "GeForce RTX 2080 SUPER 8GB", "newPriceRef": "新品当時: 約¥85,000〜", "usedPriceAvg": 29800, "diffPercent": "約65% OFF", "recommend": "3万円以下でRTX 3060 Tiと同等以上のパワーが手に入る隠れコスパ枠。電源容量（650W以上）に余裕がある人に。", "mercariQuery": "RTX 2080 SUPER", "yahooQuery": "RTX 2080 SUPER", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "RTX 2080 SUPER"},
-  {"id": "rtx-2070s", "category": "GPU-NVIDIA", "badge": "NVIDIA GPU", "name": "GeForce RTX 2070 SUPER 8GB", "newPriceRef": "新品当時: 約¥65,000〜", "usedPriceAvg": 23800, "diffPercent": "約63% OFF", "recommend": "【2万円台前半の王者】フルHDでVALORANTやApexを144fps〜240fpsで動かすなら最も安く仕上がる定番グラボ。", "mercariQuery": "RTX 2070 SUPER", "yahooQuery": "RTX 2070 SUPER", "shopName": "じゃんぱら / イオシス", "shopQuery": "RTX 2070 SUPER"},
-  {"id": "gtx-1660s", "category": "GPU-NVIDIA", "badge": "NVIDIA GPU", "name": "GeForce GTX 1660 SUPER 6GB", "newPriceRef": "新品当時: 約¥30,000〜", "usedPriceAvg": 13500, "diffPercent": "約55% OFF", "recommend": "1万円台前半で買える格安グラボ。VALORANTやフォートナイト、マインクラフトを普通に快適に遊ぶなら十分動きます。", "mercariQuery": "GTX 1660 SUPER", "yahooQuery": "GTX 1660 SUPER", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "GTX 1660 SUPER"},
-  {"id": "gtx-1080ti", "category": "GPU-NVIDIA", "badge": "NVIDIA GPU", "name": "GeForce GTX 1080 Ti 11GB", "newPriceRef": "新品当時: 約¥100,000〜", "usedPriceAvg": 18500, "diffPercent": "約81% OFF", "recommend": "1万円台でVRAM 11GBという破壊的コスパ。レイトレ不要で検証機や格安ゲームPCを作りたい玄人向け。", "mercariQuery": "GTX 1080Ti", "yahooQuery": "GTX 1080Ti", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "GTX 1080Ti"},
-  {"id": "rx-6700xt", "category": "GPU-AMD", "badge": "AMD GPU", "name": "Radeon RX 6700 XT 12GB", "newPriceRef": "新品当時: 約¥68,000〜", "usedPriceAvg": 34000, "diffPercent": "約50% OFF", "recommend": "3万円台半ばで大容量VRAM 12GBとRTX 3070級のラスタライズ描画性能。WQHDでゲームを安く楽しみたい人に最適。", "mercariQuery": "RX 6700 XT", "yahooQuery": "RX 6700 XT", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "RX 6700 XT"},
-  {"id": "rx-6600", "category": "GPU-AMD", "badge": "AMD GPU", "name": "Radeon RX 6600 8GB", "newPriceRef": "新品最安: 約¥28,000", "usedPriceAvg": 18000, "diffPercent": "約35% OFF", "recommend": "消費電力わずか100W前後でRTX 3060に迫る性能。1万円台でワットパフォーマンスを重視するならこれ。", "mercariQuery": "RX 6600 8GB", "yahooQuery": "RX 6600", "shopName": "じゃんぱら / 工房中古", "shopQuery": "RX 6600"},
-  {"id": "b550-board", "category": "MB", "badge": "マザーボード", "name": "AMD B550マザーボード (AM4)", "newPriceRef": "新品相場: 約¥14,000", "usedPriceAvg": 8500, "diffPercent": "約39% OFF", "recommend": "Ryzen 5000番台で安く自作PCを一式組みたい人に。PCIe 4.0対応で高速M.2 SSDもフル稼働。", "mercariQuery": "B550 マザーボード", "yahooQuery": "B550 マザーボード", "shopName": "じゃんぱら / 工房中古", "shopQuery": "B550 マザーボード"},
-  {"id": "x570-board", "category": "MB", "badge": "マザーボード", "name": "AMD X570マザーボード (AM4)", "newPriceRef": "新品当時: 約¥28,000〜", "usedPriceAvg": 12500, "diffPercent": "約55% OFF", "recommend": "堅牢な電源回路と複数のPCIe 4.0スロットを備えるAM4最上位。5700Xや5800X3Dで高負荷ゲームを長時間安定動作させたい人に。", "mercariQuery": "X570 マザーボード", "yahooQuery": "X570 マザーボード", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "X570 マザーボード"},
-  {"id": "b660-b760-board", "category": "MB", "badge": "マザーボード", "name": "Intel B660 / B760マザーボード (LGA1700)", "newPriceRef": "新品相場: 約¥16,000", "usedPriceAvg": 9800, "diffPercent": "約38% OFF", "recommend": "Core i5-12400Fや13世代・14世代Intel CPUをコスパ良く載せたい人に最適。DDR4対応版を選べばメモリ流用でさらに安価に。", "mercariQuery": "B660 マザーボード", "yahooQuery": "B660 マザーボード", "shopName": "じゃんぱら / 工房中古", "shopQuery": "B660 マザーボード"},
-  {"id": "z490-board", "category": "MB", "badge": "マザーボード", "name": "Intel Z490マザーボード (LGA1200)", "newPriceRef": "新品当時: 約¥22,000〜", "usedPriceAvg": 8000, "diffPercent": "約63% OFF", "recommend": "Core i7-10700K等の第10世代K付きCPUの性能を限界まで引き出したい人向け。メモリOCや多機能拡張を楽しみたい玄人に。", "mercariQuery": "Z490 マザーボード", "yahooQuery": "Z490 マザーボード", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "Z490 マザーボード"},
-  {"id": "a520-board", "category": "MB", "badge": "マザーボード", "name": "AMD A520マザーボード (AM4)", "newPriceRef": "新品相場: 約¥8,000", "usedPriceAvg": 4500, "diffPercent": "約43% OFF", "recommend": "4,000円台で手に入る超格安マザー。OCやPCIe 4.0は不要で、とにかく総額を抑えて動くサブ機を作りたい人に。", "mercariQuery": "A520 マザーボード", "yahooQuery": "A520 マザーボード", "shopName": "じゃんぱら / 工房中古", "shopQuery": "A520 マザーボード"},
-  {"id": "ddr4-32gb", "category": "RAM", "badge": "メモリ", "name": "DDR4-3200 32GB (16GB×2枚組)", "newPriceRef": "新品相場: 約¥11,000", "usedPriceAvg": 8800, "diffPercent": "約20% OFF", "recommend": "タルコフやシティーズ、Discord同時起動で16GBが限界な人の鉄板。2枚組デュアルチャネルで安定性抜群。", "mercariQuery": "DDR4 32GB 16GB 2枚", "yahooQuery": "DDR4 32GB 16GB 2枚 デスクトップ", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "DDR4 3200 16GB 2枚"},
-  {"id": "ddr4-16gb", "category": "RAM", "badge": "メモリ", "name": "DDR4-3200 16GB (8GB×2枚組)", "newPriceRef": "新品相場: 約¥5,800", "usedPriceAvg": 4500, "diffPercent": "約22% OFF", "recommend": "フルHDゲーミングPCの基本構成。安価な自作PCビルドやサブ機の必要十分なメモリ確保に。", "mercariQuery": "DDR4 16GB 8GB 2枚", "yahooQuery": "DDR4 16GB 8GB 2枚 デスクトップ", "shopName": "じゃんぱら / イオシス", "shopQuery": "DDR4 3200 8GB 2枚"},
-  {"id": "ddr4-3600-32gb", "category": "RAM", "badge": "メモリ", "name": "DDR4-3600 32GB (16GB×2枚組) 高速選別", "newPriceRef": "新品相場: 約¥13,500", "usedPriceAvg": 10500, "diffPercent": "約22% OFF", "recommend": "Ryzen 5000番台と相性抜群の3600MHz。競技FPSで1% Low（最低fps）を底上げしたいこだわり派向け。", "mercariQuery": "DDR4 3600 32GB 16GB 2枚", "yahooQuery": "DDR4 3600 32GB 16GB 2枚", "shopName": "じゃんぱら / ソフマップ", "shopQuery": "DDR4 3600 16GB 2枚"},
-  {"id": "ddr5-32gb", "category": "RAM", "badge": "メモリ", "name": "DDR5-5600/6000 32GB (16GB×2枚組)", "newPriceRef": "新品相場: 約¥16,500", "usedPriceAvg": 13500, "diffPercent": "約18% OFF", "recommend": "AM5（Ryzen 7000/9000）や第13/14世代Core向けの最新規格。ヒートシンク付きモデルの中古狙い目が熱い。", "mercariQuery": "DDR5 32GB 16GB 2枚", "yahooQuery": "DDR5 32GB 16GB 2枚 デスクトップ", "shopName": "じゃんぱら / 工房中古", "shopQuery": "DDR5 5600 16GB 2枚"}
+    {
+        "name": "Intel Core i7-14700K",
+        "search_url": "https://shopping.yahoo.co.jp/search?p=Core+i7-14700K",
+        "current_price": 0,
+        "diffPercent": "0.0"
+    },
+    {
+        "name": "NVIDIA GeForce RTX 4070 SUPER",
+        "search_url": "https://shopping.yahoo.co.jp/search?p=RTX+4070+SUPER",
+        "current_price": 0,
+        "diffPercent": "0.0"
+    }
 ]
 
-def clean_json_string(s):
-    return re.sub(r'[\x00-\x1f\x7f-\x9f]', '', s)
-
-def get_used_price(query):
-    # 海外IPブロックのないYahoo!ショッピング検索を利用
+def load_data():
+    """JSONの読み込み。破損時はデフォルト設定で安全に復旧する。"""
+    if not os.path.exists(JSON_FILE):
+        return DEFAULT_PARTS.copy()
     try:
-        encoded = urllib.parse.quote(f"{query} 中古")
-        url = f"https://shopping.yahoo.co.jp/search?p={encoded}&used=2"
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-        }
-        req = urllib.request.Request(url, headers=headers)
-        # タイムアウトを3秒に設定して絶対に待たせない
-        with urllib.request.urlopen(req, timeout=3) as resp:
-            html = resp.read().decode('utf-8', errors='ignore')
+        with open(JSON_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            if not isinstance(data, list) or len(data) == 0:
+                raise ValueError("JSON format is invalid or empty.")
+            return data
+    except Exception as e:
+        print(f"::warning:: {JSON_FILE} is broken ({e}). Fallback to DEFAULT_PARTS.")
+        return DEFAULT_PARTS.copy()
 
-        matches = re.findall(r'(\d{1,3}(?:,\d{3})+|\d+)\s*円', html)
-        prices = []
-        for m in matches:
-            val = int(m.replace(',', ''))
-            if 2500 <= val <= 250000:
-                prices.append(val)
+def remove_outliers(prices):
+    """【指摘1】四分位範囲(IQR)を用いて異常値(ジャンク品やケースのみ等)を除外する"""
+    if len(prices) < 4:
+        return prices  # データが少なすぎる場合はそのまま処理
 
-        if len(prices) >= 2:
-            prices.sort()
-            return prices[min(2, len(prices) - 1)]
-    except Exception:
-        pass
-    return None
+    sorted_prices = sorted(prices)
+    q1 = statistics.quantiles(sorted_prices, n=4)[0]
+    q3 = statistics.quantiles(sorted_prices, n=4)[2]
+    iqr = q3 - q1
+    
+    lower_bound = q1 - 1.5 * iqr
+    upper_bound = q3 + 1.5 * iqr
+    
+    # 外れ値を弾き、0円以下の異常値も除外
+    valid_prices = [p for p in sorted_prices if p > 0 and lower_bound <= p <= upper_bound]
+    
+    return valid_prices if valid_prices else prices
+
+def fetch_price(url):
+    """【指摘3】正規表現を用いてノイズを拾わず正確に価格をパースする"""
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+    }
+    
+    # タイムアウトを設定し、無限ハングを防ぐ
+    response = requests.get(url, headers=headers, timeout=10)
+    response.raise_for_status()
+    
+    soup = BeautifulSoup(response.text, "html.parser")
+    
+    # サイトの構造に依存しすぎないよう、「数字＋円」のパターンを厳格に抽出
+    price_elements = soup.find_all(string=re.compile(r'[0-9,]+\s*円'))
+    
+    prices = []
+    for elem in price_elements:
+        # 無関係な「1」などを拾わないよう、金額部分だけを正確に抜き出す
+        match = re.search(r'([0-9,]{3,})', elem)
+        if match:
+            price_str = match.group(1).replace(',', '')
+            try:
+                prices.append(int(price_str))
+            except ValueError:
+                continue
+                
+    if not prices:
+        raise ValueError("Could not find any valid price data on the page.")
+        
+    # 外れ値を除外した上で、平均ではなく「中央値」を返す
+    valid_prices = remove_outliers(prices)
+    return int(statistics.median(valid_prices))
+
+def save_data(data):
+    """【指摘5】アトミック書き込み処理 (保存中に強制終了されてもファイルが壊れない)"""
+    with open(TEMP_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    # 完全に書き込めたら本ファイルにリネーム上書き
+    os.replace(TEMP_FILE, JSON_FILE)
 
 def main():
-    json_path = 'parts.json'
-    parts = []
-
-    if os.path.exists(json_path):
+    parts_data = load_data()
+    
+    for part in parts_data:
+        part_name = part.get("name", "Unknown")
+        url = part.get("search_url")
+        old_price = part.get("current_price", 0)
+        
+        if not url:
+            print(f"::error:: No search_url for {part_name}")
+            continue
+            
+        print(f"Fetching {part_name}...")
         try:
-            with open(json_path, 'r', encoding='utf-8', errors='ignore') as f:
-                content = clean_json_string(f.read())
-                parts = json.loads(content)
-            if not isinstance(parts, list) or len(parts) == 0:
-                parts = DEFAULT_PARTS
-        except Exception:
-            print("Notice: parts.json corrupted. Auto-recovering...", flush=True)
-            parts = DEFAULT_PARTS
-    else:
-        parts = DEFAULT_PARTS
+            new_price = fetch_price(url)
+            
+            # 【指摘2】変動率 (diffPercent) の計算と文字列フォーマット (+/- を付ける)
+            if old_price > 0:
+                diff = ((new_price - old_price) / old_price) * 100
+                diff_str = f"{diff:+.1f}" 
+            elif old_price == 0 and new_price > 0:
+                diff_str = "+100.0"
+            else:
+                diff_str = "0.0"
+                
+            # 正常に取得できた場合のみ更新
+            part["current_price"] = new_price
+            part["diffPercent"] = diff_str
+            print(f"Success: {part_name} | {old_price}円 -> {new_price}円 ({diff_str}%)")
+            
+        except Exception as e:
+            # 【指摘4】エラーを pass で握りつぶさず、GitHub Actionsのログに明記。
+            # かつ、価格は取得できなかったため old_price を維持する(安全なフェイルセーフ)
+            print(f"::error:: Failed to update {part_name}. Error: {e}")
+            print(f"Using previous price ({old_price}円) for {part_name}.")
+            
+        # アクセスブロック回避のためのインターバル
+        time.sleep(2)
+        
+    # 全てのループが完了してから一括で安全に保存
+    save_data(parts_data)
+    print("All tasks completed.")
 
-    print(f"Loaded {len(parts)} items successfully. Scanning market prices...", flush=True)
-    updated = 0
-
-    for i, item in enumerate(parts):
-        q = item.get('shopQuery') or item.get('name')
-        new_p = get_used_price(q)
-        time.sleep(0.3)  # 高速間隔
-
-        if new_p and abs(new_p - item.get('usedPriceAvg', 0)) >= 500:
-            old_p = item.get('usedPriceAvg', 0)
-            print(f"[{i+1}/{len(parts)}] Update {item['name']}: ¥{old_p:,} -> ¥{new_p:,}", flush=True)
-            item['usedPriceAvg'] = new_p
-            updated += 1
-        else:
-            print(f"[{i+1}/{len(parts)}] Checked {item['name']} (OK)", flush=True)
-
-    with open(json_path, 'w', encoding='utf-8') as f:
-        json.dump(parts, f, ensure_ascii=False, indent=2)
-
-    print(f"Completed! {updated} prices updated and saved.", flush=True)
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
