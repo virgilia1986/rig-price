@@ -49,6 +49,12 @@
       max-width: 600px;
       margin: 0 auto;
     }
+    #updateTime {
+      font-size: 0.85rem;
+      color: #34d399;
+      margin-top: 0.75rem;
+      font-weight: 700;
+    }
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -204,6 +210,7 @@
   <header>
     <h1>RigPrice Used</h1>
     <p>中古PCパーツ・フリマ相場比較ナビ。メルカリ・Yahoo!・楽天の中古価格をまとめてチェック。</p>
+    <p id="updateTime"></p>
   </header>
 
   <div class="container">
@@ -228,17 +235,26 @@
   <script>
     let allParts = [];
 
-    // ==========================================
-    // アフィリエイト設定（設定完了済み）
-    // ==========================================
     const MERCARI_AFFILIATE_ID = "3331168449";
     const VC_SID = "3782755";
     const VC_PID = "892714818";
 
     async function loadParts() {
       try {
-        const res = await fetch('parts.json?t=' + Date.now());
-        allParts = await res.json();
+        const todayStr = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+        const res = await fetch('parts.json?t=' + todayStr);
+        const data = await res.json();
+        
+        // 新フォーマット（更新日時付き）と旧フォーマット（配列のみ）の両方に対応
+        if (data.parts && Array.isArray(data.parts)) {
+          allParts = data.parts;
+          if (data.lastUpdated) {
+            document.getElementById('updateTime').innerText = `最終更新: ${data.lastUpdated}`;
+          }
+        } else if (Array.isArray(data)) {
+          allParts = data;
+        }
+
         renderCards(allParts);
       } catch (err) {
         document.getElementById('partsGrid').innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #94a3b8;">データ読み込み中...</p>';
@@ -248,16 +264,20 @@
     function renderCards(parts) {
       const grid = document.getElementById('partsGrid');
       grid.innerHTML = parts.map(p => {
-        // 1. メルカリ（型番検索・アンバサダーID直結・購入額の2%報酬）
+        let diffBadge = 'お得';
+        if (p.newPriceRef > 0 && p.usedPriceAvg > 0 && p.newPriceRef > p.usedPriceAvg) {
+          const diff = Math.round((1 - p.usedPriceAvg / p.newPriceRef) * 100);
+          diffBadge = diff + '% OFF';
+        }
+        const refPriceText = p.newPriceRef > 0 ? `発売時参考: 約¥${p.newPriceRef.toLocaleString()}` : '';
+
         const mercariWord = encodeURIComponent(p.mercariQuery || p.name);
         const mercariUrl = `https://jp.mercari.com/search?keyword=${mercariWord}&afid=${MERCARI_AFFILIATE_ID}`;
 
-        // 2. Yahoo!ショッピング中古（バリューコマース完全直結・購入額の約2%報酬）
         const yahooKeyword = encodeURIComponent((p.shopQuery || p.name) + " 中古");
         const rawYahooUrl = `https://shopping.yahoo.co.jp/search?p=${yahooKeyword}`;
         const yahooFinalUrl = `https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=${VC_SID}&pid=${VC_PID}&vc_url=${encodeURIComponent(rawYahooUrl)}`;
 
-        // 3. 楽天中古（used=1で確実に中古品のみを表示・トップ送還エラーを完全排除した直結リンク）
         const rakutenWord = encodeURIComponent(p.shopQuery || p.name);
         const rakutenUrl = `https://search.rakuten.co.jp/search/mall/${rakutenWord}/?used=1`;
 
@@ -265,12 +285,12 @@
           <div class="card" data-category="${p.category}">
             <div class="card-header">
               <span class="badge">${p.badge}</span>
-              <span class="diff-badge">${p.diffPercent || 'お得'}</span>
+              <span class="diff-badge">${diffBadge}</span>
             </div>
             <div class="card-title">${p.name}</div>
-            <div class="card-price-ref">${p.newPriceRef}</div>
+            <div class="card-price-ref">${refPriceText}</div>
             <div class="price-box">
-              <span class="price-label">中古相場目安</span>
+              <span class="price-label">Yahoo!中古相場目安</span>
               <span class="price-val">¥${Number(p.usedPriceAvg).toLocaleString()}</span>
             </div>
             <div class="card-desc">${p.recommend}</div>
