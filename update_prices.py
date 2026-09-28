@@ -3,15 +3,15 @@ import os
 import statistics
 import time
 import requests
+from datetime import datetime, timezone, timedelta
 
 JSON_FILE = "parts.json"
 TEMP_FILE = "parts_temp.json"
-REQUEST_INTERVAL = 1  # API利用のため1秒間隔に短縮
+REQUEST_INTERVAL = 1
 REQUEST_TIMEOUT = 10
 MIN_PRICE = 2500
 MAX_PRICE = 250000
 
-# GitHub SecretsからAPIキーを取得
 YAHOO_CLIENT_ID = os.environ.get("YAHOO_CLIENT_ID")
 
 def load_data():
@@ -22,9 +22,14 @@ def load_data():
             data = json.load(f)
     except json.JSONDecodeError as e:
         raise ValueError(f"{JSON_FILE} が破損しています。詳細: {e}")
-    if not isinstance(data, list) or len(data) == 0:
+    
+    # 新仕様（辞書型）と旧仕様（リスト型）の両方に対応
+    if isinstance(data, dict) and "parts" in data:
+        return data["parts"]
+    elif isinstance(data, list) and len(data) > 0:
+        return data
+    else:
         raise ValueError(f"{JSON_FILE} の形式が正しくないか、空です。")
-    return data
 
 def remove_outliers(prices):
     if len(prices) < 4:
@@ -47,8 +52,8 @@ def fetch_price(query):
     params = {
         "appid": YAHOO_CLIENT_ID,
         "query": query,
-        "condition": "used",  # 中古品のみを指定
-        "results": 50         # 最大50件取得して精度を高める
+        "condition": "used",
+        "results": 50
     }
     
     try:
@@ -75,9 +80,19 @@ def fetch_price(query):
     print(f"  取得件数: {len(prices)}件 / 外れ値除去後: {len(filtered_prices)}件 / 中央値: ¥{median_price:,}", flush=True)
     return median_price
 
-def save_data(data):
+def save_data(parts):
+    # JST（日本時間）で現在時刻を取得
+    jst = timezone(timedelta(hours=9), 'JST')
+    now_str = datetime.now(jst).strftime("%Y/%m/%d %H:%M")
+    
+    # 最終更新日時とパーツデータを一緒に保存
+    output_data = {
+        "lastUpdated": now_str,
+        "parts": parts
+    }
+    
     with open(TEMP_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+        json.dump(output_data, f, ensure_ascii=False, indent=2)
     os.replace(TEMP_FILE, JSON_FILE)
 
 def main():
