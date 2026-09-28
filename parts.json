@@ -6,7 +6,7 @@
     "name": "GeForce RTX 3060 12GB",
     "diffPercent": "36% OFF",
     "newPriceRef": "発売時参考: 約¥55,000",
-    "usedPriceAvg": 34800,
+    "usedPriceAvg": 52980,
     "recommend": "VRAM 12GB搭載で高解像度テクスチャやAI生成にも強く、フルHD環境で圧倒的一番人気のロングセラーGPU。",
     "mercariQuery": "RTX 3060 12GB",
     "shopQuery": "RTX 3060 12GB"
@@ -18,7 +18,7 @@
     "name": "GeForce RTX 3060 Ti 8GB",
     "diffPercent": "43% OFF",
     "newPriceRef": "発売時参考: 約¥68,000",
-    "usedPriceAvg": 38500,
+    "usedPriceAvg": 41980,
     "recommend": "RTX 3070に迫るゲーム性能を誇り、WQHDゲーミングまで幅広くカバーできる高コスパな名機。",
     "mercariQuery": "RTX 3060 Ti",
     "shopQuery": "RTX 3060 Ti"
@@ -30,7 +30,7 @@
     "name": "GeForce RTX 3070 8GB",
     "diffPercent": "46% OFF",
     "newPriceRef": "発売時参考: 約¥85,000",
-    "usedPriceAvg": 45800,
+    "usedPriceAvg": 43980,
     "recommend": "前世代最上位のRTX 2080 Tiと同等のパワーを持ち、ApexやVALORANTを240Hz超で張り付かせたい方に最適。",
     "mercariQuery": "RTX 3070 8GB",
     "shopQuery": "RTX 3070 8GB"
@@ -42,7 +42,7 @@
     "name": "GeForce RTX 3080 10GB",
     "diffPercent": "46% OFF",
     "newPriceRef": "発売時参考: 約¥120,000",
-    "usedPriceAvg": 64800,
+    "usedPriceAvg": 53980,
     "recommend": "4K本格ゲーミングのエントリーに最適。6万円台半ばで手に入る圧倒的グラフィックスパワー。",
     "mercariQuery": "RTX 3080 10GB",
     "shopQuery": "RTX 3080 10GB"
@@ -54,7 +54,7 @@
     "name": "GeForce RTX 2070 SUPER 8GB",
     "diffPercent": "55% OFF",
     "newPriceRef": "発売時参考: 約¥62,000",
-    "usedPriceAvg": 27800,
+    "usedPriceAvg": 31980,
     "recommend": "3万円未満で手に入る格安の実力派。現行のミドル級ゲームも設定次第で快適に動作。",
     "mercariQuery": "RTX 2070 SUPER",
     "shopQuery": "RTX 2070 SUPER"
@@ -66,7 +66,7 @@
     "name": "GeForce RTX 2080 SUPER 8GB",
     "diffPercent": "62% OFF",
     "newPriceRef": "発売時参考: 約¥88,000",
-    "usedPriceAvg": 32800,
+    "usedPriceAvg": 34980,
     "recommend": "RTX 3060と同等以上の純粋なレンダリング速度を持ち、中古市場での値崩れが激しいお得枠。",
     "mercariQuery": "RTX 2080 SUPER",
     "shopQuery": "RTX 2080 SUPER"
@@ -78,7 +78,7 @@
     "name": "GeForce GTX 1660 SUPER 6GB",
     "diffPercent": "47% OFF",
     "newPriceRef": "発売時参考: 約¥32,000",
-    "usedPriceAvg": 16800,
+    "usedPriceAvg": 19980,
     "recommend": "1万円台で自作・換装できる最安クラスのゲーミングGPU。消費電力も低く補助電源6ピン1本で手軽。",
     "mercariQuery": "GTX 1660 SUPER",
     "shopQuery": "GTX 1660 SUPER"
@@ -90,7 +90,7 @@
     "name": "GeForce GTX 1080 Ti 11GB",
     "diffPercent": "77% OFF",
     "newPriceRef": "発売時参考: 約¥95,000",
-    "usedPriceAvg": 21800,
+    "usedPriceAvg": 47880,
     "recommend": "Pascal世代の伝説的モンスター。VRAM 11GBの広大なメモリ帯域を2万円強で確保可能。",
     "mercariQuery": "GTX 1080 Ti",
     "shopQuery": "GTX 1080 Ti"
@@ -102,7 +102,7 @@
     "name": "Radeon RX 6600 8GB",
     "diffPercent": "43% OFF",
     "newPriceRef": "発売時参考: 約¥42,000",
-    "usedPriceAvg": 23800,
+    "usedPriceAvg": 61512,
     "recommend": "省電力性抜群（TDP 132W）。RTX 3060に迫るフルHD性能を2万円台前半で実現する高効率カード。",
     "mercariQuery": "Radeon RX 6600",
     "shopQuery": "Radeon RX 6600"
@@ -114,7 +114,7 @@
     "name": "Radeon RX 6700 XT 12GB",
     "diffPercent": "49% OFF",
     "newPriceRef": "発売時参考: 約¥75,000",
-    "usedPriceAvg": 37800,
+    "usedPriceAvg": 42480,
     "recommend": "RTX 3060 Tiと同等以上の描画性能と大容量12GB VRAMを両立。WQHD解像度に強い選択肢。",
     "mercariQuery": "Radeon RX 6700 XT",
     "shopQuery": "Radeon RX 6700 XT"
@@ -126,7 +126,7 @@
     "name": "Intel Core i7-10700K",
     "diffPercent": "56% OFF",
     "newPriceRef": "発売時参考: 約¥46,000",
-    "usedPriceAvg": 19800,
+    "usedPriceAvg": 49005,
     "recommend": "第9世代以前のLGA1151環境からの乗り換えに最適。8コア16スレッドでゲーム配信も安定。",
     "mercariQuery": "Core i7 10700K",
     "shopQuery": "Core i7 10700K"
@@ -138,7 +138,7 @@
     "name": "Intel Core i7-11700",
     "diffPercent": "52% OFF",
     "newPriceRef": "発売時参考: 約¥48,000",
-    "usedPriceAvg": 22800,
+    "usedPriceAvg": 49802,
     "recommend": "PCIe Gen4に初対応した第11世代の定番。TDP 65W設計で空冷クーラーでも扱いやすい実用派。",
     "mercariQuery": "Core i7 11700",
     "shopQuery": "Core i7 11700"
@@ -150,7 +150,7 @@
     "name": "Intel Core i7-12700K",
     "diffPercent": "39% OFF",
     "newPriceRef": "発売時参考: 約¥56,000",
-    "usedPriceAvg": 33800,
+    "usedPriceAvg": 45980,
     "recommend": "Pコア+Eコアのハイブリッド構造。DDR4マザーボードも流用可能で現役バリバリの高性能CPU。",
     "mercariQuery": "Core i7 12700K",
     "shopQuery": "Core i7 12700K"
@@ -162,7 +162,7 @@
     "name": "Intel Core i5-12400F",
     "diffPercent": "34% OFF",
     "newPriceRef": "発売時参考: 約¥24,000",
-    "usedPriceAvg": 15800,
+    "usedPriceAvg": 23246,
     "recommend": "1万円台半ばで組める近代ゲーミングPCの鉄板。低発熱でRTX 3060〜3070の性能を完全に引き出せます。",
     "mercariQuery": "Core i5 12400F",
     "shopQuery": "Core i5 12400F"
@@ -174,7 +174,7 @@
     "name": "Intel Core i7-8700K",
     "diffPercent": "68% OFF",
     "newPriceRef": "発売時参考: 約¥44,000",
-    "usedPriceAvg": 13800,
+    "usedPriceAvg": 14980,
     "recommend": "Z370/Z390マザーボードの延命・サブ機用に。Windows 11正式対応CPUの中で最も安価に狙える枠。",
     "mercariQuery": "Core i7 8700K",
     "shopQuery": "Core i7 8700K"
@@ -186,7 +186,7 @@
     "name": "Intel Core i7-9700K",
     "diffPercent": "67% OFF",
     "newPriceRef": "発売時参考: 約¥48,000",
-    "usedPriceAvg": 15800,
+    "usedPriceAvg": 17980,
     "recommend": "物理8コア搭載でシングルスレッド性能が高く、当時の旧ゲームタイトルでは驚異的な安定感を誇る名機。",
     "mercariQuery": "Core i7 9700K",
     "shopQuery": "Core i7 9700K"
@@ -198,7 +198,7 @@
     "name": "AMD Ryzen 5 5600X",
     "diffPercent": "56% OFF",
     "newPriceRef": "発売時参考: 約¥39,000",
-    "usedPriceAvg": 16800,
+    "usedPriceAvg": 22980,
     "recommend": "AM4マザーボードをお持ちならこれ一択。圧倒的なワットパフォーマンスとゲームFPSの伸びを体感可能。",
     "mercariQuery": "Ryzen 5 5600X",
     "shopQuery": "Ryzen 5 5600X"
@@ -210,7 +210,7 @@
     "name": "AMD Ryzen 7 5700X",
     "diffPercent": "45% OFF",
     "newPriceRef": "発売時参考: 約¥38,000",
-    "usedPriceAvg": 20800,
+    "usedPriceAvg": 30995,
     "recommend": "TDP 65Wの扱いやすさで8コア16スレッド。動画編集・複数アプリの並行起動も余裕でこなす万能選手。",
     "mercariQuery": "Ryzen 7 5700X",
     "shopQuery": "Ryzen 7 5700X"
@@ -222,7 +222,7 @@
     "name": "AMD Ryzen 7 5800X3D",
     "diffPercent": "33% OFF",
     "newPriceRef": "発売時参考: 約¥58,000",
-    "usedPriceAvg": 38800,
+    "usedPriceAvg": 60980,
     "recommend": "大容量96MBキャッシュにより、AM4環境における究極のゲーミングCPUとして相場が高値維持されている名機。",
     "mercariQuery": "Ryzen 7 5800X3D",
     "shopQuery": "Ryzen 7 5800X3D"
@@ -234,7 +234,7 @@
     "name": "DDR4-3200 16GB (8GBx2)",
     "diffPercent": "50% OFF",
     "newPriceRef": "発売時参考: 約¥8,500",
-    "usedPriceAvg": 4200,
+    "usedPriceAvg": 12078,
     "recommend": "標準的なゲーミング構成に十分なデュアルチャネル16GB。中古価格が底値に達しており最も手軽。",
     "mercariQuery": "DDR4 3200 16GB 8GB 2枚",
     "shopQuery": "DDR4 3200 16GB 8GB 2枚"
@@ -246,7 +246,7 @@
     "name": "DDR4-3200 32GB (16GBx2)",
     "diffPercent": "51% OFF",
     "newPriceRef": "発売時参考: 約¥16,000",
-    "usedPriceAvg": 7800,
+    "usedPriceAvg": 36278,
     "recommend": "タルコフ、パルワールド、都市開発シミュレーションなどメモリバカ食いタイトルに必須の大容量構成。",
     "mercariQuery": "DDR4 3200 32GB 16GB 2枚",
     "shopQuery": "DDR4 3200 32GB 16GB 2枚"
@@ -258,7 +258,7 @@
     "name": "DDR5-4800 32GB (16GBx2)",
     "diffPercent": "41% OFF",
     "newPriceRef": "発売時参考: 約¥22,000",
-    "usedPriceAvg": 12800,
+    "usedPriceAvg": 59980,
     "recommend": "Intel第12〜14世代やRyzen 7000番台以降の最新規格。下落傾向が続いており導入しやすいライン。",
     "mercariQuery": "DDR5 32GB 16GB 2枚",
     "shopQuery": "DDR5 32GB 16GB 2枚"
@@ -270,7 +270,7 @@
     "name": "B550 ATXマザーボード",
     "diffPercent": "43% OFF",
     "newPriceRef": "発売時参考: 約¥21,000",
-    "usedPriceAvg": 11800,
+    "usedPriceAvg": 17725,
     "recommend": "Ryzen 3000/5000シリーズに対応。PCIe 4.0対応M.2スロットを備え、コスパ自作の土台として不動の人気。",
     "mercariQuery": "B550 マザーボード ATX",
     "shopQuery": "B550 マザーボード ATX"
@@ -282,7 +282,7 @@
     "name": "B660 ATXマザーボード",
     "diffPercent": "44% OFF",
     "newPriceRef": "発売時参考: 約¥23,000",
-    "usedPriceAvg": 12800,
+    "usedPriceAvg": 17978,
     "recommend": "Intel第12・13・14世代CPUに対応。手持ちのDDR4メモリを活用して近代スペックを安価に構築可能。",
     "mercariQuery": "B660 マザーボード ATX",
     "shopQuery": "B660 マザーボード ATX"
