@@ -2,7 +2,7 @@ name: Auto Update Used Prices
 
 on:
   schedule:
-    - cron: '0 18 * * *'
+    - cron: '0 9 * * *'
   workflow_dispatch:
 
 jobs:
@@ -18,6 +18,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install beautifulsoup4 curl_cffi
 
       - name: Run script
         run: python update_prices.py
