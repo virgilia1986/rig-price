@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/09/28 19:55",
+  "lastUpdated": "2026/09/29 18:05",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -95,7 +95,7 @@
       "badge": "RX 6600",
       "name": "Radeon RX 6600 8GB",
       "newPriceRef": 42000,
-      "usedPriceAvg": 61512,
+      "usedPriceAvg": 62829,
       "recommend": "省電力性抜群（TDP 132W）。RTX 3060に迫るフルHD性能を2万円台前半で実現する高効率カード。",
       "mercariQuery": "Radeon RX 6600",
       "shopQuery": "Radeon RX 6600"
@@ -128,7 +128,7 @@
       "badge": "8C / 16T",
       "name": "Intel Core i7-10700K",
       "newPriceRef": 46000,
-      "usedPriceAvg": 49005,
+      "usedPriceAvg": 47627,
       "recommend": "第9世代以前のLGA1151環境からの乗り換えに最適。8コア16スレッドでゲーム配信も安定。",
       "mercariQuery": "Core i7 10700K",
       "shopQuery": "Core i7 10700K"
@@ -139,7 +139,7 @@
       "badge": "8C / 16T",
       "name": "Intel Core i7-11700",
       "newPriceRef": 48000,
-      "usedPriceAvg": 49802,
+      "usedPriceAvg": 56650,
       "recommend": "PCIe Gen4に初対応した第11世代の定番。TDP 65W設計で空冷クーラーでも扱いやすい実用派。",
       "mercariQuery": "Core i7 11700",
       "shopQuery": "Core i7 11700"
@@ -249,7 +249,7 @@
       "badge": "8C / 16T",
       "name": "AMD Ryzen 7 5700X",
       "newPriceRef": 38000,
-      "usedPriceAvg": 30995,
+      "usedPriceAvg": 30997,
       "recommend": "TDP 65Wの扱いやすさで8コア16スレッド。動画編集・複数アプリの並行起動も余裕でこなす万能選手。",
       "mercariQuery": "Ryzen 7 5700X",
       "shopQuery": "Ryzen 7 5700X"
@@ -315,7 +315,7 @@
       "badge": "LGA 1700",
       "name": "B660 ATXマザーボード",
       "newPriceRef": 23000,
-      "usedPriceAvg": 17978,
+      "usedPriceAvg": 17336,
       "recommend": "Intel第12・13・14世代CPUに対応。手持ちのDDR4メモリを活用して近代スペックを安価に構築可能。",
       "mercariQuery": "B660 マザーボード ATX",
       "shopQuery": "B660 マザーボード ATX"
