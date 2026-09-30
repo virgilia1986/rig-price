@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/09/29 18:05",
+  "lastUpdated": "2026/09/30 18:04",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -7,7 +7,7 @@
       "badge": "RTX 3060",
       "name": "GeForce RTX 3060 12GB",
       "newPriceRef": 55000,
-      "usedPriceAvg": 52980,
+      "usedPriceAvg": 53980,
       "recommend": "VRAM 12GB搭載で高解像度テクスチャやAI生成にも強く、フルHD環境で圧倒的一番人気のロングセラーGPU。",
       "mercariQuery": "RTX 3060 12GB",
       "shopQuery": "RTX 3060 12GB"
@@ -117,7 +117,7 @@
       "badge": "RTX 4070",
       "name": "GeForce RTX 4070 12GB",
       "newPriceRef": 95000,
-      "usedPriceAvg": 112980,
+      "usedPriceAvg": 113480,
       "recommend": "RTX 3080同等の性能ながら消費電力が激減。長時間のプレイでも部屋が暑くなりにくく、電源要件も緩めなのが最大のメリット。",
       "mercariQuery": "RTX 4070 12GB",
       "shopQuery": "RTX 4070 12GB"
@@ -128,7 +128,7 @@
       "badge": "8C / 16T",
       "name": "Intel Core i7-10700K",
       "newPriceRef": 46000,
-      "usedPriceAvg": 47627,
+      "usedPriceAvg": 49005,
       "recommend": "第9世代以前のLGA1151環境からの乗り換えに最適。8コア16スレッドでゲーム配信も安定。",
       "mercariQuery": "Core i7 10700K",
       "shopQuery": "Core i7 10700K"
@@ -139,7 +139,7 @@
       "badge": "8C / 16T",
       "name": "Intel Core i7-11700",
       "newPriceRef": 48000,
-      "usedPriceAvg": 56650,
+      "usedPriceAvg": 41740,
       "recommend": "PCIe Gen4に初対応した第11世代の定番。TDP 65W設計で空冷クーラーでも扱いやすい実用派。",
       "mercariQuery": "Core i7 11700",
       "shopQuery": "Core i7 11700"
@@ -249,7 +249,7 @@
       "badge": "8C / 16T",
       "name": "AMD Ryzen 7 5700X",
       "newPriceRef": 38000,
-      "usedPriceAvg": 30997,
+      "usedPriceAvg": 30995,
       "recommend": "TDP 65Wの扱いやすさで8コア16スレッド。動画編集・複数アプリの並行起動も余裕でこなす万能選手。",
       "mercariQuery": "Ryzen 7 5700X",
       "shopQuery": "Ryzen 7 5700X"
@@ -293,7 +293,7 @@
       "badge": "DDR5 32GB",
       "name": "DDR5-4800 32GB (16GBx2)",
       "newPriceRef": 22000,
-      "usedPriceAvg": 59980,
+      "usedPriceAvg": 63980,
       "recommend": "Intel第12〜14世代やRyzen 7000番台以降の最新規格。下落傾向が続いており導入しやすいライン。",
       "mercariQuery": "DDR5 32GB 16GB 2枚",
       "shopQuery": "DDR5 32GB 16GB 2枚"
