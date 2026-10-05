@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/10/05 00:50",
+  "lastUpdated": "2026/10/05 18:07",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -7,7 +7,7 @@
       "badge": "RTX 3060",
       "name": "GeForce RTX 3060 12GB",
       "newPriceRef": 55000,
-      "usedPriceAvg": 52980,
+      "usedPriceAvg": 53480,
       "recommend": "VRAM 12GB搭載で高解像度テクスチャやAI生成にも強く、フルHD環境で圧倒的一番人気のロングセラーGPU。",
       "mercariQuery": "RTX 3060 12GB",
       "shopQuery": "RTX 3060 12GB"
@@ -62,7 +62,7 @@
       "badge": "RTX 2080 SUPER",
       "name": "GeForce RTX 2080 SUPER 8GB",
       "newPriceRef": 88000,
-      "usedPriceAvg": 35480,
+      "usedPriceAvg": 34480,
       "recommend": "RTX 3060と同等以上の純粋なレンダリング速度を持ち、中古市場での値崩れが激しいお得枠。",
       "mercariQuery": "RTX 2080 SUPER",
       "shopQuery": "RTX 2080 SUPER"
@@ -84,7 +84,7 @@
       "badge": "GTX 1080 Ti",
       "name": "GeForce GTX 1080 Ti 11GB",
       "newPriceRef": 95000,
-      "usedPriceAvg": 55061,
+      "usedPriceAvg": 58338,
       "recommend": "Pascal世代の伝説적モンスター。VRAM 11GBの広大なメモリ帯域を2万円強で確保可能。",
       "mercariQuery": "GTX 1080 Ti",
       "shopQuery": "GTX 1080 Ti"
@@ -117,7 +117,7 @@
       "badge": "RTX 4070",
       "name": "GeForce RTX 4070 12GB",
       "newPriceRef": 95000,
-      "usedPriceAvg": 113480,
+      "usedPriceAvg": 113980,
       "recommend": "RTX 3080同等の性能ながら消費電力が激減。長時間のプレイでも部屋が暑くなりにくく、電源要件も緩めなのが最大のメリット。",
       "mercariQuery": "RTX 4070 12GB",
       "shopQuery": "RTX 4070 12GB"
@@ -128,7 +128,7 @@
       "badge": "8C / 16T",
       "name": "Intel Core i7-10700K",
       "newPriceRef": 46000,
-      "usedPriceAvg": 61811,
+      "usedPriceAvg": 55408,
       "recommend": "第9世代以前のLGA1151環境からの乗り換えに最適。8コア16スレッドでゲーム配信も安定。",
       "mercariQuery": "Core i7 10700K",
       "shopQuery": "Core i7 10700K"
@@ -139,7 +139,7 @@
       "badge": "8C / 16T",
       "name": "Intel Core i7-11700",
       "newPriceRef": 48000,
-      "usedPriceAvg": 36842,
+      "usedPriceAvg": 38016,
       "recommend": "PCIe Gen4に初対応した第11世代の定番。TDP 65W設計で空冷クーラーでも扱いやすい実用派。",
       "mercariQuery": "Core i7 11700",
       "shopQuery": "Core i7 11700"
@@ -304,7 +304,7 @@
       "badge": "Socket AM4",
       "name": "B550 ATXマザーボード",
       "newPriceRef": 21000,
-      "usedPriceAvg": 18792,
+      "usedPriceAvg": 18685,
       "recommend": "Ryzen 3000/5000シリーズに対応。PCIe 4.0対応M.2スロットを備え、コスパ自作の土台として不動の人気。",
       "mercariQuery": "B550 マザーボード ATX",
       "shopQuery": "B550 マザーボード ATX"
@@ -326,7 +326,7 @@
       "badge": "LGA 1700",
       "name": "Z790 ATXマザーボード",
       "newPriceRef": 40000,
-      "usedPriceAvg": 32908,
+      "usedPriceAvg": 33779,
       "recommend": "13900Kや14700Kの性能をフルに引き出すハイエンドチップセット。DDR5メモリと合わせて最新環境を組むなら必須の土台。",
       "mercariQuery": "Z790 マザーボード ATX",
       "shopQuery": "Z790 マザーボード ATX"
