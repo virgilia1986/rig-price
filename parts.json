@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/10/07 18:06",
+  "lastUpdated": "2026/10/08 18:07",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -18,7 +18,7 @@
       "badge": "RTX 3060 Ti",
       "name": "GeForce RTX 3060 Ti 8GB",
       "newPriceRef": 68000,
-      "usedPriceAvg": 41980,
+      "usedPriceAvg": 42480,
       "recommend": "RTX 3070に迫るゲーム性能を誇り、WQHDゲーミングまで幅広くカバーできる高コスパな名機。",
       "mercariQuery": "RTX 3060 Ti",
       "shopQuery": "RTX 3060 Ti"
@@ -84,7 +84,7 @@
       "badge": "GTX 1080 Ti",
       "name": "GeForce GTX 1080 Ti 11GB",
       "newPriceRef": 95000,
-      "usedPriceAvg": 57999,
+      "usedPriceAvg": 47880,
       "recommend": "Pascal世代の伝説적モンスター。VRAM 11GBの広大なメモリ帯域を2万円強で確保可能。",
       "mercariQuery": "GTX 1080 Ti",
       "shopQuery": "GTX 1080 Ti"
@@ -106,7 +106,7 @@
       "badge": "RX 6700 XT",
       "name": "Radeon RX 6700 XT 12GB",
       "newPriceRef": 75000,
-      "usedPriceAvg": 42480,
+      "usedPriceAvg": 41980,
       "recommend": "RTX 3060 Tiと同等以上の描画性能と大容量12GB VRAMを両立。WQHD解像度に強い選択肢。",
       "mercariQuery": "Radeon RX 6700 XT",
       "shopQuery": "Radeon RX 6700 XT"
@@ -128,7 +128,7 @@
       "badge": "8C / 16T",
       "name": "Intel Core i7-10700K",
       "newPriceRef": 46000,
-      "usedPriceAvg": 56780,
+      "usedPriceAvg": 50377,
       "recommend": "第9世代以前のLGA1151環境からの乗り換えに最適。8コア16スレッドでゲーム配信も安定。",
       "mercariQuery": "Core i7 10700K",
       "shopQuery": "Core i7 10700K"
@@ -139,7 +139,7 @@
       "badge": "8C / 16T",
       "name": "Intel Core i7-11700",
       "newPriceRef": 48000,
-      "usedPriceAvg": 29980,
+      "usedPriceAvg": 32892,
       "recommend": "PCIe Gen4に初対応した第11世代の定番。TDP 65W設計で空冷クーラーでも扱いやすい実用派。",
       "mercariQuery": "Core i7 11700",
       "shopQuery": "Core i7 11700"
@@ -161,7 +161,7 @@
       "badge": "6C / 12T",
       "name": "Intel Core i5-12400F",
       "newPriceRef": 24000,
-      "usedPriceAvg": 23078,
+      "usedPriceAvg": 22980,
       "recommend": "1万円台半ばで組める近代ゲーミングPCの鉄板。低発熱でRTX 3060〜3070の性能を完全に引き出せます。",
       "mercariQuery": "Core i5 12400F",
       "shopQuery": "Core i5 12400F"
@@ -238,7 +238,7 @@
       "badge": "6C / 12T",
       "name": "AMD Ryzen 5 5600X",
       "newPriceRef": 39000,
-      "usedPriceAvg": 23200,
+      "usedPriceAvg": 22980,
       "recommend": "AM4マザーボードをお持ちならこれ一択。圧倒的なワットパフォーマンスとゲームFPSの伸びを体感可能。",
       "mercariQuery": "Ryzen 5 5600X",
       "shopQuery": "Ryzen 5 5600X"
@@ -271,7 +271,7 @@
       "badge": "DDR4 16GB",
       "name": "DDR4-3200 16GB (8GBx2)",
       "newPriceRef": 8500,
-      "usedPriceAvg": 15850,
+      "usedPriceAvg": 15825,
       "recommend": "標準的なゲーミング構成に十分なデュアルチャネル16GB。中古価格が底値に達しており最も手軽。",
       "mercariQuery": "DDR4 3200 16GB 8GB 2枚",
       "shopQuery": "DDR4 3200 16GB 8GB 2枚"
@@ -304,7 +304,7 @@
       "badge": "Socket AM4",
       "name": "B550 ATXマザーボード",
       "newPriceRef": 21000,
-      "usedPriceAvg": 18685,
+      "usedPriceAvg": 17699,
       "recommend": "Ryzen 3000/5000シリーズに対応。PCIe 4.0対応M.2スロットを備え、コスパ自作の土台として不動の人気。",
       "mercariQuery": "B550 マザーボード ATX",
       "shopQuery": "B550 マザーボード ATX"
