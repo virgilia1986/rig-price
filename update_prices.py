@@ -3,7 +3,6 @@ import os
 import statistics
 import time
 import requests
-import tweepy
 from datetime import datetime, timezone, timedelta
 
 JSON_FILE = "parts.json"
@@ -102,58 +101,17 @@ def save_data(parts):
         json.dump(output_data, f, ensure_ascii=False, indent=2)
     os.replace(TEMP_FILE, JSON_FILE)
 
-def post_to_x(best_drop_part, best_drop_rate):
-    api_key = os.environ.get("X_API_KEY")
-    api_secret = os.environ.get("X_API_SECRET")
-    access_token = os.environ.get("X_ACCESS_TOKEN")
-    access_secret = os.environ.get("X_ACCESS_SECRET")
-    
-    if not all([api_key, api_secret, access_token, access_secret]):
-        print("X API keys are not set. Skip tweeting.")
-        return
-
-    message = "【RigPrice 中古相場を自動更新しました】\n\n"
-    if best_drop_part:
-        drop_percent = abs(int(best_drop_rate * 100))
-        message += f"📉 注目パーツ: {best_drop_part['name']}\n昨日より {drop_percent}% 値下がりして ¥{best_drop_part['usedPriceAvg']:,} になりました！\n\n"
-    else:
-        message += "現在の最安値・適正価格をサイトでチェック！\n\n"
-
-    message += "👇 フリマ・中古ショップの価格を一発比較\nhttps://virgilia1986.github.io/rig-price/\n#自作PC #PCパーツ #個人開発"
-
-    try:
-        client = tweepy.Client(
-            consumer_key=api_key,
-            consumer_secret=api_secret,
-            access_token=access_token,
-            access_token_secret=access_secret
-        )
-        client.create_tweet(text=message)
-        print("Tweet posted successfully.")
-    except Exception as e:
-        print(f"Failed to tweet: {e}")
-
 def main():
     parts = load_data()
-    best_drop_part = None
-    best_drop_rate = 0.0
 
     for index, part in enumerate(parts, start=1):
         query = part.get("shopQuery") or part.get("name")
         if not query:
             continue
 
-        old_price = part.get("usedPriceAvg", 0)
         try:
             new_price = fetch_price(query)
             part["usedPriceAvg"] = new_price
-
-            if isinstance(old_price, (int, float)) and old_price > 0 and new_price < old_price:
-                drop_rate = (new_price - old_price) / old_price
-                if drop_rate < best_drop_rate:
-                    best_drop_rate = drop_rate
-                    best_drop_part = part
-
         except Exception as e:
             pass
 
@@ -161,9 +119,6 @@ def main():
             time.sleep(REQUEST_INTERVAL)
 
     save_data(parts)
-    
-    # 全パーツ更新完了後、Xに自動投稿
-    post_to_x(best_drop_part, best_drop_rate)
 
 if __name__ == "__main__":
     main()
