@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/10/12 19:39",
+  "lastUpdated": "2026/10/12 19:49",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -336,7 +336,7 @@
       "category": "SSD",
       "badge": "定番",
       "newPriceRef": 12000,
-      "usedPriceAvg": 0,
+      "usedPriceAvg": 18980,
       "recommend": "ゲームのロード時間を劇的に短縮するGen4の1TB。OSと数本の大型タイトルを入れるのに最適な容量。",
       "mercariQuery": "M.2 SSD 1TB Gen4",
       "shopQuery": "980 PRO 1TB SSD"
@@ -346,7 +346,7 @@
       "category": "SSD",
       "badge": "大容量",
       "newPriceRef": 22000,
-      "usedPriceAvg": 0,
+      "usedPriceAvg": 29980,
       "recommend": "動画保存や複数タイトルのインストールに必須の2TB。新品が高騰しているため中古のコスパが光る。",
       "mercariQuery": "M.2 SSD 2TB Gen4",
       "shopQuery": "980 PRO 2TB SSD"
@@ -356,7 +356,7 @@
       "category": "RAM",
       "badge": "高速",
       "newPriceRef": 17000,
-      "usedPriceAvg": 0,
+      "usedPriceAvg": 69800,
       "recommend": "最新環境に必須のDDR5メモリ。5600MHzの高速動作で、FPSゲームの最低フレームレート底上げに貢献。",
       "mercariQuery": "DDR5 5600 32GB 16GB",
       "shopQuery": "Crucial DDR5-5600 32GB"
