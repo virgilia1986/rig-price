@@ -3,17 +3,16 @@ import os
 import statistics
 import time
 import requests
+import tweepy
 from datetime import datetime, timezone, timedelta
 
 JSON_FILE = "parts.json"
 TEMP_FILE = "parts_temp.json"
-# API制限（429 Too Many Requests）回避のため、待機時間を3秒に延長
 REQUEST_INTERVAL = 3
 REQUEST_TIMEOUT = 10
 MIN_PRICE = 2500
 MAX_PRICE = 350000
 
-# 価格計算から除外したいノイズワード（ジャンク、付属品、箱のみ等を弾く）
 EXCLUDE_WORDS = [
     "ジャンク", "部品取り", "通電不可", "動作未確認", "不動",
     "クーラー", "ファン", "ヒートシンク", "グリス",
@@ -85,13 +84,10 @@ def fetch_price(query):
             prices.append(price)
 
     if not prices:
-        raise ValueError("有効な中古商品の価格データを取得できませんでした（ノイズ除外後）。")
+        raise ValueError("有効な価格データなし")
 
     filtered_prices = remove_outliers(prices)
-    median_price = int(statistics.median(filtered_prices))
-    
-    print(f"  有効件数: {len(prices)}件 / 外れ値除去後: {len(filtered_prices)}件 / 中央値: ¥{median_price:,}", flush=True)
-    return median_price
+    return int(statistics.median(filtered_prices))
 
 def save_data(parts):
     jst = timezone(timedelta(hours=9), 'JST')
@@ -106,67 +102,68 @@ def save_data(parts):
         json.dump(output_data, f, ensure_ascii=False, indent=2)
     os.replace(TEMP_FILE, JSON_FILE)
 
-def main():
-    print("========================================")
-    print(" RigPrice Used - Price Update (API Version)")
-    print("========================================\n")
+def post_to_x(best_drop_part, best_drop_rate):
+    api_key = os.environ.get("X_API_KEY")
+    api_secret = os.environ.get("X_API_SECRET")
+    access_token = os.environ.get("X_ACCESS_TOKEN")
+    access_secret = os.environ.get("X_ACCESS_SECRET")
+    
+    if not all([api_key, api_secret, access_token, access_secret]):
+        print("X API keys are not set. Skip tweeting.")
+        return
+
+    message = "【RigPrice 中古相場を自動更新しました】\n\n"
+    if best_drop_part:
+        drop_percent = abs(int(best_drop_rate * 100))
+        message += f"📉 注目パーツ: {best_drop_part['name']}\n昨日より {drop_percent}% 値下がりして ¥{best_drop_part['usedPriceAvg']:,} になりました！\n\n"
+    else:
+        message += "現在の最安値・適正価格をサイトでチェック！\n\n"
+
+    message += "👇 フリマ・中古ショップの価格を一発比較\nhttps://virgilia1986.github.io/rig-price/\n#自作PC #PCパーツ #個人開発"
 
     try:
-        parts = load_data()
+        client = tweepy.Client(
+            consumer_key=api_key,
+            consumer_secret=api_secret,
+            access_token=access_token,
+            access_token_secret=access_secret
+        )
+        client.create_tweet(text=message)
+        print("Tweet posted successfully.")
     except Exception as e:
-        print(f"::error:: {e}", flush=True)
-        raise SystemExit(1)
+        print(f"Failed to tweet: {e}")
 
-    print(f"対象パーツ: {len(parts)}件\n", flush=True)
-    updated_count = failed_count = skipped_count = 0
+def main():
+    parts = load_data()
+    best_drop_part = None
+    best_drop_rate = 0.0
 
     for index, part in enumerate(parts, start=1):
-        part_name = part.get("name", f"Unknown #{index}")
         query = part.get("shopQuery") or part.get("name")
-
         if not query:
-            print(f"::warning:: [{index}/{len(parts)}] {part_name}: 検索キーワードなし。スキップ", flush=True)
-            skipped_count += 1
             continue
 
         old_price = part.get("usedPriceAvg", 0)
-        print(f"[{index}/{len(parts)}] Fetching: {part_name}", flush=True)
-        print(f"  Query: {query}", flush=True)
-
         try:
             new_price = fetch_price(query)
             part["usedPriceAvg"] = new_price
 
-            if isinstance(old_price, (int, float)) and old_price > 0:
-                diff_percent = ((new_price - old_price) / old_price) * 100
-                print(f"  ¥{old_price:,} -> ¥{new_price:,} ({diff_percent:+.1f}%)", flush=True)
-            else:
-                print(f"  ¥{new_price:,} (初回取得)", flush=True)
-            updated_count += 1
+            if isinstance(old_price, (int, float)) and old_price > 0 and new_price < old_price:
+                drop_rate = (new_price - old_price) / old_price
+                if drop_rate < best_drop_rate:
+                    best_drop_rate = drop_rate
+                    best_drop_part = part
+
         except Exception as e:
-            failed_count += 1
-            print(f"::error:: [{index}/{len(parts)}] {part_name}: {e}", flush=True)
-            print(f"  既存価格 ¥{old_price:,} を維持", flush=True)
+            pass
 
         if index < len(parts):
             time.sleep(REQUEST_INTERVAL)
 
-    try:
-        save_data(parts)
-    except Exception as e:
-        print(f"::error:: parts.jsonの保存に失敗しました: {e}", flush=True)
-        if os.path.exists(TEMP_FILE):
-            try: os.remove(TEMP_FILE)
-            except OSError: pass
-        raise SystemExit(1)
-
-    print("\n========================================")
-    print(" Update Completed")
-    print("========================================")
-    print(f"更新成功 : {updated_count}件", flush=True)
-    print(f"取得失敗 : {failed_count}件", flush=True)
-    print(f"スキップ : {skipped_count}件", flush=True)
-    print("========================================")
+    save_data(parts)
+    
+    # 全パーツ更新完了後、Xに自動投稿
+    post_to_x(best_drop_part, best_drop_rate)
 
 if __name__ == "__main__":
     main()
