@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/10/12 19:49",
+  "lastUpdated": "2026/10/12 23:38",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -40,7 +40,7 @@
       "badge": "RTX 3080",
       "name": "GeForce RTX 3080 10GB",
       "newPriceRef": 120000,
-      "usedPriceAvg": 56480,
+      "usedPriceAvg": 55480,
       "recommend": "4K本格ゲーミングのエントリーに最適。6万円台半ばで手に入る圧倒的グラフィックスパワー。",
       "mercariQuery": "RTX 3080 10GB",
       "shopQuery": "RTX 3080 10GB"
@@ -161,7 +161,7 @@
       "badge": "6C / 12T",
       "name": "Intel Core i5-12400F",
       "newPriceRef": 24000,
-      "usedPriceAvg": 22980,
+      "usedPriceAvg": 23029,
       "recommend": "1万円台半ばで組める近代ゲーミングPCの鉄板。低発熱でRTX 3060〜3070の性能を完全に引き出せます。",
       "mercariQuery": "Core i5 12400F",
       "shopQuery": "Core i5 12400F"
