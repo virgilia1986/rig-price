@@ -1,16 +1,4 @@
-name: Auto Update Used Prices
-
-on:
-  schedule:
-    - cron: '0 9 * * *'
-  workflow_dispatch:
-
-jobs:
-  update:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
+steps:
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -20,11 +8,15 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install requests tweepy
 
       - name: Run script
         env:
           YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
         run: python update_prices.py
 
       - name: Commit and push if changed
