@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/10/12 18:08",
+  "lastUpdated": "2026/10/12 19:39",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -18,7 +18,7 @@
       "badge": "RTX 3060 Ti",
       "name": "GeForce RTX 3060 Ti 8GB",
       "newPriceRef": 68000,
-      "usedPriceAvg": 41980,
+      "usedPriceAvg": 42480,
       "recommend": "RTX 3070に迫るゲーム性能を誇り、WQHDゲーミングまで幅広くカバーできる高コスパな名機。",
       "mercariQuery": "RTX 3060 Ti",
       "shopQuery": "RTX 3060 Ti"
@@ -332,34 +332,34 @@
       "shopQuery": "Z790 マザーボード ATX"
     },
     {
-    "name": "M.2 SSD 1TB (PCIe Gen4)",
-    "category": "SSD",
-    "badge": "定番",
-    "newPriceRef": 12000,
-    "usedPriceAvg": 0,
-    "recommend": "ゲームのロード時間を劇的に短縮するGen4の1TB。OSと数本の大型タイトルを入れるのに最適な容量。",
-    "mercariQuery": "M.2 SSD 1TB Gen4",
-    "shopQuery": "980 PRO 1TB SSD"
-  },
-  {
-    "name": "M.2 SSD 2TB (PCIe Gen4)",
-    "category": "SSD",
-    "badge": "大容量",
-    "newPriceRef": 22000,
-    "usedPriceAvg": 0,
-    "recommend": "動画保存や複数タイトルのインストールに必須の2TB。新品が高騰しているため中古のコスパが光る。",
-    "mercariQuery": "M.2 SSD 2TB Gen4",
-    "shopQuery": "980 PRO 2TB SSD"
-  },
-  {
-    "name": "DDR5-5600 32GB (16GB×2)",
-    "category": "RAM",
-    "badge": "高速",
-    "newPriceRef": 17000,
-    "usedPriceAvg": 0,
-    "recommend": "最新環境に必須のDDR5メモリ。5600MHzの高速動作で、FPSゲームの最低フレームレート底上げに貢献。",
-    "mercariQuery": "DDR5 5600 32GB 16GB",
-    "shopQuery": "Crucial DDR5-5600 32GB"
-  }
+      "name": "M.2 SSD 1TB (PCIe Gen4)",
+      "category": "SSD",
+      "badge": "定番",
+      "newPriceRef": 12000,
+      "usedPriceAvg": 0,
+      "recommend": "ゲームのロード時間を劇的に短縮するGen4の1TB。OSと数本の大型タイトルを入れるのに最適な容量。",
+      "mercariQuery": "M.2 SSD 1TB Gen4",
+      "shopQuery": "980 PRO 1TB SSD"
+    },
+    {
+      "name": "M.2 SSD 2TB (PCIe Gen4)",
+      "category": "SSD",
+      "badge": "大容量",
+      "newPriceRef": 22000,
+      "usedPriceAvg": 0,
+      "recommend": "動画保存や複数タイトルのインストールに必須の2TB。新品が高騰しているため中古のコスパが光る。",
+      "mercariQuery": "M.2 SSD 2TB Gen4",
+      "shopQuery": "980 PRO 2TB SSD"
+    },
+    {
+      "name": "DDR5-5600 32GB (16GB×2)",
+      "category": "RAM",
+      "badge": "高速",
+      "newPriceRef": 17000,
+      "usedPriceAvg": 0,
+      "recommend": "最新環境に必須のDDR5メモリ。5600MHzの高速動作で、FPSゲームの最低フレームレート底上げに貢献。",
+      "mercariQuery": "DDR5 5600 32GB 16GB",
+      "shopQuery": "Crucial DDR5-5600 32GB"
+    }
   ]
 }
