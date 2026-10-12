@@ -1,4 +1,16 @@
-steps:
+name: Auto Update Used Prices
+
+on:
+  schedule:
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
 
