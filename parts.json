@@ -1,92 +1,95 @@
-[
-  {
-    "name": "GeForce RTX 3060 12GB",
-    "category": "GPU-NVIDIA",
-    "badge": "定番",
-    "newPriceRef": 55000,
-    "usedPriceAvg": 0,
-    "recommend": "VRAM 12GB搭載で高解像度テクスチャやAI生成にも強く、フルHD環境で圧倒的一番人気のロングセラーGPU。",
-    "mercariQuery": "RTX 3060 12GB",
-    "shopQuery": "RTX 3060 12GB"
-  },
-  {
-    "name": "GeForce RTX 3060 Ti 8GB",
-    "category": "GPU-NVIDIA",
-    "badge": "コスパ",
-    "newPriceRef": 68000,
-    "usedPriceAvg": 0,
-    "recommend": "RTX 3070に迫るゲーム性能を誇り、WQHDゲーミングまで幅広くカバーできる高コスパな名機。",
-    "mercariQuery": "RTX 3060 Ti 8GB",
-    "shopQuery": "RTX 3060 Ti"
-  },
-  {
-    "name": "GeForce RTX 3070 8GB",
-    "category": "GPU-NVIDIA",
-    "badge": "ハイスペック",
-    "newPriceRef": 85000,
-    "usedPriceAvg": 0,
-    "recommend": "前世代最上位のRTX 2080 Tiと同等のパワーを持ち、ApexやVALORANTを240Hz超で張り付かせたい方に最適。",
-    "mercariQuery": "RTX 3070 8GB",
-    "shopQuery": "RTX 3070"
-  },
-  {
-    "name": "GeForce RTX 3080 10GB",
-    "category": "GPU-NVIDIA",
-    "badge": "ハイエンド",
-    "newPriceRef": 120000,
-    "usedPriceAvg": 0,
-    "recommend": "4K本格ゲーミングのエントリーに最適。6万円台半ばで手に入る圧倒的グラフィックスパワー。",
-    "mercariQuery": "RTX 3080 10GB",
-    "shopQuery": "RTX 3080"
-  },
-  {
-    "name": "GeForce RTX 2070 SUPER 8GB",
-    "category": "GPU-NVIDIA",
-    "badge": "格安",
-    "newPriceRef": 62000,
-    "usedPriceAvg": 0,
-    "recommend": "3万円未満で手に入る格安の実力派。現行のミドル級ゲームも設定次第で快適に動作。",
-    "mercariQuery": "RTX 2070 SUPER 8GB",
-    "shopQuery": "RTX 2070 SUPER"
-  },
-  {
-    "name": "GeForce RTX 2080 SUPER 8GB",
-    "category": "GPU-NVIDIA",
-    "badge": "狙い目",
-    "newPriceRef": 88000,
-    "usedPriceAvg": 0,
-    "recommend": "RTX 3060と同等以上の純粋なレンダリング速度を持ち、中古市場での値崩れが激しいお得枠。",
-    "mercariQuery": "RTX 2080 SUPER 8GB",
-    "shopQuery": "RTX 2080 SUPER"
-  },
-  {
-    "name": "M.2 SSD 1TB (PCIe Gen4)",
-    "category": "SSD",
-    "badge": "定番",
-    "newPriceRef": 12000,
-    "usedPriceAvg": 0,
-    "recommend": "ゲームのロード時間を劇的に短縮するGen4の1TB。OSと数本の大型タイトルを入れるのに最適な容量。",
-    "mercariQuery": "M.2 SSD 1TB Gen4",
-    "shopQuery": "M.2 SSD 1TB Gen4"
-  },
-  {
-    "name": "M.2 SSD 2TB (PCIe Gen4)",
-    "category": "SSD",
-    "badge": "大容量",
-    "newPriceRef": 22000,
-    "usedPriceAvg": 0,
-    "recommend": "動画保存や複数タイトルのインストールに必須の2TB。新品が高騰しているため中古のコスパが光る。",
-    "mercariQuery": "M.2 SSD 2TB Gen4",
-    "shopQuery": "M.2 SSD 2TB Gen4"
-  },
-  {
-    "name": "DDR5-5600 32GB (16GB×2)",
-    "category": "RAM",
-    "badge": "高速",
-    "newPriceRef": 17000,
-    "usedPriceAvg": 0,
-    "recommend": "最新環境に必須のDDR5メモリ。5600MHzの高速動作で、FPSゲームの最低フレームレート底上げに貢献。",
-    "mercariQuery": "DDR5 5600 32GB 16GB",
-    "shopQuery": "DDR5 5600 32GB 16GB"
-  }
-]
+{
+  "lastUpdated": "2026/10/12 19:28",
+  "parts": [
+    {
+      "name": "GeForce RTX 3060 12GB",
+      "category": "GPU-NVIDIA",
+      "badge": "定番",
+      "newPriceRef": 55000,
+      "usedPriceAvg": 52980,
+      "recommend": "VRAM 12GB搭載で高解像度テクスチャやAI生成にも強く、フルHD環境で圧倒的一番人気のロングセラーGPU。",
+      "mercariQuery": "RTX 3060 12GB",
+      "shopQuery": "RTX 3060 12GB"
+    },
+    {
+      "name": "GeForce RTX 3060 Ti 8GB",
+      "category": "GPU-NVIDIA",
+      "badge": "コスパ",
+      "newPriceRef": 68000,
+      "usedPriceAvg": 42480,
+      "recommend": "RTX 3070に迫るゲーム性能を誇り、WQHDゲーミングまで幅広くカバーできる高コスパな名機。",
+      "mercariQuery": "RTX 3060 Ti 8GB",
+      "shopQuery": "RTX 3060 Ti"
+    },
+    {
+      "name": "GeForce RTX 3070 8GB",
+      "category": "GPU-NVIDIA",
+      "badge": "ハイスペック",
+      "newPriceRef": 85000,
+      "usedPriceAvg": 44980,
+      "recommend": "前世代最上位のRTX 2080 Tiと同等のパワーを持ち、ApexやVALORANTを240Hz超で張り付かせたい方に最適。",
+      "mercariQuery": "RTX 3070 8GB",
+      "shopQuery": "RTX 3070"
+    },
+    {
+      "name": "GeForce RTX 3080 10GB",
+      "category": "GPU-NVIDIA",
+      "badge": "ハイエンド",
+      "newPriceRef": 120000,
+      "usedPriceAvg": 89792,
+      "recommend": "4K本格ゲーミングのエントリーに最適。6万円台半ばで手に入る圧倒的グラフィックスパワー。",
+      "mercariQuery": "RTX 3080 10GB",
+      "shopQuery": "RTX 3080"
+    },
+    {
+      "name": "GeForce RTX 2070 SUPER 8GB",
+      "category": "GPU-NVIDIA",
+      "badge": "格安",
+      "newPriceRef": 62000,
+      "usedPriceAvg": 31980,
+      "recommend": "3万円未満で手に入る格安の実力派。現行のミドル級ゲームも設定次第で快適に動作。",
+      "mercariQuery": "RTX 2070 SUPER 8GB",
+      "shopQuery": "RTX 2070 SUPER"
+    },
+    {
+      "name": "GeForce RTX 2080 SUPER 8GB",
+      "category": "GPU-NVIDIA",
+      "badge": "狙い目",
+      "newPriceRef": 88000,
+      "usedPriceAvg": 33980,
+      "recommend": "RTX 3060と同等以上の純粋なレンダリング速度を持ち、中古市場での値崩れが激しいお得枠。",
+      "mercariQuery": "RTX 2080 SUPER 8GB",
+      "shopQuery": "RTX 2080 SUPER"
+    },
+    {
+      "name": "M.2 SSD 1TB (PCIe Gen4)",
+      "category": "SSD",
+      "badge": "定番",
+      "newPriceRef": 12000,
+      "usedPriceAvg": 115750,
+      "recommend": "ゲームのロード時間を劇的に短縮するGen4の1TB。OSと数本の大型タイトルを入れるのに最適な容量。",
+      "mercariQuery": "M.2 SSD 1TB Gen4",
+      "shopQuery": "M.2 SSD 1TB Gen4"
+    },
+    {
+      "name": "M.2 SSD 2TB (PCIe Gen4)",
+      "category": "SSD",
+      "badge": "大容量",
+      "newPriceRef": 22000,
+      "usedPriceAvg": 31980,
+      "recommend": "動画保存や複数タイトルのインストールに必須の2TB。新品が高騰しているため中古のコスパが光る。",
+      "mercariQuery": "M.2 SSD 2TB Gen4",
+      "shopQuery": "M.2 SSD 2TB Gen4"
+    },
+    {
+      "name": "DDR5-5600 32GB (16GB×2)",
+      "category": "RAM",
+      "badge": "高速",
+      "newPriceRef": 17000,
+      "usedPriceAvg": 63980,
+      "recommend": "最新環境に必須のDDR5メモリ。5600MHzの高速動作で、FPSゲームの最低フレームレート底上げに貢献。",
+      "mercariQuery": "DDR5 5600 32GB 16GB",
+      "shopQuery": "DDR5 5600 32GB 16GB"
+    }
+  ]
+}
