@@ -7,7 +7,8 @@ from datetime import datetime, timezone, timedelta
 
 JSON_FILE = "parts.json"
 TEMP_FILE = "parts_temp.json"
-REQUEST_INTERVAL = 1
+# API制限（429 Too Many Requests）回避のため、待機時間を3秒に延長
+REQUEST_INTERVAL = 3
 REQUEST_TIMEOUT = 10
 MIN_PRICE = 2500
 MAX_PRICE = 350000
