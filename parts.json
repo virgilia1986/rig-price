@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/10/11 18:05",
+  "lastUpdated": "2026/10/12 18:08",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -84,7 +84,7 @@
       "badge": "GTX 1080 Ti",
       "name": "GeForce GTX 1080 Ti 11GB",
       "newPriceRef": 95000,
-      "usedPriceAvg": 42980,
+      "usedPriceAvg": 47880,
       "recommend": "Pascal世代の伝説적モンスター。VRAM 11GBの広大なメモリ帯域を2万円強で確保可能。",
       "mercariQuery": "GTX 1080 Ti",
       "shopQuery": "GTX 1080 Ti"
@@ -95,7 +95,7 @@
       "badge": "RX 6600",
       "name": "Radeon RX 6600 8GB",
       "newPriceRef": 42000,
-      "usedPriceAvg": 56429,
+      "usedPriceAvg": 55524,
       "recommend": "省電力性抜群（TDP 132W）。RTX 3060に迫るフルHD性能を2万円台前半で実現する高効率カード。",
       "mercariQuery": "Radeon RX 6600",
       "shopQuery": "Radeon RX 6600"
@@ -139,7 +139,7 @@
       "badge": "8C / 16T",
       "name": "Intel Core i7-11700",
       "newPriceRef": 48000,
-      "usedPriceAvg": 37250,
+      "usedPriceAvg": 32480,
       "recommend": "PCIe Gen4に初対応した第11世代の定番。TDP 65W設計で空冷クーラーでも扱いやすい実用派。",
       "mercariQuery": "Core i7 11700",
       "shopQuery": "Core i7 11700"
@@ -304,7 +304,7 @@
       "badge": "Socket AM4",
       "name": "B550 ATXマザーボード",
       "newPriceRef": 21000,
-      "usedPriceAvg": 18225,
+      "usedPriceAvg": 18023,
       "recommend": "Ryzen 3000/5000シリーズに対応。PCIe 4.0対応M.2スロットを備え、コスパ自作の土台として不動の人気。",
       "mercariQuery": "B550 マザーボード ATX",
       "shopQuery": "B550 マザーボード ATX"
