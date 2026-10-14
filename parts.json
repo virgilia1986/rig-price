@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/10/13 18:13",
+  "lastUpdated": "2026/10/14 18:25",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -7,7 +7,7 @@
       "badge": "RTX 3060",
       "name": "GeForce RTX 3060 12GB",
       "newPriceRef": 55000,
-      "usedPriceAvg": 53480,
+      "usedPriceAvg": 52980,
       "recommend": "VRAM 12GB搭載で高解像度テクスチャやAI生成にも強く、フルHD環境で圧倒的一番人気のロングセラーGPU。",
       "mercariQuery": "RTX 3060 12GB",
       "shopQuery": "RTX 3060 12GB"
@@ -40,7 +40,7 @@
       "badge": "RTX 3080",
       "name": "GeForce RTX 3080 10GB",
       "newPriceRef": 120000,
-      "usedPriceAvg": 54980,
+      "usedPriceAvg": 53980,
       "recommend": "4K本格ゲーミングのエントリーに最適。6万円台半ばで手に入る圧倒的グラフィックスパワー。",
       "mercariQuery": "RTX 3080 10GB",
       "shopQuery": "RTX 3080 10GB"
@@ -84,7 +84,7 @@
       "badge": "GTX 1080 Ti",
       "name": "GeForce GTX 1080 Ti 11GB",
       "newPriceRef": 95000,
-      "usedPriceAvg": 55061,
+      "usedPriceAvg": 57999,
       "recommend": "Pascal世代の伝説적モンスター。VRAM 11GBの広大なメモリ帯域を2万円強で確保可能。",
       "mercariQuery": "GTX 1080 Ti",
       "shopQuery": "GTX 1080 Ti"
@@ -95,7 +95,7 @@
       "badge": "RX 6600",
       "name": "Radeon RX 6600 8GB",
       "newPriceRef": 42000,
-      "usedPriceAvg": 53237,
+      "usedPriceAvg": 51035,
       "recommend": "省電力性抜群（TDP 132W）。RTX 3060に迫るフルHD性能を2万円台前半で実現する高効率カード。",
       "mercariQuery": "Radeon RX 6600",
       "shopQuery": "Radeon RX 6600"
@@ -106,7 +106,7 @@
       "badge": "RX 6700 XT",
       "name": "Radeon RX 6700 XT 12GB",
       "newPriceRef": 75000,
-      "usedPriceAvg": 41980,
+      "usedPriceAvg": 41790,
       "recommend": "RTX 3060 Tiと同等以上の描画性能と大容量12GB VRAMを両立。WQHD解像度に強い選択肢。",
       "mercariQuery": "Radeon RX 6700 XT",
       "shopQuery": "Radeon RX 6700 XT"
@@ -117,7 +117,7 @@
       "badge": "RTX 4070",
       "name": "GeForce RTX 4070 12GB",
       "newPriceRef": 95000,
-      "usedPriceAvg": 112980,
+      "usedPriceAvg": 106678,
       "recommend": "RTX 3080同等の性能ながら消費電力が激減。長時間のプレイでも部屋が暑くなりにくく、電源要件も緩めなのが最大のメリット。",
       "mercariQuery": "RTX 4070 12GB",
       "shopQuery": "RTX 4070 12GB"
@@ -128,7 +128,7 @@
       "badge": "8C / 16T",
       "name": "Intel Core i7-10700K",
       "newPriceRef": 46000,
-      "usedPriceAvg": 61373,
+      "usedPriceAvg": 59100,
       "recommend": "第9世代以前のLGA1151環境からの乗り換えに最適。8コア16スレッドでゲーム配信も安定。",
       "mercariQuery": "Core i7 10700K",
       "shopQuery": "Core i7 10700K"
@@ -238,7 +238,7 @@
       "badge": "6C / 12T",
       "name": "AMD Ryzen 5 5600X",
       "newPriceRef": 39000,
-      "usedPriceAvg": 23043,
+      "usedPriceAvg": 22980,
       "recommend": "AM4マザーボードをお持ちならこれ一択。圧倒的なワットパフォーマンスとゲームFPSの伸びを体感可能。",
       "mercariQuery": "Ryzen 5 5600X",
       "shopQuery": "Ryzen 5 5600X"
@@ -271,7 +271,7 @@
       "badge": "DDR4 16GB",
       "name": "DDR4-3200 16GB (8GBx2)",
       "newPriceRef": 8500,
-      "usedPriceAvg": 12500,
+      "usedPriceAvg": 12078,
       "recommend": "標準的なゲーミング構成に十分なデュアルチャネル16GB。中古価格が底値に達しており最も手軽。",
       "mercariQuery": "DDR4 3200 16GB 8GB 2枚",
       "shopQuery": "DDR4 3200 16GB 8GB 2枚"
