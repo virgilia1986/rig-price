@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/10/17 18:18",
+  "lastUpdated": "2026/10/18 18:18",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -40,7 +40,7 @@
       "badge": "RTX 3080",
       "name": "GeForce RTX 3080 10GB",
       "newPriceRef": 120000,
-      "usedPriceAvg": 56480,
+      "usedPriceAvg": 53980,
       "recommend": "4K本格ゲーミングのエントリーに最適。6万円台半ばで手に入る圧倒的グラフィックスパワー。",
       "mercariQuery": "RTX 3080 10GB",
       "shopQuery": "RTX 3080 10GB"
@@ -51,7 +51,7 @@
       "badge": "RTX 2070 SUPER",
       "name": "GeForce RTX 2070 SUPER 8GB",
       "newPriceRef": 62000,
-      "usedPriceAvg": 31980,
+      "usedPriceAvg": 30980,
       "recommend": "3万円未満で手に入る格安の実力派。現行のミドル級ゲームも設定次第で快適に動作。",
       "mercariQuery": "RTX 2070 SUPER",
       "shopQuery": "RTX 2070 SUPER"
@@ -84,7 +84,7 @@
       "badge": "GTX 1080 Ti",
       "name": "GeForce GTX 1080 Ti 11GB",
       "newPriceRef": 95000,
-      "usedPriceAvg": 51760,
+      "usedPriceAvg": 52080,
       "recommend": "Pascal世代の伝説적モンスター。VRAM 11GBの広大なメモリ帯域を2万円強で確保可能。",
       "mercariQuery": "GTX 1080 Ti",
       "shopQuery": "GTX 1080 Ti"
@@ -95,7 +95,7 @@
       "badge": "RX 6600",
       "name": "Radeon RX 6600 8GB",
       "newPriceRef": 42000,
-      "usedPriceAvg": 51035,
+      "usedPriceAvg": 53422,
       "recommend": "省電力性抜群（TDP 132W）。RTX 3060に迫るフルHD性能を2万円台前半で実現する高効率カード。",
       "mercariQuery": "Radeon RX 6600",
       "shopQuery": "Radeon RX 6600"
@@ -117,7 +117,7 @@
       "badge": "RTX 4070",
       "name": "GeForce RTX 4070 12GB",
       "newPriceRef": 95000,
-      "usedPriceAvg": 113480,
+      "usedPriceAvg": 106678,
       "recommend": "RTX 3080同等の性能ながら消費電力が激減。長時間のプレイでも部屋が暑くなりにくく、電源要件も緩めなのが最大のメリット。",
       "mercariQuery": "RTX 4070 12GB",
       "shopQuery": "RTX 4070 12GB"
@@ -128,7 +128,7 @@
       "badge": "8C / 16T",
       "name": "Intel Core i7-10700K",
       "newPriceRef": 46000,
-      "usedPriceAvg": 59100,
+      "usedPriceAvg": 54300,
       "recommend": "第9世代以前のLGA1151環境からの乗り換えに最適。8コア16スレッドでゲーム配信も安定。",
       "mercariQuery": "Core i7 10700K",
       "shopQuery": "Core i7 10700K"
@@ -194,7 +194,7 @@
       "badge": "20C / 28T",
       "name": "Intel Core i7-14700K",
       "newPriceRef": 75000,
-      "usedPriceAvg": 61480,
+      "usedPriceAvg": 61980,
       "recommend": "圧倒的なマルチスレッド性能。VALORANTでの高FPS維持はもちろん、VRChatで重いワールドに行く際にも余裕の処理能力を発揮します。",
       "mercariQuery": "Core i7 14700K",
       "shopQuery": "Core i7 14700K"
@@ -238,7 +238,7 @@
       "badge": "6C / 12T",
       "name": "AMD Ryzen 5 5600X",
       "newPriceRef": 39000,
-      "usedPriceAvg": 23011,
+      "usedPriceAvg": 23043,
       "recommend": "AM4マザーボードをお持ちならこれ一択。圧倒的なワットパフォーマンスとゲームFPSの伸びを体感可能。",
       "mercariQuery": "Ryzen 5 5600X",
       "shopQuery": "Ryzen 5 5600X"
