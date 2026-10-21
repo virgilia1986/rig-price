@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/10/20 23:05",
+  "lastUpdated": "2026/10/21 23:20",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -106,7 +106,7 @@
       "badge": "RX 6700 XT",
       "name": "Radeon RX 6700 XT 12GB",
       "newPriceRef": 75000,
-      "usedPriceAvg": 41980,
+      "usedPriceAvg": 41600,
       "recommend": "RTX 3060 Tiと同等以上の描画性能と大容量12GB VRAMを両立。WQHD解像度に強い選択肢。",
       "mercariQuery": "Radeon RX 6700 XT",
       "shopQuery": "Radeon RX 6700 XT"
