@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/10/23 23:03",
+  "lastUpdated": "2026/10/24 22:05",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -18,7 +18,7 @@
       "badge": "RTX 3060 Ti",
       "name": "GeForce RTX 3060 Ti 8GB",
       "newPriceRef": 68000,
-      "usedPriceAvg": 42480,
+      "usedPriceAvg": 42980,
       "recommend": "RTX 3070に迫るゲーム性能を誇り、WQHDゲーミングまで幅広くカバーできる高コスパな名機。",
       "mercariQuery": "RTX 3060 Ti",
       "shopQuery": "RTX 3060 Ti"
@@ -84,7 +84,7 @@
       "badge": "GTX 1080 Ti",
       "name": "GeForce GTX 1080 Ti 11GB",
       "newPriceRef": 95000,
-      "usedPriceAvg": 52080,
+      "usedPriceAvg": 49800,
       "recommend": "Pascal世代の伝説적モンスター。VRAM 11GBの広大なメモリ帯域を2万円強で確保可能。",
       "mercariQuery": "GTX 1080 Ti",
       "shopQuery": "GTX 1080 Ti"
@@ -95,7 +95,7 @@
       "badge": "RX 6600",
       "name": "Radeon RX 6600 8GB",
       "newPriceRef": 42000,
-      "usedPriceAvg": 57250,
+      "usedPriceAvg": 58380,
       "recommend": "省電力性抜群（TDP 132W）。RTX 3060に迫るフルHD性能を2万円台前半で実現する高効率カード。",
       "mercariQuery": "Radeon RX 6600",
       "shopQuery": "Radeon RX 6600"
@@ -304,7 +304,7 @@
       "badge": "Socket AM4",
       "name": "B550 ATXマザーボード",
       "newPriceRef": 21000,
-      "usedPriceAvg": 18251,
+      "usedPriceAvg": 18199,
       "recommend": "Ryzen 3000/5000シリーズに対応。PCIe 4.0対応M.2スロットを備え、コスパ自作の土台として不動の人気。",
       "mercariQuery": "B550 マザーボード ATX",
       "shopQuery": "B550 マザーボード ATX"
