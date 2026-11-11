@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/11/11 01:46",
+  "lastUpdated": "2026/11/12 01:52",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -40,7 +40,7 @@
       "badge": "RTX 3080",
       "name": "GeForce RTX 3080 10GB",
       "newPriceRef": 120000,
-      "usedPriceAvg": 57980,
+      "usedPriceAvg": 58980,
       "recommend": "4K本格ゲーミングのエントリーに最適。6万円台半ばで手に入る圧倒的グラフィックスパワー。",
       "mercariQuery": "RTX 3080 10GB",
       "shopQuery": "RTX 3080 10GB"
@@ -62,7 +62,7 @@
       "badge": "RTX 2080 SUPER",
       "name": "GeForce RTX 2080 SUPER 8GB",
       "newPriceRef": 88000,
-      "usedPriceAvg": 55780,
+      "usedPriceAvg": 58014,
       "recommend": "RTX 3060と同等以上の純粋なレンダリング速度を持ち、中古市場での値崩れが激しいお得枠。",
       "mercariQuery": "RTX 2080 SUPER",
       "shopQuery": "RTX 2080 SUPER"
@@ -95,7 +95,7 @@
       "badge": "RX 6600",
       "name": "Radeon RX 6600 8GB",
       "newPriceRef": 42000,
-      "usedPriceAvg": 60480,
+      "usedPriceAvg": 63113,
       "recommend": "省電力性抜群（TDP 132W）。RTX 3060に迫るフルHD性能を2万円台前半で実現する高効率カード。",
       "mercariQuery": "Radeon RX 6600",
       "shopQuery": "Radeon RX 6600"
@@ -128,7 +128,7 @@
       "badge": "8C / 16T",
       "name": "Intel Core i7-10700K",
       "newPriceRef": 46000,
-      "usedPriceAvg": 59100,
+      "usedPriceAvg": 61373,
       "recommend": "第9世代以前のLGA1151環境からの乗り換えに最適。8コア16スレッドでゲーム配信も安定。",
       "mercariQuery": "Core i7 10700K",
       "shopQuery": "Core i7 10700K"
@@ -139,7 +139,7 @@
       "badge": "8C / 16T",
       "name": "Intel Core i7-11700",
       "newPriceRef": 48000,
-      "usedPriceAvg": 76400,
+      "usedPriceAvg": 77000,
       "recommend": "PCIe Gen4に初対応した第11世代の定番。TDP 65W設計で空冷クーラーでも扱いやすい実用派。",
       "mercariQuery": "Core i7 11700",
       "shopQuery": "Core i7 11700"
