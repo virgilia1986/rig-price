@@ -72,11 +72,44 @@
       margin: 0 auto;
       padding: 2rem 1rem;
     }
+    /* 検索＆ソートコントロール */
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .search-input {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.65rem 1rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      width: 100%;
+      max-width: 340px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus {
+      border-color: var(--accent);
+    }
+    .sort-select {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.65rem 1rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      outline: none;
+    }
     .filter-bar {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.25rem;
       justify-content: center;
     }
     .filter-btn {
@@ -94,6 +127,12 @@
       background: var(--accent);
       color: #0b0f19;
       border-color: var(--accent);
+    }
+    .result-count {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
     }
     .cards-grid {
       display: grid;
@@ -113,10 +152,14 @@
       transform: translateY(-2px);
       border-color: #38bdf8;
     }
+    .card.hot-deal {
+      border-color: rgba(52, 211, 153, 0.45);
+    }
     .card-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
+      gap: 0.5rem;
       margin-bottom: 0.75rem;
     }
     .badge {
@@ -127,6 +170,18 @@
       background: #1e293b;
       color: #38bdf8;
     }
+    .diff-badge {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #34d399;
+      background: rgba(52, 211, 153, 0.12);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+    }
+    .diff-badge.hot {
+      color: #0b0f19;
+      background: #34d399;
+    }
     .card-title {
       font-size: 1.15rem;
       font-weight: 700;
@@ -134,9 +189,13 @@
       color: #f8fafc;
     }
     .card-price-ref {
-      font-size: 0.85rem;
-      color: #64748b;
-      margin-bottom: 0.25rem;
+      font-size: 0.82rem;
+      color: #94a3b8;
+      margin-bottom: 0.5rem;
+    }
+    .save-amount {
+      color: #34d399;
+      font-weight: 700;
     }
     .price-box {
       background: #0b0f19;
@@ -156,14 +215,6 @@
       font-size: 1.5rem;
       font-weight: 800;
       color: #38bdf8;
-    }
-    .diff-badge {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #34d399;
-      background: rgba(52, 211, 153, 0.1);
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
     }
     .card-desc {
       font-size: 0.85rem;
@@ -189,12 +240,13 @@
       font-weight: 700;
       padding: 0.65rem;
       border-radius: 8px;
-      transition: opacity 0.2s;
+      transition: opacity 0.2s, transform 0.1s;
       color: #ffffff;
       text-align: center;
     }
     .btn:hover {
-      opacity: 0.9;
+      opacity: 0.92;
+      transform: translateY(-1px);
     }
     .btn-mercari {
       background: linear-gradient(135deg, #ff333f 0%, #e11d48 100%);
@@ -215,6 +267,131 @@
       color: var(--text-muted);
       line-height: 1.6;
     }
+
+    /* SEO・AdSense対策 解説ガイド＆信頼性フッター */
+    .rp-guide-wrapper {
+      max-width: 1200px;
+      margin: 48px auto 32px;
+      padding: 0 16px;
+      color: #e2e8f0;
+    }
+    .rp-guide-section {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 28px 24px;
+      margin-bottom: 24px;
+      line-height: 1.8;
+    }
+    .rp-guide-section h2 {
+      font-size: 1.35rem;
+      color: #38bdf8;
+      border-left: 4px solid #38bdf8;
+      padding-left: 12px;
+      margin: 0 0 16px;
+    }
+    .rp-guide-section h3 {
+      font-size: 1.1rem;
+      color: #f8fafc;
+      margin: 20px 0 8px;
+    }
+    .rp-guide-section p {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      margin: 0 0 12px;
+    }
+    .rp-check-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .rp-check-card {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .rp-check-card strong {
+      display: block;
+      color: #38bdf8;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+    .rp-footer {
+      border-top: 1px solid #334155;
+      padding: 24px 16px 40px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    .rp-footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .rp-footer-links button {
+      background: none;
+      border: none;
+      color: #38bdf8;
+      cursor: pointer;
+      font-size: 0.85rem;
+      text-decoration: underline;
+      padding: 4px;
+    }
+    .rp-footer-links button:hover {
+      color: #7dd3fc;
+    }
+    .rp-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .rp-modal-overlay.active {
+      display: flex;
+    }
+    .rp-modal-box {
+      background: #1e293b;
+      border: 1px solid #475569;
+      border-radius: 12px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 24px;
+      color: #e2e8f0;
+      text-align: left;
+      line-height: 1.7;
+    }
+    .rp-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+    .rp-modal-header h3 {
+      margin: 0;
+      color: #38bdf8;
+      font-size: 1.15rem;
+    }
+    .rp-modal-close {
+      background: #334155;
+      border: none;
+      color: #f8fafc;
+      border-radius: 6px;
+      padding: 4px 10px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
@@ -226,17 +403,29 @@
   </header>
 
   <div class="container">
-    <div class="filter-bar">
-      <button class="filter-btn active" onclick="filterCards('ALL', this)">すべて</button>
-      <button class="filter-btn" onclick="filterCards('CPU-INTEL', this)">Intel CPU</button>
-      <button class="filter-btn" onclick="filterCards('CPU-AMD', this)">AMD CPU</button>
-      <button class="filter-btn" onclick="filterCards('GPU-NVIDIA', this)">NVIDIA GPU</button>
-      <button class="filter-btn" onclick="filterCards('GPU-AMD', this)">AMD GPU</button>
-      <button class="filter-btn" onclick="filterCards('MB', this)">マザーボード</button>
-      <button class="filter-btn" onclick="filterCards('RAM', this)">メモリ</button>
-      <button class="filter-btn" onclick="filterCards('SSD', this)">SSD</button>
+    <!-- キーワード検索＆並べ替えバー -->
+    <div class="controls-bar">
+      <input type="text" id="searchInput" class="search-input" placeholder="型番・キーワードで検索（例: 4070, 5700X, DDR5）" oninput="applyFilters()">
+      <select id="sortSelect" class="sort-select" onchange="applyFilters()">
+        <option value="DEFAULT">おすすめ順（標準）</option>
+        <option value="PRICE_ASC">相場が安い順</option>
+        <option value="PRICE_DESC">相場が高い順</option>
+        <option value="DISCOUNT_DESC">お得率（%OFF）が高い順</option>
+      </select>
     </div>
 
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="setCategory('ALL', this)">すべて</button>
+      <button class="filter-btn" onclick="setCategory('CPU-INTEL', this)">Intel CPU</button>
+      <button class="filter-btn" onclick="setCategory('CPU-AMD', this)">AMD CPU</button>
+      <button class="filter-btn" onclick="setCategory('GPU-NVIDIA', this)">NVIDIA GPU</button>
+      <button class="filter-btn" onclick="setCategory('GPU-AMD', this)">AMD GPU</button>
+      <button class="filter-btn" onclick="setCategory('MB', this)">マザーボード</button>
+      <button class="filter-btn" onclick="setCategory('RAM', this)">メモリ</button>
+      <button class="filter-btn" onclick="setCategory('SSD', this)">SSD</button>
+    </div>
+
+    <div id="resultCount" class="result-count"></div>
     <div class="cards-grid" id="partsGrid"></div>
 
     <div class="notice">
@@ -244,237 +433,109 @@
       <p>※当サイトの各リンクはメルカリアンバサダーおよびバリューコマース等の提携アフィリエイトプログラムを利用しています。</p>
     </div>
   </div>
-<!-- ▼ ここから追加：SEO・AdSense対策 解説ガイド＆信頼性フッター ▼ -->
-<style>
-  .rp-guide-wrapper {
-    max-width: 1100px;
-    margin: 48px auto 32px;
-    padding: 0 16px;
-    color: #e2e8f0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  }
-  .rp-guide-section {
-    background: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 12px;
-    padding: 28px 24px;
-    margin-bottom: 24px;
-    line-height: 1.8;
-  }
-  .rp-guide-section h2 {
-    font-size: 1.35rem;
-    color: #38bdf8;
-    border-left: 4px solid #38bdf8;
-    padding-left: 12px;
-    margin: 0 0 16px;
-  }
-  .rp-guide-section h3 {
-    font-size: 1.1rem;
-    color: #f8fafc;
-    margin: 20px 0 8px;
-  }
-  .rp-guide-section p {
-    font-size: 0.95rem;
-    color: #cbd5e1;
-    margin: 0 0 12px;
-  }
-  .rp-check-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-    margin-top: 16px;
-  }
-  .rp-check-card {
-    background: #0f172a;
-    border: 1px solid #334155;
-    border-radius: 8px;
-    padding: 16px;
-  }
-  .rp-check-card strong {
-    display: block;
-    color: #38bdf8;
-    margin-bottom: 6px;
-    font-size: 1rem;
-  }
-  .rp-footer {
-    border-top: 1px solid #334155;
-    padding: 24px 16px 40px;
-    text-align: center;
-    font-size: 0.85rem;
-    color: #94a3b8;
-  }
-  .rp-footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 12px;
-  }
-  .rp-footer-links button {
-    background: none;
-    border: none;
-    color: #38bdf8;
-    cursor: pointer;
-    font-size: 0.85rem;
-    text-decoration: underline;
-    padding: 4px;
-  }
-  .rp-footer-links button:hover {
-    color: #7dd3fc;
-  }
-  /* モーダル用スタイル */
-  .rp-modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.75);
-    z-index: 9999;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-  }
-  .rp-modal-overlay.active {
-    display: flex;
-  }
-  .rp-modal-box {
-    background: #1e293b;
-    border: 1px solid #475569;
-    border-radius: 12px;
-    max-width: 680px;
-    width: 100%;
-    max-height: 80vh;
-    overflow-y: auto;
-    padding: 24px;
-    color: #e2e8f0;
-    text-align: left;
-    line-height: 1.7;
-  }
-  .rp-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #334155;
-    padding-bottom: 12px;
-    margin-bottom: 16px;
-  }
-  .rp-modal-header h3 {
-    margin: 0;
-    color: #38bdf8;
-    font-size: 1.15rem;
-  }
-  .rp-modal-close {
-    background: #334155;
-    border: none;
-    color: #f8fafc;
-    border-radius: 6px;
-    padding: 4px 10px;
-    cursor: pointer;
-    font-size: 0.9rem;
-  }
-</style>
 
-<section class="rp-guide-wrapper" aria-label="中古PCパーツ選びのガイド">
-  <article class="rp-guide-section">
-    <h2>中古PCパーツをフリマ・ショップで失敗せずに買うための3つの鉄則</h2>
-    <p>
-      グラフィックボード（GPU）やCPUなどのPCパーツは、新品価格の高騰に伴い中古市場での取引が非常に活発です。しかし、メルカリなどの個人間フリマと、Yahoo!ショッピング・楽天市場に出店する中古PC専門店では「価格相場」も「リスク」も大きく異なります。購入前に以下の3点を必ずチェックしましょう。
-    </p>
+  <!-- SEO・AdSense対策 解説ガイド＆信頼性フッター -->
+  <section class="rp-guide-wrapper" aria-label="中古PCパーツ選びのガイド">
+    <article class="rp-guide-section">
+      <h2>中古PCパーツをフリマ・ショップで失敗せずに買うための3つの鉄則</h2>
+      <p>
+        グラフィックボード（GPU）やCPUなどのPCパーツは、新品価格の高騰に伴い中古市場での取引が非常に活発です。しかし、メルカリなどの個人間フリマと、Yahoo!ショッピング・楽天市場に出店する中古PC専門店では「価格相場」も「リスク」も大きく異なります。購入前に以下の3点を必ずチェックしましょう。
+      </p>
 
-    <div class="rp-check-grid">
-      <div class="rp-check-card">
-        <strong>1. フリマ（メルカリ）と専門店の価格差を見る</strong>
-        <p>
-          メルカリ等の個人出品は手数料や消費税の関係で相場より5〜15%安く買えるケースが多い一方、初期不良時の返品保証がありません。専門店と数千円しか変わらない場合は、1〜3ヶ月保証が付くYahoo!・楽天のショップ出品を選ぶ方が安全です。
-        </p>
+      <div class="rp-check-grid">
+        <div class="rp-check-card">
+          <strong>1. フリマ（メルカリ）と専門店の価格差を見る</strong>
+          <p>
+            メルカリ等の個人出品は手数料や消費税の関係で相場より5〜15%安く買えるケースが多い一方、初期不良時の返品保証がありません。専門店と数千円しか変わらない場合は、1〜3ヶ月保証が付くYahoo!・楽天のショップ出品を選ぶ方が安全です。
+          </p>
+        </div>
+        <div class="rp-check-card">
+          <strong>2. GPUは「用途履歴」と「ブラケットの錆」を確認</strong>
+          <p>
+            中古グラフィックボードは、長期間高負荷で稼働した個体やマイニング用途の個体が混在します。出品画像で出力端子（HDMI/DisplayPort）周辺の金属サビや、ヒートシンクのホコリ詰まりがないか、付属品（外箱・保証書）が揃っているかを確認してください。
+          </p>
+        </div>
+        <div class="rp-check-card">
+          <strong>3. CPUは「ピン折れ」と「動作確認画面」が必須</strong>
+          <p>
+            AMD Ryzen（AM4世代以前）やマザーボードはピンの曲がり・折れが致命傷になります。出品ページに「BIOS起動画面」や「CPU-Zのスクリーンショット」が掲載されている個体を選ぶと、初期不良を引く確率を大幅に下げられます。
+          </p>
+        </div>
       </div>
-      <div class="rp-check-card">
-        <strong>2. GPUは「用途履歴」と「ブラケットの錆」を確認</strong>
-        <p>
-          中古グラフィックボードは、長期間高負荷で稼働した個体やマイニング用途の個体が混在します。出品画像で出力端子（HDMI/DisplayPort）周辺の金属サビや、ヒートシンクのホコリ詰まりがないか、付属品（外箱・保証書）が揃っているかを確認してください。
-        </p>
-      </div>
-      <div class="rp-check-card">
-        <strong>3. CPUは「ピン折れ」と「動作確認画面」が必須</strong>
-        <p>
-          AMD Ryzen（AM4世代以前）やマザーボードはピンの曲がり・折れが致命傷になります。出品ページに「BIOS起動画面」や「CPU-Zのスクリーンショット」が掲載されている個体を選ぶと、初期不良を引く確率を大幅に下げられます。
-        </p>
-      </div>
+
+      <h3>相場データの見方と「買い時」の判断基準</h3>
+      <p>
+        RigPrice Usedでは、主要なフリマ・ECモールの直近取引価格・出品価格を集計して平均相場を算出しています。<strong>「平均相場より10%以上安い出品」</strong>が出ている場合は狙い目ですが、極端に安すぎる価格（相場の半額以下など）はジャンク品・動作未確認品の可能性が高いため、必ず商品説明文のコンディション欄を確認した上で購入手続きへ進んでください。
+      </p>
+    </article>
+  </section>
+
+  <footer class="rp-footer">
+    <div class="rp-footer-links">
+      <button type="button" onclick="openRpModal('about')">運営者情報</button>
+      <button type="button" onclick="openRpModal('privacy')">プライバシーポリシー・免責事項</button>
+      <button type="button" onclick="openRpModal('contact')">お問い合わせ</button>
     </div>
+    <p>&copy; 2026 RigPrice Used All Rights Reserved.</p>
+  </footer>
 
-    <h3>相場データの見方と「買い時」の判断基準</h3>
-    <p>
-      RigPrice Usedでは、主要なフリマ・ECモールの直近取引価格・出品価格を集計して平均相場を算出しています。<strong>「平均相場より10%以上安い出品」</strong>が出ている場合は狙い目ですが、極端に安すぎる価格（相場の半額以下など）はジャンク品・動作未確認品の可能性が高いため、必ず商品説明文のコンディション欄を確認した上で購入手続きへ進んでください。
-    </p>
-  </article>
-</section>
-
-<footer class="rp-footer">
-  <div class="rp-footer-links">
-    <button type="button" onclick="openRpModal('about')">運営者情報</button>
-    <button type="button" onclick="openRpModal('privacy')">プライバシーポリシー・免責事項</button>
-    <button type="button" onclick="openRpModal('contact')">お問い合わせ</button>
-  </div>
-  <p>&copy; 2026 RigPrice Used All Rights Reserved.</p>
-</footer>
-
-<!-- 規約・運営者情報モーダル -->
-<div id="rp-modal" class="rp-modal-overlay" onclick="if(event.target===this) closeRpModal()">
-  <div class="rp-modal-box">
-    <div class="rp-modal-header">
-      <h3 id="rp-modal-title">タイトル</h3>
-      <button type="button" class="rp-modal-close" onclick="closeRpModal()">閉じる ✕</button>
+  <!-- 規約・運営者情報モーダル -->
+  <div id="rp-modal" class="rp-modal-overlay" onclick="if(event.target===this) closeRpModal()">
+    <div class="rp-modal-box">
+      <div class="rp-modal-header">
+        <h3 id="rp-modal-title">タイトル</h3>
+        <button type="button" class="rp-modal-close" onclick="closeRpModal()">閉じる ✕</button>
+      </div>
+      <div id="rp-modal-body"></div>
     </div>
-    <div id="rp-modal-body"></div>
   </div>
-</div>
 
-<script>
-  const rpModalContents = {
-    about: {
-      title: '運営者情報',
-      html: `
-        <p><strong>サイト名：</strong>RigPrice Used（中古PCパーツ・フリマ相場比較ナビ）</p>
-        <p><strong>サイトURL：</strong>https://virgilia1986.github.io/rig-price/</p>
-        <p><strong>運営目的：</strong>自作PCユーザーおよびPCパーツのアップグレードを検討している方向けに、メルカリ・Yahoo!ショッピング・楽天市場など主要プラットフォームの中古相場を分かりやすく可視化し、適正価格での購入をサポートすることを目的としています。</p>
-        <p><strong>運営者：</strong>RigPrice 運営事務局（個人開発・PCハードウェア情報メディア）</p>
-      `
-    },
-    privacy: {
-      title: 'プライバシーポリシー・アフィリエイト表記・免責事項',
-      html: `
-        <p><strong>1. 広告の配信およびアフィリエイトプログラムについて</strong><br>
-        当サイトは、メルカリアンバサダー、バリューコマース、Amazonアソシエイト、楽天アフィリエイト、Google AdSense等の第三者配信の広告サービスおよびアフィリエイトプログラムを利用しています。ユーザーの興味に応じた商品やサービスの広告を表示するため、Cookie（クッキー）を使用することがあります。</p>
-        <p><strong>2. アクセス解析ツールについて</strong><br>
-        当サイトでは、サイト改善のためにアクセス解析ツール（Google Analytics等）を利用し、トラフィックデータ収集のためにCookieを使用する場合があります。このデータは匿名で収集されており、個人を特定するものではありません。</p>
-        <p><strong>3. 免責事項</strong><br>
-        当サイトに掲載されている中古相場価格・在庫情報は自動収集および集計データに基づく参考値であり、実際の販売価格や在庫状況、商品の動作保証を担保するものではありません。商品の購入に関する最終的な判断・契約は、必ずリンク先の各販売プラットフォーム（メルカリ、Yahoo!ショッピング、楽天市場等）の規約および商品説明をご確認の上、ご自身の責任で行ってください。</p>
-      `
-    },
-    contact: {
-      title: 'お問い合わせ',
-      html: `
-        <p>当サイトの掲載データに関するご指摘、掲載リクエスト（追加してほしいCPU・GPU型番など）、広告掲載や不具合のご連絡は、以下の窓口よりお願いいたします。</p>
-        <p><strong>連絡先：</strong>GitHubリポジトリ（virgilia1986/rig-price）のIssues、または運営者SNS・お問い合わせ窓口よりご連絡ください。</p>
-        <p style="font-size:0.85rem; color:#94a3b8;">※個別のPCパーツの相性診断や、各フリマ・ショップでの取引トラブルに関するお問い合わせには対応いたしかねますのでご了承ください。</p>
-      `
-    }
-  };
-
-  function openRpModal(key) {
-    const data = rpModalContents[key];
-    if (!data) return;
-    document.getElementById('rp-modal-title').textContent = data.title;
-    document.getElementById('rp-modal-body').innerHTML = data.html;
-    document.getElementById('rp-modal').classList.add('active');
-  }
-
-  function closeRpModal() {
-    document.getElementById('rp-modal').classList.remove('active');
-  }
-</script>
-<!-- ▲ ここまで追加 ▲ -->
   <script>
+    const rpModalContents = {
+      about: {
+        title: '運営者情報',
+        html: `
+          <p><strong>サイト名：</strong>RigPrice Used（中古PCパーツ・フリマ相場比較ナビ）</p>
+          <p><strong>サイトURL：</strong>https://virgilia1986.github.io/rig-price/</p>
+          <p><strong>運営目的：</strong>自作PCユーザーおよびPCパーツのアップグレードを検討している方向けに、メルカリ・Yahoo!ショッピング・楽天市場など主要プラットフォームの中古相場を分かりやすく可視化し、適正価格での購入をサポートすることを目的としています。</p>
+          <p><strong>運営者：</strong>RigPrice 運営事務局（個人開発・PCハードウェア情報メディア）</p>
+        `
+      },
+      privacy: {
+        title: 'プライバシーポリシー・アフィリエイト表記・免責事項',
+        html: `
+          <p><strong>1. 広告の配信およびアフィリエイトプログラムについて</strong><br>
+          当サイトは、メルカリアンバサダー、バリューコマース、Amazonアソシエイト、楽天アフィリエイト、Google AdSense等の第三者配信の広告サービスおよびアフィリエイトプログラムを利用しています。ユーザーの興味に応じた商品やサービスの広告を表示するため、Cookie（クッキー）を使用することがあります。</p>
+          <p><strong>2. アクセス解析ツールについて</strong><br>
+          当サイトでは、サイト改善のためにアクセス解析ツール（Google Analytics等）を利用し、トラフィックデータ収集のためにCookieを使用する場合があります。このデータは匿名で収集されており、個人を特定するものではありません。</p>
+          <p><strong>3. 免責事項</strong><br>
+          当サイトに掲載されている中古相場価格・在庫情報は自動収集および集計データに基づく参考値であり、実際の販売価格や在庫状況、商品の動作保証を担保するものではありません。商品の購入に関する最終的な判断・契約は、必ずリンク先の各販売プラットフォーム（メルカリ、Yahoo!ショッピング、楽天市場等）の規約および商品説明をご確認の上、ご自身の責任で行ってください。</p>
+        `
+      },
+      contact: {
+        title: 'お問い合わせ',
+        html: `
+          <p>当サイトの掲載データに関するご指摘、掲載リクエスト（追加してほしいCPU・GPU型番など）、広告掲載や不具合のご連絡は、以下の窓口よりお願いいたします。</p>
+          <p><strong>連絡先：</strong>GitHubリポジトリ（virgilia1986/rig-price）のIssues、または運営者SNS・お問い合わせ窓口よりご連絡ください。</p>
+          <p style="font-size:0.85rem; color:#94a3b8;">※個別のPCパーツの相性診断や、各フリマ・ショップでの取引トラブルに関するお問い合わせには対応いたしかねますのでご了承ください。</p>
+        `
+      }
+    };
+
+    function openRpModal(key) {
+      const data = rpModalContents[key];
+      if (!data) return;
+      document.getElementById('rp-modal-title').textContent = data.title;
+      document.getElementById('rp-modal-body').innerHTML = data.html;
+      document.getElementById('rp-modal').classList.add('active');
+    }
+
+    function closeRpModal() {
+      document.getElementById('rp-modal').classList.remove('active');
+    }
+
     let allParts = [];
+    let currentCategory = 'ALL';
 
     const MERCARI_AFFILIATE_ID = "3331168449";
     const VC_SID = "3782755";
@@ -495,21 +556,40 @@
           allParts = data;
         }
 
-        renderCards(allParts);
+        applyFilters();
       } catch (err) {
         document.getElementById('partsGrid').innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #94a3b8;">データ読み込み中...</p>';
       }
     }
 
+    function getDiscountRate(p) {
+      if (p.newPriceRef > 0 && p.usedPriceAvg > 0 && p.newPriceRef > p.usedPriceAvg) {
+        return Math.round((1 - p.usedPriceAvg / p.newPriceRef) * 100);
+      }
+      return 0;
+    }
+
     function renderCards(parts) {
       const grid = document.getElementById('partsGrid');
+      const countEl = document.getElementById('resultCount');
+      countEl.textContent = `${parts.length} 件のパーツを表示中`;
+
+      if (parts.length === 0) {
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #94a3b8; padding: 2rem 0;">該当するパーツが見つかりませんでした。検索条件を変更してみてください。</p>';
+        return;
+      }
+
       grid.innerHTML = parts.map(p => {
-        let diffBadge = 'お得';
-        if (p.newPriceRef > 0 && p.usedPriceAvg > 0 && p.newPriceRef > p.usedPriceAvg) {
-          const diff = Math.round((1 - p.usedPriceAvg / p.newPriceRef) * 100);
-          diffBadge = diff + '% OFF';
+        const diff = getDiscountRate(p);
+        const isHot = diff >= 30;
+        const diffBadge = diff > 0 ? (isHot ? `🔥 ${diff}% OFF` : `${diff}% OFF`) : 'お得';
+
+        let refPriceHtml = '';
+        if (p.newPriceRef > 0) {
+          const saveYen = p.newPriceRef - Number(p.usedPriceAvg);
+          const saveText = saveYen > 0 ? ` <span class="save-amount">(約¥${saveYen.toLocaleString()}お得)</span>` : '';
+          refPriceHtml = `新品参考: 約¥${p.newPriceRef.toLocaleString()}${saveText}`;
         }
-        const refPriceText = p.newPriceRef > 0 ? `発売時参考: 約¥${p.newPriceRef.toLocaleString()}` : '';
 
         const mercariWord = encodeURIComponent(p.mercariQuery || p.name);
         const mercariUrl = `https://jp.mercari.com/search?keyword=${mercariWord}&afid=${MERCARI_AFFILIATE_ID}`;
@@ -519,41 +599,61 @@
         const yahooFinalUrl = `https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=${VC_SID}&pid=${VC_PID}&vc_url=${encodeURIComponent(rawYahooUrl)}`;
 
         const rakutenWord = encodeURIComponent(p.shopQuery || p.name);
-        const rakutenUrl = `https://search.rakuten.co.jp/search/mall/${rakutenWord}/?used=1`;
+        const rawRakutenUrl = `https://search.rakuten.co.jp/search/mall/${rakutenWord}/?used=1`;
+        const rakutenFinalUrl = `https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=${VC_SID}&pid=${VC_PID}&vc_url=${encodeURIComponent(rawRakutenUrl)}`;
 
         return `
-          <div class="card" data-category="${p.category}">
+          <div class="card ${isHot ? 'hot-deal' : ''}" data-category="${p.category}">
             <div class="card-header">
               <span class="badge">${p.badge}</span>
-              <span class="diff-badge">${diffBadge}</span>
+              <span class="diff-badge ${isHot ? 'hot' : ''}">${diffBadge}</span>
             </div>
             <div class="card-title">${p.name}</div>
-            <div class="card-price-ref">${refPriceText}</div>
+            <div class="card-price-ref">${refPriceHtml}</div>
             <div class="price-box">
-              <span class="price-label">Yahoo!中古相場目安</span>
+              <span class="price-label">中古相場目安</span>
               <span class="price-val">¥${Number(p.usedPriceAvg).toLocaleString()}</span>
             </div>
             <div class="card-desc">${p.recommend}</div>
             <div class="btn-group">
-              <a href="${mercariUrl}" target="_blank" rel="noopener" class="btn btn-mercari btn-single">メルカリで探す</a>
+              <a href="${mercariUrl}" target="_blank" rel="noopener" class="btn btn-mercari btn-single">メルカリで最安を探す</a>
               <a href="${yahooFinalUrl}" target="_blank" rel="noopener" class="btn btn-yahoo">Yahoo!中古</a>
-              <a href="${rakutenUrl}" target="_blank" rel="noopener" class="btn btn-rakuten">楽天中古</a>
+              <a href="${rakutenFinalUrl}" target="_blank" rel="noopener" class="btn btn-rakuten">楽天中古</a>
             </div>
           </div>
         `;
       }).join('');
     }
 
-    function filterCards(category, btn) {
+    function setCategory(category, btn) {
+      currentCategory = category;
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      applyFilters();
+    }
 
-      if (category === 'ALL') {
-        renderCards(allParts);
-      } else {
-        const filtered = allParts.filter(p => p.category === category);
-        renderCards(filtered);
+    function applyFilters() {
+      const keyword = document.getElementById('searchInput').value.trim().toLowerCase();
+      const sortMode = document.getElementById('sortSelect').value;
+
+      let result = allParts.filter(p => {
+        const matchCat = (currentCategory === 'ALL' || p.category === currentCategory);
+        const matchKey = !keyword || 
+          (p.name && p.name.toLowerCase().includes(keyword)) ||
+          (p.badge && p.badge.toLowerCase().includes(keyword)) ||
+          (p.recommend && p.recommend.toLowerCase().includes(keyword));
+        return matchCat && matchKey;
+      });
+
+      if (sortMode === 'PRICE_ASC') {
+        result.sort((a, b) => Number(a.usedPriceAvg) - Number(b.usedPriceAvg));
+      } else if (sortMode === 'PRICE_DESC') {
+        result.sort((a, b) => Number(b.usedPriceAvg) - Number(a.usedPriceAvg));
+      } else if (sortMode === 'DISCOUNT_DESC') {
+        result.sort((a, b) => getDiscountRate(b) - getDiscountRate(a));
       }
+
+      renderCards(result);
     }
 
     loadParts();
