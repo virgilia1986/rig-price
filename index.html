@@ -569,7 +569,7 @@
       return 0;
     }
 
-    function renderCards(parts) {
+   function renderCards(parts) {
       const grid = document.getElementById('partsGrid');
       const countEl = document.getElementById('resultCount');
       countEl.textContent = `${parts.length} 件のパーツを表示中`;
@@ -582,13 +582,35 @@
       grid.innerHTML = parts.map(p => {
         const diff = getDiscountRate(p);
         const isHot = diff >= 30;
-        const diffBadge = diff > 0 ? (isHot ? `🔥 ${diff}% OFF` : `${diff}% OFF`) : 'お得';
+        const usedPrice = Number(p.usedPriceAvg);
+        const newPrice = Number(p.newPriceRef);
+
+        let diffBadge = '相場チェック';
+        let badgeStyle = '';
+        if (newPrice > 0 && usedPrice > 0) {
+          if (diff >= 30) {
+            diffBadge = `🔥 ${diff}% OFF`;
+          } else if (diff >= 1) {
+            diffBadge = `${diff}% OFF`;
+          } else if (usedPrice > newPrice * 1.05) {
+            diffBadge = '📈 高騰・品薄';
+            badgeStyle = 'color: #fbbf24; background: rgba(251, 191, 36, 0.12);';
+          } else {
+            diffBadge = '横ばい・希少';
+            badgeStyle = 'color: #94a3b8; background: rgba(148, 163, 184, 0.12);';
+          }
+        }
 
         let refPriceHtml = '';
-        if (p.newPriceRef > 0) {
-          const saveYen = p.newPriceRef - Number(p.usedPriceAvg);
-          const saveText = saveYen > 0 ? ` <span class="save-amount">(約¥${saveYen.toLocaleString()}お得)</span>` : '';
-          refPriceHtml = `新品参考: 約¥${p.newPriceRef.toLocaleString()}${saveText}`;
+        if (newPrice > 0) {
+          const saveYen = newPrice - usedPrice;
+          if (saveYen >= 500) {
+            refPriceHtml = `新品参考: 約¥${newPrice.toLocaleString()} <span class="save-amount">(約¥${saveYen.toLocaleString()}お得)</span>`;
+          } else if (saveYen < -500) {
+            refPriceHtml = `新品参考: 約¥${newPrice.toLocaleString()} <span style="color:#fbbf24;">(現在高騰中)</span>`;
+          } else {
+            refPriceHtml = `新品参考: 約¥${newPrice.toLocaleString()}`;
+          }
         }
 
         const mercariWord = encodeURIComponent(p.mercariQuery || p.name);
@@ -606,13 +628,13 @@
           <div class="card ${isHot ? 'hot-deal' : ''}" data-category="${p.category}">
             <div class="card-header">
               <span class="badge">${p.badge}</span>
-              <span class="diff-badge ${isHot ? 'hot' : ''}">${diffBadge}</span>
+              <span class="diff-badge ${isHot ? 'hot' : ''}" style="${badgeStyle}">${diffBadge}</span>
             </div>
             <div class="card-title">${p.name}</div>
             <div class="card-price-ref">${refPriceHtml}</div>
             <div class="price-box">
               <span class="price-label">中古相場目安</span>
-              <span class="price-val">¥${Number(p.usedPriceAvg).toLocaleString()}</span>
+              <span class="price-val">¥${usedPrice.toLocaleString()}</span>
             </div>
             <div class="card-desc">${p.recommend}</div>
             <div class="btn-group">
