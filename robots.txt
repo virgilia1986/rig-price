@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://virgilia1986.github.io/rig-price/sitemap.xml
