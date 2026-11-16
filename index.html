@@ -219,9 +219,18 @@
     .card-desc {
       font-size: 0.85rem;
       color: var(--text-muted);
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.1rem;
       line-height: 1.5;
       flex-grow: 1;
+    }
+    .btn-area-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.45rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
     }
     .btn-group {
       display: grid;
@@ -232,30 +241,51 @@
       grid-column: span 2;
     }
     .btn {
-      display: inline-flex;
+      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 700;
-      padding: 0.65rem;
+      padding: 0.6rem 0.5rem;
       border-radius: 8px;
       transition: opacity 0.2s, transform 0.1s;
       color: #ffffff;
       text-align: center;
+      line-height: 1.25;
+      position: relative;
     }
     .btn:hover {
       opacity: 0.92;
       transform: translateY(-1px);
     }
+    .btn-main-text {
+      font-size: 0.88rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .btn-sub-text {
+      font-size: 0.7rem;
+      font-weight: 500;
+      opacity: 0.9;
+      margin-top: 2px;
+    }
+    .btn-tag {
+      background: rgba(0, 0, 0, 0.3);
+      font-size: 0.65rem;
+      padding: 1px 6px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
     .btn-mercari {
       background: linear-gradient(135deg, #ff333f 0%, #e11d48 100%);
     }
     .btn-yahoo {
-      background: #f97316;
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
     }
     .btn-rakuten {
-      background: #bf0000;
+      background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
     }
     .notice {
       margin-top: 3rem;
@@ -430,7 +460,7 @@
 
     <div class="notice">
       <p>※表示されている中古相場価格は大手中古専門店・モールの直近の平均価格（自動巡回）です。在庫状況や商品の状態によって実際の出品価格とは異なる場合があります。</p>
-      <p>※当サイトの各リンクはメルカリアンバサダーおよびバリューコマース等の提携アフィリエイトプログラムを利用しています。</p>
+      <p>※当サイトの各リンクはメルカリアンバサダー、バリューコマース、楽天アフィリエイト等の提携アフィリエイトプログラムを利用しています。</p>
     </div>
   </div>
 
@@ -540,6 +570,7 @@
     const MERCARI_AFFILIATE_ID = "3331168449";
     const VC_SID = "3782755";
     const VC_PID = "892714818";
+    const RAKUTEN_AFFILIATE_ID = "57ef0d8f.f3c52344.57ef0d90.d175d532";
 
     async function loadParts() {
       try {
@@ -569,7 +600,7 @@
       return 0;
     }
 
-   function renderCards(parts) {
+    function renderCards(parts) {
       const grid = document.getElementById('partsGrid');
       const countEl = document.getElementById('resultCount');
       countEl.textContent = `${parts.length} 件のパーツを表示中`;
@@ -622,7 +653,7 @@
 
         const rakutenWord = encodeURIComponent(p.shopQuery || p.name);
         const rawRakutenUrl = `https://search.rakuten.co.jp/search/mall/${rakutenWord}/?used=1`;
-        const rakutenFinalUrl = `https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=${VC_SID}&pid=${VC_PID}&vc_url=${encodeURIComponent(rawRakutenUrl)}`;
+        const rakutenFinalUrl = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=${encodeURIComponent(rawRakutenUrl)}`;
 
         return `
           <div class="card ${isHot ? 'hot-deal' : ''}" data-category="${p.category}">
@@ -637,10 +668,20 @@
               <span class="price-val">¥${usedPrice.toLocaleString()}</span>
             </div>
             <div class="card-desc">${p.recommend}</div>
+            <div class="btn-area-label">🛒 在庫・出品をチェックする（外部サイト）</div>
             <div class="btn-group">
-              <a href="${mercariUrl}" target="_blank" rel="noopener" class="btn btn-mercari btn-single">メルカリで最安を探す</a>
-              <a href="${yahooFinalUrl}" target="_blank" rel="noopener" class="btn btn-yahoo">Yahoo!中古</a>
-              <a href="${rakutenFinalUrl}" target="_blank" rel="noopener" class="btn btn-rakuten">楽天中古</a>
+              <a href="${mercariUrl}" target="_blank" rel="noopener" class="btn btn-mercari btn-single">
+                <span class="btn-main-text">メルカリで探す <span class="btn-tag">個人出品・最安狙い</span></span>
+                <span class="btn-sub-text">掘り出し物が多い・価格交渉可（※保証なし）</span>
+              </a>
+              <a href="${yahooFinalUrl}" target="_blank" rel="noopener" class="btn btn-yahoo">
+                <span class="btn-main-text">Yahoo!中古</span>
+                <span class="btn-sub-text">専門店保証・PayPay還元</span>
+              </a>
+              <a href="${rakutenFinalUrl}" target="_blank" rel="noopener" class="btn btn-rakuten">
+                <span class="btn-main-text">楽天中古</span>
+                <span class="btn-sub-text">専門店保証・楽天ポイント</span>
+              </a>
             </div>
           </div>
         `;
