@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/11/17 05:36",
+  "lastUpdated": "2026/11/18 03:06",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -95,7 +95,7 @@
       "badge": "RX 6600",
       "name": "Radeon RX 6600 8GB",
       "newPriceRef": 42000,
-      "usedPriceAvg": 37980,
+      "usedPriceAvg": 36278,
       "recommend": "省電力性抜群（TDP 132W）。RTX 3060に迫るフルHD性能を2万円台前半で実現する高効率カード。",
       "mercariQuery": "Radeon RX 6600",
       "shopQuery": "Radeon RX 6600"
@@ -378,7 +378,7 @@
       "badge": "RTX 4060 Ti",
       "name": "GeForce RTX 4060 Ti 8GB",
       "newPriceRef": 62000,
-      "usedPriceAvg": 60480,
+      "usedPriceAvg": 59980,
       "recommend": "RTX 3070を超える省電力性能と最新機能を搭載。フルHD高リフレッシュレート〜WQHD入門に最適なバランス機。",
       "mercariQuery": "RTX 4060 Ti",
       "shopQuery": "RTX 4060 Ti"
