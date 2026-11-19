@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/11/19 02:46",
+  "lastUpdated": "2026/11/20 02:57",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -7,7 +7,7 @@
       "badge": "RTX 3060",
       "name": "GeForce RTX 3060 12GB",
       "newPriceRef": 55000,
-      "usedPriceAvg": 53980,
+      "usedPriceAvg": 52480,
       "recommend": "VRAM 12GB搭載で高解像度テクスチャやAI生成にも強く、フルHD環境で圧倒的一番人気のロングセラーGPU。",
       "mercariQuery": "RTX 3060 12GB",
       "shopQuery": "RTX 3060 12GB"
@@ -40,7 +40,7 @@
       "badge": "RTX 3080",
       "name": "GeForce RTX 3080 10GB",
       "newPriceRef": 120000,
-      "usedPriceAvg": 60980,
+      "usedPriceAvg": 60480,
       "recommend": "4K本格ゲーミングのエントリーに最適。6万円台半ばで手に入る圧倒的グラフィックスパワー。",
       "mercariQuery": "RTX 3080 10GB",
       "shopQuery": "RTX 3080 10GB"
@@ -117,7 +117,7 @@
       "badge": "RTX 4070",
       "name": "GeForce RTX 4070 12GB",
       "newPriceRef": 95000,
-      "usedPriceAvg": 99980,
+      "usedPriceAvg": 94980,
       "recommend": "RTX 3080同等の性能ながら消費電力が激減。長時間のプレイでも部屋が暑くなりにくく、電源要件も緩めなのが最大のメリット。",
       "mercariQuery": "RTX 4070 12GB",
       "shopQuery": "RTX 4070 12GB"
@@ -304,7 +304,7 @@
       "badge": "Socket AM4",
       "name": "B550 ATXマザーボード",
       "newPriceRef": 21000,
-      "usedPriceAvg": 17160,
+      "usedPriceAvg": 17420,
       "recommend": "Ryzen 3000/5000シリーズに対応。PCIe 4.0対応M.2スロットを備え、コスパ自作の土台として不動の人気。",
       "mercariQuery": "B550 マザーボード ATX",
       "shopQuery": "B550 マザーボード ATX"
