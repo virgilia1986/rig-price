@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/11/21 02:30",
+  "lastUpdated": "2026/11/22 01:35",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -117,7 +117,7 @@
       "badge": "RTX 4070",
       "name": "GeForce RTX 4070 12GB",
       "newPriceRef": 95000,
-      "usedPriceAvg": 99980,
+      "usedPriceAvg": 94980,
       "recommend": "RTX 3080同等の性能ながら消費電力が激減。長時間のプレイでも部屋が暑くなりにくく、電源要件も緩めなのが最大のメリット。",
       "mercariQuery": "RTX 4070 12GB",
       "shopQuery": "RTX 4070 12GB"
