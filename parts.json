@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/11/22 01:35",
+  "lastUpdated": "2026/11/23 01:53",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -7,7 +7,7 @@
       "badge": "RTX 3060",
       "name": "GeForce RTX 3060 12GB",
       "newPriceRef": 55000,
-      "usedPriceAvg": 53480,
+      "usedPriceAvg": 52480,
       "recommend": "VRAM 12GB搭載で高解像度テクスチャやAI生成にも強く、フルHD環境で圧倒的一番人気のロングセラーGPU。",
       "mercariQuery": "RTX 3060 12GB",
       "shopQuery": "RTX 3060 12GB"
@@ -40,7 +40,7 @@
       "badge": "RTX 3080",
       "name": "GeForce RTX 3080 10GB",
       "newPriceRef": 120000,
-      "usedPriceAvg": 65480,
+      "usedPriceAvg": 69980,
       "recommend": "4K本格ゲーミングのエントリーに最適。6万円台半ばで手に入る圧倒的グラフィックスパワー。",
       "mercariQuery": "RTX 3080 10GB",
       "shopQuery": "RTX 3080 10GB"
@@ -95,7 +95,7 @@
       "badge": "RX 6600",
       "name": "Radeon RX 6600 8GB",
       "newPriceRef": 42000,
-      "usedPriceAvg": 36629,
+      "usedPriceAvg": 36980,
       "recommend": "省電力性抜群（TDP 132W）。RTX 3060に迫るフルHD性能を2万円台前半で実現する高効率カード。",
       "mercariQuery": "Radeon RX 6600",
       "shopQuery": "Radeon RX 6600"
@@ -117,7 +117,7 @@
       "badge": "RTX 4070",
       "name": "GeForce RTX 4070 12GB",
       "newPriceRef": 95000,
-      "usedPriceAvg": 94980,
+      "usedPriceAvg": 89980,
       "recommend": "RTX 3080同等の性能ながら消費電力が激減。長時間のプレイでも部屋が暑くなりにくく、電源要件も緩めなのが最大のメリット。",
       "mercariQuery": "RTX 4070 12GB",
       "shopQuery": "RTX 4070 12GB"
