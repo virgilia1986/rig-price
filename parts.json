@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/11/23 01:53",
+  "lastUpdated": "2026/11/24 05:51",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -62,7 +62,7 @@
       "badge": "RTX 2080 SUPER",
       "name": "GeForce RTX 2080 SUPER 8GB",
       "newPriceRef": 88000,
-      "usedPriceAvg": 30980,
+      "usedPriceAvg": 31480,
       "recommend": "RTX 3060と同等以上の純粋なレンダリング速度を持ち、中古市場での値崩れが激しいお得枠。",
       "mercariQuery": "RTX 2080 SUPER",
       "shopQuery": "RTX 2080 SUPER"
@@ -95,7 +95,7 @@
       "badge": "RX 6600",
       "name": "Radeon RX 6600 8GB",
       "newPriceRef": 42000,
-      "usedPriceAvg": 36980,
+      "usedPriceAvg": 35629,
       "recommend": "省電力性抜群（TDP 132W）。RTX 3060に迫るフルHD性能を2万円台前半で実現する高効率カード。",
       "mercariQuery": "Radeon RX 6600",
       "shopQuery": "Radeon RX 6600"
@@ -106,7 +106,7 @@
       "badge": "RX 6700 XT",
       "name": "Radeon RX 6700 XT 12GB",
       "newPriceRef": 75000,
-      "usedPriceAvg": 42980,
+      "usedPriceAvg": 43480,
       "recommend": "RTX 3060 Tiと同等以上の描画性能と大容量12GB VRAMを両立。WQHD解像度に強い選択肢。",
       "mercariQuery": "Radeon RX 6700 XT",
       "shopQuery": "Radeon RX 6700 XT"
@@ -139,7 +139,7 @@
       "badge": "8C / 16T",
       "name": "Intel Core i7-11700",
       "newPriceRef": 48000,
-      "usedPriceAvg": 28980,
+      "usedPriceAvg": 29980,
       "recommend": "PCIe Gen4に初対応した第11世代の定番。TDP 65W設計で空冷クーラーでも扱いやすい実用派。",
       "mercariQuery": "Core i7 11700",
       "shopQuery": "Core i7 11700"
@@ -367,7 +367,7 @@
       "badge": "RTX 4060",
       "name": "GeForce RTX 4060 8GB",
       "newPriceRef": 46000,
-      "usedPriceAvg": 47980,
+      "usedPriceAvg": 48480,
       "recommend": "消費電力わずか115WでDLSS 3（フレーム生成）対応。電気代を抑えつつ最新ゲームをフルHDで快適に遊べる現行定番GPU。",
       "mercariQuery": "RTX 4060 8GB",
       "shopQuery": "RTX 4060 8GB"
@@ -389,7 +389,7 @@
       "badge": "RTX 4070 SUPER",
       "name": "GeForce RTX 4070 SUPER 12GB",
       "newPriceRef": 98000,
-      "usedPriceAvg": 99480,
+      "usedPriceAvg": 99980,
       "recommend": "無印4070からCUDAコアが大幅増強され、RTX 3090に迫る描画性能を発揮。WQHD〜4Kゲーミングの最適解。",
       "mercariQuery": "RTX 4070 SUPER",
       "shopQuery": "RTX 4070 SUPER"
