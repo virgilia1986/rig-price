@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026/11/25 04:54",
+  "lastUpdated": "2026/11/26 03:58",
   "parts": [
     {
       "id": "gpu-rtx3060",
@@ -7,7 +7,7 @@
       "badge": "RTX 3060",
       "name": "GeForce RTX 3060 12GB",
       "newPriceRef": 55000,
-      "usedPriceAvg": 53480,
+      "usedPriceAvg": 53980,
       "recommend": "VRAM 12GB搭載で高解像度テクスチャやAI生成にも強く、フルHD環境で圧倒的一番人気のロングセラーGPU。",
       "mercariQuery": "RTX 3060 12GB",
       "shopQuery": "RTX 3060 12GB"
@@ -29,7 +29,7 @@
       "badge": "RTX 3070",
       "name": "GeForce RTX 3070 8GB",
       "newPriceRef": 85000,
-      "usedPriceAvg": 47480,
+      "usedPriceAvg": 47980,
       "recommend": "前世代最上位のRTX 2080 Tiと同等のパワーを持ち、ApexやVALORANTを240Hz超で張り付かせたい方に最適。",
       "mercariQuery": "RTX 3070 8GB",
       "shopQuery": "RTX 3070 8GB"
@@ -304,7 +304,7 @@
       "badge": "Socket AM4",
       "name": "B550 ATXマザーボード",
       "newPriceRef": 21000,
-      "usedPriceAvg": 17160,
+      "usedPriceAvg": 17690,
       "recommend": "Ryzen 3000/5000シリーズに対応。PCIe 4.0対応M.2スロットを備え、コスパ自作の土台として不動の人気。",
       "mercariQuery": "B550 マザーボード ATX",
       "shopQuery": "B550 マザーボード ATX"
