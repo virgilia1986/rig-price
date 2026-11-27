@@ -152,9 +152,6 @@
       transform: translateY(-2px);
       border-color: #38bdf8;
     }
-    .card.hot-deal {
-      border-color: rgba(52, 211, 153, 0.45);
-    }
     .card-header {
       display: flex;
       justify-content: space-between;
@@ -656,7 +653,7 @@
         const rakutenFinalUrl = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_AFFILIATE_ID}/?pc=${encodeURIComponent(rawRakutenUrl)}`;
 
         return `
-          <div class="card ${isHot ? 'hot-deal' : ''}" data-category="${p.category}">
+          <div class="card" data-category="${p.category}">
             <div class="card-header">
               <span class="badge">${p.badge}</span>
               <span class="diff-badge ${isHot ? 'hot' : ''}" style="${badgeStyle}">${diffBadge}</span>
